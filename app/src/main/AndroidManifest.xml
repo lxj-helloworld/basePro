@@ -11,6 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:replace="android:label,android:name">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="sC0oP3sFj4QhyQAoIs1tZX24RpLQaGB1" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +62,8 @@
         <activity android:name=".xgPush.XgPushActivity" />
         <activity android:name=".datepicker.wheel.WeelPickerActivity" />
         <activity android:name=".security.SecurityActivity" />
-        <activity android:name=".file.SaveToFilesActivity"></activity>
+        <activity android:name=".file.SaveToFilesActivity" />
+        <activity android:name=".map.MyLocationActivity"></activity>
     </application>
 
 </manifest>

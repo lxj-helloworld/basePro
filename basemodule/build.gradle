@@ -21,6 +21,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
+
 }
 
 dependencies {
@@ -34,49 +40,58 @@ dependencies {
     compile 'com.android.support:support-v4:27.1.1'
     compile 'com.android.support:support-vector-drawable:27.1.1'
     compile 'com.android.support:recyclerview-v7:27.1.1'
-    /** 卡片视图 **/
+    /** 卡片视图   **/
     compile 'com.android.support:cardview-v7:27.1.1'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    /** rxjava  **/
+    /** rxjava    **/
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
-    /** retrofit  **/
+    /** retrofit    **/
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
-    /** okhttp  **/
+    /** okhttp    **/
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
-    /** 权限获取  **/
+    /** 权限获取    **/
     compile 'me.weyye.hipermission:library:1.0.7'
-    /** 底部导航  **/
+    /** 底部导航    **/
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
-    /** 列表  **/
+    /** 列表    **/
     compile 'com.yanzhenjie:recyclerview-swipe:1.0.4'
-    /** 万能适配器  **/
+    /** 万能适配器    **/
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    /** MPAndroidChart 图表 **/
+    /** MPAndroidChart 图表   **/
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    /** 图片选择器 **/
-    /** 最基础的架构，仅提供了系统默认的图片选择器和拍照功能 **/
+    /** 图片选择器   **/
+    /** 最基础的架构，仅提供了系统默认的图片选择器和拍照功能   **/
     compile 'com.github.qingmei2:rximagepicker:2.2.0-alpha'
-    /** 提供了自定义UI图片选择器的基本组件，自定义UI的需求需要添加该依赖 **/
+    /** 提供了自定义UI图片选择器的基本组件，自定义UI的需求需要添加该依赖   **/
     compile 'com.github.qingmei2:rximagepicker_support:2.2.0-alpha'
-    /** 如果需要额外的UI支持，请选择依赖对应的UI拓展库 **/
+    /** 如果需要额外的UI支持，请选择依赖对应的UI拓展库   **/
     compile 'com.github.qingmei2:rximagepicker_support_zhihu:2.2.0-alpha'
     // 知乎图片选择器
     compile 'com.github.qingmei2:rximagepicker_support_wechat:2.2.0-alpha'
     // 微信图片选择器
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    /** 图片预览控件 **/
+    /** 图片预览控件   **/
     compile 'com.bm.photoview:library:1.4.1'
-    /** RxJava库 **/
+    /** RxJava库   **/
     compile 'com.gengqiquan:Rx2ActivityResult:0.0.4'
     implementation files('libs/zip4j_1.3.2.jar')
+    implementation files('libs/baidumapapi_base_v4_3_0.jar')
+    implementation files('libs/baidumapapi_cloud_v4_3_0.jar')
+    implementation files('libs/baidumapapi_map_v4_3_0.jar')
+    implementation files('libs/baidumapapi_radar_v4_3_0.jar')
+    implementation files('libs/baidumapapi_search_v4_3_0.jar')
+    implementation files('libs/baidumapapi_util_v4_3_0.jar')
+    implementation files('libs/locSDK_6.13.jar')
+    implementation files('libs/poi-3.12-android-a.jar')
+    implementation files('libs/poi-ooxml-schemas-3.12-20150511-a.jar')
 }

@@ -22,6 +22,7 @@ import com.example.xiaojin20135.mybaseapp.download.DownloadActivity;
 import com.example.xiaojin20135.mybaseapp.file.SaveToFilesActivity;
 import com.example.xiaojin20135.mybaseapp.image.PickImageActivity;
 import com.example.xiaojin20135.mybaseapp.loaddata.LoadDataActivity;
+import com.example.xiaojin20135.mybaseapp.map.MyLocationActivity;
 import com.example.xiaojin20135.mybaseapp.mpchart.MyChartActivity;
 import com.example.xiaojin20135.mybaseapp.recyclerview.MyRecyActivity;
 import com.example.xiaojin20135.mybaseapp.security.SecurityActivity;
@@ -193,6 +194,9 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
                 break;
             case R.id.save_files_btn:
                 canGo(SaveToFilesActivity.class);
+                break;
+            case R.id.location_btn:
+                canGo(MyLocationActivity.class);
                 break;
         }
     }

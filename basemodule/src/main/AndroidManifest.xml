@@ -43,7 +43,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:name=".activity.BaseApplication"
         android:allowBackup="true"
@@ -52,7 +53,7 @@
         android:theme="@style/AppTheme_my"
         tools:replace="android:label,android:name">
         <provider
-            android:name="com.example.xiaojin20135.basemodule.files.TopsFileProvider"
+            android:name=".files.TopsFileProvider"
             android:authorities="${applicationId}.providertopscomm"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -61,6 +62,8 @@
                 android:resource="@xml/providertopscomm_paths" />
         </provider>
 
+
+
         <activity android:name=".activity.login.BaseLoginActivity" />
         <activity android:name=".activity.bottom.BaseBottomBarActivity" />
         <activity android:name=".activity.recycle.BaseRecyclerActivity" />
@@ -68,7 +71,8 @@
         <activity android:name=".activity.approve.ApproveActivity" />
         <activity android:name=".image.view.ImageBrowseActivity" />
         <activity android:name=".webview.BaseWebViewActivity" />
-        <activity android:name=".guidepage.GuidePageActivity"></activity>
+        <activity android:name=".guidepage.GuidePageActivity" />
+        <activity android:name=".map.LocationInMapActivity"></activity>
     </application>
 
 </manifest>

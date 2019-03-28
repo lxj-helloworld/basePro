@@ -183,6 +183,13 @@
                 android:text="导出文件"
                 android:id="@+id/save_files_btn"
                 android:onClick="onClick"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="定位"
+                android:id="@+id/location_btn"
+                android:onClick="onClick"/>
         </LinearLayout>
     </ScrollView>
 
