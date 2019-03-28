@@ -9,15 +9,33 @@
 
     <include layout="@layout/toolbar"></include>
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/info_margin_15"
-        android:id="@+id/locationinfo_TV"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/info_margin_15"
+                android:id="@+id/locationinfo_TV"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/open_map_btn"
-        android:text="打开地图"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/open_map_btn"
+                android:text="打开地图"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/info_margin_15"
+                android:id="@+id/locationinfo_sel_TV"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+
 </LinearLayout>

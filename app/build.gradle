@@ -1,14 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        new1 {
-            keyAlias 'key0'
-            keyPassword '111111'
-            storeFile file('/Users/topscommmac01/Documents/Android/new')
-            storePassword '111111'
-        }
-    }
+
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
@@ -31,14 +24,8 @@ android {
                 PACKAGE_NAME : "com.example.xiaojin20135.mybaseapp"
         ]*/
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-        }
-    }
+
+
 }
 
 dependencies {

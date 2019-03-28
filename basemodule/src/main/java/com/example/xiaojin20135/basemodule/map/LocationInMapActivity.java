@@ -56,7 +56,7 @@ public class LocationInMapActivity extends ToolBarActivity {
     private String latitude_in = "";
     private LocationItem locationItem = new LocationItem ();
     Marker marker = null;
-    private boolean drawable = false;//是否允许拖拽
+    private boolean drawable = true;//是否允许拖拽
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -275,6 +275,10 @@ public class LocationInMapActivity extends ToolBarActivity {
                     Log.d("LocationInMapActivity","in onMarkerDragEnd. latitude="+marker.getPosition().latitude+";longitude="+marker.getPosition().longitude);
                     latitude = marker.getPosition().latitude+"";
                     longitude = marker.getPosition().longitude+"";
+                    locationItem = new LocationItem();
+                    locationItem.setLatitude(marker.getPosition().latitude+"");
+                    locationItem.setLongitude(marker.getPosition().longitude+"");
+
                 }
                 @Override
                 public void onMarkerDragStart(Marker marker) {

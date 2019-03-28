@@ -45,9 +45,9 @@ public class BaseApplication extends Application {
         /**
          * 初始化百度地图SDK，建议在Application中创建
          */
-        locationService = new LocationService (getApplicationContext());
-        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
-        SDKInitializer.initialize(getApplicationContext());
+        locationService = new LocationService (this);
+        mVibrator =(Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
+        SDKInitializer.initialize(this);
         ///将当前地图的坐标类型设置为GCJ02
         SDKInitializer.setCoordType(CoordType.GCJ02);
     }
