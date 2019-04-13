@@ -17,6 +17,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BaiduMapOptions;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
@@ -108,7 +109,7 @@ public class LocationInMapActivity extends ToolBarActivity {
         recordBtn = (Button)findViewById(R.id.recordBtn);
         get_location_Btn = (Button)findViewById(R.id.get_location_Btn);
 
-        mMapView = new MapView(this);
+        mMapView = new MapView(this,new BaiduMapOptions());
 
         mBaiduMap = mMapView.getMap();
         mMapView.showZoomControls(false);
