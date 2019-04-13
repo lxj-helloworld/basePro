@@ -17,15 +17,17 @@ public abstract class ToolBarActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         title = (TextView)findViewById(R.id.title);
-        toolbar.setTitle("");
-        toolbar.setPopupTheme(R.style.AppTheme_AppBarOverlay);
-        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        setSupportActionBar(toolbar);
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(toolbar != null){
+            toolbar.setTitle("");
+            toolbar.setPopupTheme(R.style.AppTheme_AppBarOverlay);
+            toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            setSupportActionBar(toolbar);
+            if(getSupportActionBar() != null){
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+            initToolbar();
+            setIcon(R.drawable.ic_back);
         }
-        initToolbar();
-        setIcon(R.drawable.ic_back);
     }
     public void initToolbar(){
 //        Log.d(TAG,"in initToolbar 111111111111111111111" );
@@ -40,18 +42,23 @@ public abstract class ToolBarActivity extends BaseActivity {
 
     //设置toolbar标题
     public void setTitleText(int id) {
-//        Log.d(TAG,"in setTitleText 111111111111111111111");
-        this.title.setText(getString(id));
+        if(toolbar != null){
+            this.title.setText(getString(id));
+        }
+
     }
 
     //设置toolbar标题
     public void setTitleText(String title){
-        this.title.setText (title);
+        if(toolbar != null){
+            this.title.setText (title);
+        }
+
     }
 
     //设置toolbar图标
     public void setIcon(int id){
-//        Log.d(TAG,"in setIcon 111111111111111111111");
+
         toolbar.setNavigationIcon(id);
     }
 

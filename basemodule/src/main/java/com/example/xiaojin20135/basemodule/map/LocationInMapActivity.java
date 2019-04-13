@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -37,6 +39,7 @@ public class LocationInMapActivity extends ToolBarActivity {
     TextView location_resultTV;
     Button recordBtn;
     Button get_location_Btn;
+    LinearLayout map_LL;
 
     private BaiduMap mBaiduMap;
     private LocationService locService;
@@ -78,20 +81,19 @@ public class LocationInMapActivity extends ToolBarActivity {
                 locService.start();
             }
         }
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG,"on toolbar lefticon");
-                // 在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
-                locService.unregisterListener(listener);
-                locService.stop();
-                LocationInMapActivity.this.finish();
-//                mMapView.onDestroy();
-                Log.d(TAG,"toolbar pressed ");
-            }
-        });
-
+        if(toolbar != null){
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG,"on toolbar lefticon");
+                    // 在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
+                    locService.unregisterListener(listener);
+                    locService.stop();
+                    LocationInMapActivity.this.finish();
+                    Log.d(TAG,"toolbar pressed ");
+                }
+            });
+        }
     }
 
     @Override
@@ -101,16 +103,24 @@ public class LocationInMapActivity extends ToolBarActivity {
 
     @Override
     protected void initView () {
-        mMapView = (MapView)findViewById(R.id.bmapView);
+        map_LL = (LinearLayout) findViewById(R.id.map_LL);
         location_resultTV = (TextView)findViewById(R.id.location_resultTV);
         recordBtn = (Button)findViewById(R.id.recordBtn);
         get_location_Btn = (Button)findViewById(R.id.get_location_Btn);
+
+        mMapView = new MapView(this);
 
         mBaiduMap = mMapView.getMap();
         mMapView.showZoomControls(false);
         //设置地图类型(普通矢量图，卫星图和空白地图)
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMapStatus(MapStatusUpdateFactory.zoomTo(15));
+
+        FrameLayout frameLayout = new FrameLayout(this);
+        frameLayout.addView(mMapView);
+
+        setContentView(frameLayout);
+
     }
 
     @Override

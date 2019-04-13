@@ -79,14 +79,11 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/map_LL">
 
-            <com.baidu.mapapi.map.MapView
-                android:id="@+id/bmapView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                />
+
 
         </LinearLayout>
 
