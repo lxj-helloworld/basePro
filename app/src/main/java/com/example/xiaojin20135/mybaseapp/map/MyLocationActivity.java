@@ -57,6 +57,7 @@ public class MyLocationActivity extends LocationActivity {
     @Override
     public void locationSuccess (LocationItem locationItem) {
         Log.d (TAG,"locationItem = " + locationItem.toString ());
+        dismissProgress();
         if(locationinfo_TV != null){
             StringBuilder stringBuilder = new StringBuilder("");
             stringBuilder.append("地址：" + locationItem.getProvince () + " " + locationItem.getCity () + " " + locationItem.getLocationDescribe());

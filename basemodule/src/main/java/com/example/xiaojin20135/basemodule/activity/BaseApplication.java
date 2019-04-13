@@ -21,9 +21,6 @@ public class BaseApplication extends Application {
     private static BaseApplication app;
     private static Activity activity;
 
-    //百度地图相关
-    public LocationService locationService;
-    public Vibrator mVibrator;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -40,7 +37,9 @@ public class BaseApplication extends Application {
 
     }
 
-
+    //百度地图相关
+    public LocationService locationService;
+    public Vibrator mVibrator;
     public void initLocation(){
         /**
          * 初始化百度地图SDK，建议在Application中创建

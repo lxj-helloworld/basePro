@@ -64,7 +64,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
         if(getActivity ()!=null&&isShowProgressDialog){
             ((BaseActivity)getActivity ()).showProgress ();
         }
-
     }
 
 
