@@ -8,9 +8,6 @@ import android.os.Vibrator;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
-import com.baidu.mapapi.CoordType;
-import com.baidu.mapapi.SDKInitializer;
-import com.example.xiaojin20135.basemodule.map.LocationService;
 import com.example.xiaojin20135.basemodule.retrofit.util.AppContextUtil;
 
 /**
@@ -37,19 +34,7 @@ public class BaseApplication extends Application {
 
     }
 
-    //百度地图相关
-    public LocationService locationService;
-    public Vibrator mVibrator;
-    public void initLocation(){
-        /**
-         * 初始化百度地图SDK，建议在Application中创建
-         */
-        locationService = new LocationService (this);
-        mVibrator =(Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
-        SDKInitializer.initialize(this);
-        ///将当前地图的坐标类型设置为GCJ02
-        SDKInitializer.setCoordType(CoordType.GCJ02);
-    }
+
 
     public static BaseApplication getInstance(){
         return app;
