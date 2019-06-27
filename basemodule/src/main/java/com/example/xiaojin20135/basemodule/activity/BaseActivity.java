@@ -48,6 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     public static ProgressDialog progressDialog;
     private PresenterImpl presenterImpl;
     public  boolean isShowProgressDialog=true;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
