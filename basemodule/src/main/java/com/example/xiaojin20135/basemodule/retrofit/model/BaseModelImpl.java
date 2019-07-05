@@ -4,16 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.xiaojin20135.basemodule.retrofit.api.IServiceApi;
-import com.example.xiaojin20135.basemodule.retrofit.bean.ActionResult;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ResponseBean;
 
-import java.lang.reflect.Method;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -184,6 +179,6 @@ public class BaseModelImpl extends BaseModel implements IBaseModel<ResponseBean>
 
     @Override
     public void onUnsubscribe () {
-
+        compositeSubscription.clear();
     }
 }

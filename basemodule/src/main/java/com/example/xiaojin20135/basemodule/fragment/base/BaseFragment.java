@@ -312,9 +312,17 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     public void requestError (ResponseBean responseBean) {
         requestError (responseBean.getActionResult ().getMessage ());
         if(responseBean.isTimeout ()){
+         cancleRequest();
             reStartApp();
         }
     }
+
+    public void cancleRequest(){
+        if (presenterImpl!=null){
+            presenterImpl.unSubscribe();
+        }
+    }
+
     public void reStartApp(){
         Intent intent =getActivity ().getPackageManager()
             .getLaunchIntentForPackage(getActivity().getPackageName());

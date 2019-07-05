@@ -2,7 +2,6 @@ package com.example.xiaojin20135.basemodule.retrofit.presenter;
 
 import android.content.Context;
 
-import com.example.xiaojin20135.basemodule.retrofit.bean.ActionResult;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ResponseBean;
 import com.example.xiaojin20135.basemodule.retrofit.model.BaseModelImpl;
 import com.example.xiaojin20135.basemodule.retrofit.view.IBaseView;
@@ -56,7 +55,7 @@ public class PresenterImpl extends BasePresenterImp<IBaseView,ResponseBean> impl
 
     @Override
     public void unSubscribe () {
-
+        baseModel.onUnsubscribe();
     }
 
 

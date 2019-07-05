@@ -450,7 +450,14 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     public void requestError (ResponseBean responseBean) {
         requestError (responseBean.getActionResult ().getMessage ());
         if(responseBean.isTimeout ()){
+            cancleRequest();
             reStartApp();
+        }
+    }
+
+    public void cancleRequest(){
+        if (presenterImpl!=null){
+            presenterImpl.unSubscribe();
         }
     }
     public void reStartApp(){
@@ -458,6 +465,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
     }
+
+
     @Override
     public void requestError (String  message) {
         Log.d (TAG,"requestError : " + message);
