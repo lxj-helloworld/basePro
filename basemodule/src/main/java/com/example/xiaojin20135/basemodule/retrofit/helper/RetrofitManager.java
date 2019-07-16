@@ -1,6 +1,5 @@
 package com.example.xiaojin20135.basemodule.retrofit.helper;
 
-import android.app.Application;
 import android.util.Log;
 
 import com.example.xiaojin20135.basemodule.activity.BaseApplication;
@@ -34,7 +33,6 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -61,12 +59,17 @@ public enum  RetrofitManager {
     //查询网络的Cache-Control设置，头部Cache-Control设为max-age=0时则不会使用缓存而请求服务器
     public final String CACHE_CONTROL_NETWORK = "max-age=0";
     private IServiceApi iServiceApi;
-    private static final int DEFAULT_TIMEOUT = 120;
+    private int DEFAULT_TIMEOUT = 120;
     OkHttpClient.Builder httpClientBuilder = null;
 
     private boolean selfDefineHttps = false;
 
     RetrofitManager(){
+    }
+
+    public RetrofitManager setConnectTimeout(int timeout){
+        this.DEFAULT_TIMEOUT=timeout;
+        return this;
     }
 
     public void init(String url){
