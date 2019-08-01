@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.qingmei2:rximagepicker_support-2.2.0-alpha">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/rximagepicker_support-2.2.0-alpha.aar/812e28df7e3fcefa79b3cfb728122f84/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/rximagepicker_support-2.2.0-alpha.aar/812e28df7e3fcefa79b3cfb728122f84/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.qingmei2/rximagepicker_support/2.2.0-alpha/66ebabf7b742419f28ac702d2e6c5243a3009f9c/rximagepicker_support-2.2.0-alpha-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

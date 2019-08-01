@@ -55,7 +55,7 @@ public class DownloadActivity extends ToolBarActivity {
     public void onClick (View view) {
         switch (view.getId ()){
             case R.id.start_doc_btn:
-                download("http://lineloss.topscomm.net:5101/app_download/package/zsk/test.docx");
+                download("http://ysb.yisell.com/yisell/ybys2018050819052088/sound/yisell_sound_201404102304403674_88366.mp3");
                 break;
             case R.id.start_pdf_btn:
                 download("http://lineloss.topscomm.net:5101/app_download/app/zsk/sample.pdf");
