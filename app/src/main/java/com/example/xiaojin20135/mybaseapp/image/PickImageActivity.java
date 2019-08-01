@@ -32,6 +32,8 @@ import java.util.ArrayList;
 
 import io.reactivex.functions.Consumer;
 
+import static com.example.xiaojin20135.basemodule.image.ImageConstant.FROMNET;
+
 public class PickImageActivity extends ToolBarActivity {
     WechatImagePicker wechatImagePicker;
     SystemImagePicker systemImagePicker;
@@ -99,6 +101,9 @@ public class PickImageActivity extends ToolBarActivity {
 
     public void onClick (View view) {
         switch (view.getId ()){
+            case R.id.net_image_btn:
+                showNetImages();
+                break;
             case R.id.system_gallery_btn:
                 systemGalleryOpen ();
                 break;
@@ -119,6 +124,21 @@ public class PickImageActivity extends ToolBarActivity {
                 break;
         }
     }
+
+    private void showNetImages(){
+        ArrayList<String> photos = new ArrayList<>();
+        photos.add("http://pic23.nipic.com/20120814/3173351_101349962000_2.jpg");
+        photos.add("http://img5.imgtn.bdimg.com/it/u=3156671389,2646079670&fm=26&gp=0.jpg");
+        photos.add("http://img0.imgtn.bdimg.com/it/u=198375760,2973382315&fm=27&gp=0.jpg");
+        photos.add("http://img4.duitang.com/uploads/item/201510/07/20151007000710_mWynE.thumb.700_0.jpeg");
+        Bundle bundle = new Bundle ();
+        bundle.putStringArrayList (ImageConstant.imageList, photos);
+        bundle.putInt("index",2);
+        bundle.putBoolean(FROMNET,true);
+        canGo(ImageBrowseActivity.class,bundle);
+    }
+
+
 
     private void systemGalleryOpen(){
         systemImagePicker.openGallery(this)               //打开系统相册选取图片

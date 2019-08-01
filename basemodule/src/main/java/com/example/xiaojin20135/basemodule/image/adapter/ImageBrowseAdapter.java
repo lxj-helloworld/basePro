@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
 import com.example.xiaojin20135.basemodule.activity.BaseActivity;
+import com.example.xiaojin20135.basemodule.image.listener.ImageLongClick;
 
 import java.util.ArrayList;
 
@@ -23,10 +24,18 @@ public class ImageBrowseAdapter extends PagerAdapter {
     private static final String TAG = "ImageBrowseAdapter";
     BaseActivity context;
     private ArrayList<String> imageList;
+    //图片长按事件
+    private ImageLongClick imageLongClick;
+
     public ImageBrowseAdapter(BaseActivity context,ArrayList<String> imageList){
         Log.d (TAG,"ImageBrowseAdapter");
         this.context = context;
         this.imageList = imageList;
+    }
+
+    public ImageBrowseAdapter(BaseActivity context,ArrayList<String> imageList,ImageLongClick imageLongClick){
+        this(context,imageList);
+        this.imageLongClick = imageLongClick;
     }
 
     @Override
@@ -47,7 +56,7 @@ public class ImageBrowseAdapter extends PagerAdapter {
         return POSITION_NONE;
     }
 
-    public View instantiateItem(ViewGroup container,int position){
+    public View instantiateItem(ViewGroup container, final int position){
         Log.d (TAG,"instantiateItem position = " + position + " :" + imageList.get (position));
         final PhotoView image = new PhotoView (context);
         // 开启图片缩放功能
@@ -68,13 +77,22 @@ public class ImageBrowseAdapter extends PagerAdapter {
                 context.finish();
             }
         });
+        //长按图片
+        image.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(imageLongClick != null){
+                    imageLongClick.longClickImage(position);
+                }
+                return true;
+            }
+        });
         container.addView(image);
         return image;
     }
 
     @Override
     public void destroyItem (@NonNull ViewGroup container, int position, @NonNull Object object) {
-        Log.d (TAG,"destroyItem");
         container.removeView ((View) object);
     }
 

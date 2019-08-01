@@ -171,11 +171,13 @@ public enum  RetrofitManager {
                 String cacheControl = request.cacheControl().toString();
                 return originalResponse.newBuilder()
                         .header("Cache-Control", cacheControl)
+                        .addHeader("Accept-Encoding","identity")
                         .removeHeader("Pragma")
                         .build();
             }else{
                 return originalResponse.newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=2419200")
+                        .addHeader("Accept-Encoding","identity")
                         .removeHeader("Pragma")
                         .build();
             }

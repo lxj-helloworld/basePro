@@ -8,4 +8,5 @@ package com.example.xiaojin20135.basemodule.image;
 public enum ImageConstant {
     IMAGE_CONSTANT;
     public static final String imageList = "imageList";
+    public static final String FROMNET = "fromNet";
 }

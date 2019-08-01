@@ -9,6 +9,12 @@
 
     <include layout="@layout/toolbar"></include>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/net_image_btn"
+        android:onClick="onClick"
+        android:text="网络图片"/>
 
     <Button
         android:layout_width="match_parent"

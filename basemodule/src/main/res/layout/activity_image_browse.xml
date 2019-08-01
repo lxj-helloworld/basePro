@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/gray"
+    android:background="@color/black"
     tools:context="com.example.xiaojin20135.basemodule.image.view.ImageBrowseActivity">
-    <include layout="@layout/toolbar"></include>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/imageBrowseViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/number_textview"
+        android:layout_alignBottom="@+id/imageBrowseViewPager"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
