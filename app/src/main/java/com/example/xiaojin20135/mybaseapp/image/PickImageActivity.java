@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 import io.reactivex.functions.Consumer;
 
+import static com.example.xiaojin20135.basemodule.image.ImageConstant.ENABLELONGCLICK;
 import static com.example.xiaojin20135.basemodule.image.ImageConstant.FROMNET;
 
 public class PickImageActivity extends ToolBarActivity {
@@ -139,6 +140,7 @@ public class PickImageActivity extends ToolBarActivity {
         bundle.putBoolean(FROMNET,true);
         bundle.putInt("index",2);
         bundle.putBoolean(FROMNET,true);
+        bundle.putBoolean(ENABLELONGCLICK,false);
         canGo(ImageBrowseActivity.class,bundle);
     }
 

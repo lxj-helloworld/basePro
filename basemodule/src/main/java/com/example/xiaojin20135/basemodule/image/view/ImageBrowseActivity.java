@@ -33,6 +33,7 @@ import com.example.xiaojin20135.basemodule.util.MethodsUtils;
 
 import java.util.ArrayList;
 
+import static com.example.xiaojin20135.basemodule.image.ImageConstant.ENABLELONGCLICK;
 import static com.example.xiaojin20135.basemodule.image.ImageConstant.FROMNET;
 
 public class ImageBrowseActivity extends BaseActivity implements ImageLongClick {
@@ -44,6 +45,8 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     private int currentIndex = 0;
     //是否是网络图片
     private boolean fromNet = false;
+    //是否启用长按监听事件
+    private boolean enableLongClick = true;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -65,7 +68,11 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
         loading_progress = (ProgressBar)findViewById(R.id.loading_progress);
         mNumberTextView = (TextView)findViewById(R.id.number_textview);
         imageBrowseViewPager = (ViewPager)findViewById (R.id.imageBrowseViewPager);
-        imageBrowseAdapter = new ImageBrowseAdapter (this,imageList,this);
+        if(enableLongClick){
+            imageBrowseAdapter = new ImageBrowseAdapter (this,imageList,this);
+        }else{
+            imageBrowseAdapter = new ImageBrowseAdapter (this,imageList);
+        }
         imageBrowseViewPager.setAdapter (imageBrowseAdapter);
         imageBrowseViewPager.setCurrentItem (currentIndex);
     }
@@ -97,6 +104,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
             currentIndex = intent.getIntExtra("index", 0);
             fromNet = intent.getBooleanExtra(FROMNET,false);
             imageList = (ArrayList<String>) intent.getStringArrayListExtra("imageList");
+            enableLongClick = intent.getBooleanExtra(ENABLELONGCLICK,true);
         }
     }
 
