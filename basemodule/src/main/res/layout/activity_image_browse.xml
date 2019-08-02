@@ -8,6 +8,7 @@
     android:background="@color/black"
     tools:context="com.example.xiaojin20135.basemodule.image.view.ImageBrowseActivity">
 
+
     <android.support.v4.view.ViewPager
         android:id="@+id/imageBrowseViewPager"
         android:layout_width="match_parent"
@@ -22,5 +23,12 @@
         android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/loading_progress"
+        android:visibility="gone"/>
 </RelativeLayout>

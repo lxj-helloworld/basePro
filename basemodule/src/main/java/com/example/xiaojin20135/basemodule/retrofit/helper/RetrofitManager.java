@@ -159,6 +159,7 @@ public enum  RetrofitManager {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
+
             if(!NetUtil.isNetworkConnected()){
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
@@ -171,13 +172,11 @@ public enum  RetrofitManager {
                 String cacheControl = request.cacheControl().toString();
                 return originalResponse.newBuilder()
                         .header("Cache-Control", cacheControl)
-                        .addHeader("Accept-Encoding","identity")
                         .removeHeader("Pragma")
                         .build();
             }else{
                 return originalResponse.newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=2419200")
-                        .addHeader("Accept-Encoding","identity")
                         .removeHeader("Pragma")
                         .build();
             }

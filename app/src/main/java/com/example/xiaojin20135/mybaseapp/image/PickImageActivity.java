@@ -127,12 +127,16 @@ public class PickImageActivity extends ToolBarActivity {
 
     private void showNetImages(){
         ArrayList<String> photos = new ArrayList<>();
-        photos.add("http://pic23.nipic.com/20120814/3173351_101349962000_2.jpg");
-        photos.add("http://img5.imgtn.bdimg.com/it/u=3156671389,2646079670&fm=26&gp=0.jpg");
-        photos.add("http://img0.imgtn.bdimg.com/it/u=198375760,2973382315&fm=27&gp=0.jpg");
-        photos.add("http://img4.duitang.com/uploads/item/201510/07/20151007000710_mWynE.thumb.700_0.jpeg");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s2560x1440c5/g2/M00/05/09/ChMlWl1BAz-IcV0oADKEXBJ0ncgAAMP0gAAAAAAMoR0279.jpg");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s2560x1440c5/g2/M00/05/09/ChMlWV1BA0uIJD2cACgyyOBAl4YAAMP0gOPNF0AKDLg887.jpg");
+        photos.add("https://article-fd.zol-img.com.cn/g2/M00/0E/00/ChMlWVyJwQeIRQrvAA_BjB8NhecAAIyDANWGdgAD8Gk692.jpg");
+        photos.add("https://b.zol-img.com.cn/desk/bizhi/image/8/4096x2160/1563934008198.png");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s4096x2160c5/g2/M00/02/06/ChMlWV03v-eIOEWoAC0lpucbl_sAAMC8AFTL9QALSW-183.jpg");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s4096x2160c5/g2/M00/02/06/ChMlWl03wq6IbWwqAA-IxrPijHEAAMDAwJ0cR8AD4je242.jpg");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s4096x2160c5/g2/M00/02/06/ChMlWl03v_aISd7vABOqKe2IAXEAAMC8QJgIh4AE6pB2971212.jpg");
         Bundle bundle = new Bundle ();
         bundle.putStringArrayList (ImageConstant.imageList, photos);
+        bundle.putBoolean(FROMNET,true);
         bundle.putInt("index",2);
         bundle.putBoolean(FROMNET,true);
         canGo(ImageBrowseActivity.class,bundle);

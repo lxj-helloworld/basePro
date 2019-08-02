@@ -1,5 +1,9 @@
 package com.example.xiaojin20135.basemodule.util;
 
+import android.util.Log;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -11,6 +15,8 @@ import java.util.HashSet;
 
 public enum MethodsUtils {
     METHODS_UTILS;
+
+    public static final String TAG = "MethodsUtils";
 
     /**
      * @author lixiaojin
@@ -73,6 +79,25 @@ public enum MethodsUtils {
             result.append(" " + strs[i]);
         }
         return result.toString();
+    }
+
+
+    /*
+    * @author lixiaojin
+    * create on 2019/8/1 20:54
+    * description:url 字符串截取host
+    */
+    public String getHostFromUrl(String link){
+        Log.d(TAG,"link = " + link);
+        URL url;
+        String host = "";
+        try {
+            url = new URL(link);
+            host = url.getProtocol() + "://" + url.getHost();
+        } catch (MalformedURLException e) {
+        }
+        Log.d(TAG,"host = " + host);
+        return host;
     }
 
 }

@@ -117,8 +117,9 @@ public class DownloadUtils {
             return;
         }
         InputStream is = response.body().byteStream();
-        final long totalLength = response.body().contentLength();
 
+        final long totalLength = response.body().contentLength();
+        Log.d(TAG,"totalLength = " + totalLength);
         try {
             os = new FileOutputStream (file);
             int len;
@@ -128,18 +129,32 @@ public class DownloadUtils {
                 currentLength += len;
                 Log.e(TAG, "当前进度: " + currentLength);
                 final long finalCurrentLength = currentLength;
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        downloadListener.onProgress((int) (100 * finalCurrentLength / totalLength));
-                        if ((int) (100 * finalCurrentLength / totalLength) == 100) {
-                            downloadListener.onFinish(mFilePath);
-                            //下载完成，扫描文件
-                            scanFile(mFilePath);
+                if(totalLength != -1){
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            downloadListener.onProgress((int) (100 * finalCurrentLength / totalLength));
                         }
-                    }
-                });
+                    });
+                }else{
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            downloadListener.onProgress((int) (finalCurrentLength));
+                        }
+                    });
+                }
             }
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //下载完成
+                    downloadListener.onFinish(mFilePath);
+                    //下载完成，扫描文件
+                    scanFile(mFilePath);
+                }
+            });
+
         } catch (FileNotFoundException e) {
             downloadListener.onFailure("未找到文件！");
             e.printStackTrace();

@@ -10,6 +10,8 @@ import android.widget.ImageView;
 
 import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.activity.BaseActivity;
 import com.example.xiaojin20135.basemodule.image.listener.ImageLongClick;
 
@@ -65,10 +67,16 @@ public class ImageBrowseAdapter extends PagerAdapter {
         image.setScaleType (ImageView.ScaleType.CENTER_INSIDE);
         // 设置最大缩放倍数
         image.setMaxScale (2.5f);
+        //参数设置
+        RequestOptions requestOptions = new RequestOptions()
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.image_error);
         // 加载图片
         Glide.with(context)
-            .load(imageList.get (position))
-            .into(image);
+                .load(imageList.get (position))
+                .apply(requestOptions)
+                .into(image);
+
         // 单击图片，返回
         image.setOnClickListener (new View.OnClickListener () {
             @Override

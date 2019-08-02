@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bm.library.PhotoView;
@@ -24,14 +25,18 @@ import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.activity.BaseActivity;
 import com.example.xiaojin20135.basemodule.activity.ToolBarActivity;
 import com.example.xiaojin20135.basemodule.dialog.MyItemDialog;
+import com.example.xiaojin20135.basemodule.download.listener.MyDownloadListener;
+import com.example.xiaojin20135.basemodule.download.util.DownloadUtils;
 import com.example.xiaojin20135.basemodule.image.adapter.ImageBrowseAdapter;
 import com.example.xiaojin20135.basemodule.image.listener.ImageLongClick;
+import com.example.xiaojin20135.basemodule.util.MethodsUtils;
 
 import java.util.ArrayList;
 
 import static com.example.xiaojin20135.basemodule.image.ImageConstant.FROMNET;
 
 public class ImageBrowseActivity extends BaseActivity implements ImageLongClick {
+    private ProgressBar loading_progress;//下载进度条
     private TextView mNumberTextView;
     private ArrayList<String> imageList = new ArrayList<> ();
     private ViewPager imageBrowseViewPager;
@@ -57,6 +62,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
 
     @Override
     protected void initView () {
+        loading_progress = (ProgressBar)findViewById(R.id.loading_progress);
         mNumberTextView = (TextView)findViewById(R.id.number_textview);
         imageBrowseViewPager = (ViewPager)findViewById (R.id.imageBrowseViewPager);
         imageBrowseAdapter = new ImageBrowseAdapter (this,imageList,this);
@@ -71,6 +77,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
             public void onPageScrolled (int position, float positionOffset, int positionOffsetPixels) {
                 currentIndex = position;
                 Log.d (TAG,"currentIndex = " + currentIndex);
+                updateBottomIndex(position + 1);
             }
             @Override
             public void onPageSelected (int position) {
@@ -160,16 +167,68 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     public void longClickImage(int position) {
         //如果是网络图片
         if(fromNet){
-            String[] items = new String[]{"下载"};
-            MyItemDialog myItemDialog = new MyItemDialog(this, getString(R.string.app_name), items, 1, new MyItemDialog.OnDialogItemClickListener() {
+            String[] items = new String[]{"下载","取消"};
+            MyItemDialog myItemDialog = new MyItemDialog(this, items, 1, new MyItemDialog.OnDialogItemClickListener() {
                 @Override
                 public void onDialogItemClick(int requestCode, int position, String item) {
-
+                    if(position == 0){
+                        downLoadImage();
+                    }
                 }
             });
-
+            myItemDialog.show();
         }else{//如果是本地图片预览
-
+            String[] items = new String[]{"删除","取消"};
+            MyItemDialog myItemDialog = new MyItemDialog(this, items, 1, new MyItemDialog.OnDialogItemClickListener() {
+                @Override
+                public void onDialogItemClick(int requestCode, int position, String item) {
+                    if(position == 0){
+                        if(imageList != null && imageList.size () > currentIndex){
+                            imageList.remove (currentIndex);
+                            imageBrowseAdapter.notifyDataSetChanged ();
+                        }
+                        if(imageList == null || imageList.size () == 0){
+                            back();
+                        }
+                    }
+                }
+            });
+            myItemDialog.show();
         }
     }
+
+    /*
+    * @author lixiaojin
+    * create on 2019/8/1 20:55
+    * description: 下载图片
+    */
+    public void downLoadImage(){
+        DownloadUtils downloadUtils = new DownloadUtils (MethodsUtils.METHODS_UTILS.getHostFromUrl(imageList.get(currentIndex)));
+        downloadUtils.downloadFile(imageList.get(currentIndex), new MyDownloadListener() {
+            @Override
+            public void onStart() {
+                loading_progress.setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onProgress(final int currentLength) {
+                if(currentLength <= 100){
+                    loading_progress.setProgress(currentLength);
+                }else{
+                    loading_progress.setProgress(100);
+                }
+            }
+            @Override
+            public void onFinish(String localPath) {
+                String result = "下载完成\r\n";
+                loading_progress.setVisibility(View.GONE);
+                showToast(ImageBrowseActivity.this,"已下载至：" + localPath);
+            }
+            @Override
+            public void onFailure(final String errorInfo) {
+                loading_progress.setVisibility(View.GONE);
+                showToast(ImageBrowseActivity.this,"下载失败：" + errorInfo);
+            }
+        });
+    }
+
 }

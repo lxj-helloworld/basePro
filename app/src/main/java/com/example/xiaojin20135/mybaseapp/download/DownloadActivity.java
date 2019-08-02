@@ -55,7 +55,7 @@ public class DownloadActivity extends ToolBarActivity {
     public void onClick (View view) {
         switch (view.getId ()){
             case R.id.start_doc_btn:
-                download("http://ysb.yisell.com/yisell/ybys2018050819052088/sound/yisell_sound_201404102304403674_88366.mp3");
+                download("http://172.20.3.53:8924/er/cbo/cboAttachment_download.action?attachmentId=19080100000012");
                 break;
             case R.id.start_pdf_btn:
                 download("http://lineloss.topscomm.net:5101/app_download/app/zsk/sample.pdf");
@@ -88,7 +88,7 @@ public class DownloadActivity extends ToolBarActivity {
     }
 
     private void download(String url){
-        DownloadUtils downloadUtils = new DownloadUtils ("http://www.topscomm.com:5000/app_download/");
+        DownloadUtils downloadUtils = new DownloadUtils ("http://172.20.3.53:8924/er/");
         downloadUtils.downloadFile(url, new MyDownloadListener () {
             @Override
             public void onStart() {
