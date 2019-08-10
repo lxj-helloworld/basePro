@@ -32,6 +32,9 @@ import java.util.ArrayList;
 
 import io.reactivex.functions.Consumer;
 
+import static com.example.xiaojin20135.basemodule.image.ImageConstant.ENABLELONGCLICK;
+import static com.example.xiaojin20135.basemodule.image.ImageConstant.FROMNET;
+
 public class PickImageActivity extends ToolBarActivity {
     WechatImagePicker wechatImagePicker;
     SystemImagePicker systemImagePicker;
@@ -99,6 +102,9 @@ public class PickImageActivity extends ToolBarActivity {
 
     public void onClick (View view) {
         switch (view.getId ()){
+            case R.id.net_image_btn:
+                showNetImages();
+                break;
             case R.id.system_gallery_btn:
                 systemGalleryOpen ();
                 break;
@@ -119,6 +125,26 @@ public class PickImageActivity extends ToolBarActivity {
                 break;
         }
     }
+
+    private void showNetImages(){
+        ArrayList<String> photos = new ArrayList<>();
+        photos.add("https://desk-fd.zol-img.com.cn/t_s2560x1440c5/g2/M00/05/09/ChMlWl1BAz-IcV0oADKEXBJ0ncgAAMP0gAAAAAAMoR0279.jpg");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s2560x1440c5/g2/M00/05/09/ChMlWV1BA0uIJD2cACgyyOBAl4YAAMP0gOPNF0AKDLg887.jpg");
+        photos.add("https://article-fd.zol-img.com.cn/g2/M00/0E/00/ChMlWVyJwQeIRQrvAA_BjB8NhecAAIyDANWGdgAD8Gk692.jpg");
+        photos.add("https://b.zol-img.com.cn/desk/bizhi/image/8/4096x2160/1563934008198.png");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s4096x2160c5/g2/M00/02/06/ChMlWV03v-eIOEWoAC0lpucbl_sAAMC8AFTL9QALSW-183.jpg");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s4096x2160c5/g2/M00/02/06/ChMlWl03wq6IbWwqAA-IxrPijHEAAMDAwJ0cR8AD4je242.jpg");
+        photos.add("https://desk-fd.zol-img.com.cn/t_s4096x2160c5/g2/M00/02/06/ChMlWl03v_aISd7vABOqKe2IAXEAAMC8QJgIh4AE6pB2971212.jpg");
+        Bundle bundle = new Bundle ();
+        bundle.putStringArrayList (ImageConstant.imageList, photos);
+        bundle.putBoolean(FROMNET,true);
+        bundle.putInt("index",2);
+        bundle.putBoolean(FROMNET,true);
+        bundle.putBoolean(ENABLELONGCLICK,false);
+        canGo(ImageBrowseActivity.class,bundle);
+    }
+
+
 
     private void systemGalleryOpen(){
         systemImagePicker.openGallery(this)               //打开系统相册选取图片

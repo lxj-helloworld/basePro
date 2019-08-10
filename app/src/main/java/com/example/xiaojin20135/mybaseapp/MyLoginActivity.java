@@ -22,10 +22,15 @@ public class MyLoginActivity extends BaseLoginActivity {
         //设置底部copytight信息
         setCopyRight(R.string.app_name);
         //设置登陆地址
-        setLoginUrl ("https://186.168.6.201/ChpcyServer/chpcy/userAction_loginCheck");
-        //初始化
-        init ("loginName","pwd");
-        addParaMap ("mobile","mobile");
+        //设置请求登录地址
+        setLoginUrl("http://172.20.3.53:8919/toa/" +   "toa/toaMobileLogin_login");
+        //设置用户名和密码的参数名，适应不同系统，默认参数名为loginName和password
+        init("loginname", "password");
+        addParaMap("ismobile", "1");
+//        addParaMap("needToken", "1");
+        addParaMap("uuid", getDeviceId());
+        addParaMap("mobileversion",android.os.Build.VERSION.RELEASE);
+        addParaMap("mobilemodel",android.os.Build.MANUFACTURER+"_"+android.os.Build.MODEL);
         canStart();
     }
 

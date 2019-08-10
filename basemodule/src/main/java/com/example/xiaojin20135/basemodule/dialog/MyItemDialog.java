@@ -28,13 +28,17 @@ public class MyItemDialog extends Dialog implements AdapterView.OnItemClickListe
     private ListView listView;
     private ArrayAdapter<String> adapter;
 
-    public MyItemDialog (Context context, String title, String[] items, int requestCode, OnDialogItemClickListener listener) {
+    public MyItemDialog (Context context,String[] items, int requestCode, OnDialogItemClickListener listener) {
         super(context, R.style.AlertDialogStyle);
         this.context=context;
-        this.title=title;
         this.items=items;
         this.requestCode=requestCode;
         this.listener=listener;
+    }
+
+    public MyItemDialog (Context context, String title, String[] items, int requestCode, OnDialogItemClickListener listener) {
+        this(context,items,requestCode,listener);
+        this.title=title;
     }
 
     @Override
@@ -44,10 +48,17 @@ public class MyItemDialog extends Dialog implements AdapterView.OnItemClickListe
         textView = (TextView) findViewById(R.id.tvItemDialogTitle);
         listView = (ListView) findViewById(R.id.lvItemDialog);
         adapter = new ArrayAdapter<String>(context, R.layout.item_dialog_activity,R.id.text_view, items);
-        textView.setText(title);
+        if(title == null){
+            textView.setVisibility(View.GONE);
+        }else{
+            textView.setText(title);
+        }
+
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
     }
+
 
     @Override
     public void onItemClick (AdapterView<?> parent, View view, int position, long id) {

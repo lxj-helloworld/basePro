@@ -159,6 +159,7 @@ public enum  RetrofitManager {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
+
             if(!NetUtil.isNetworkConnected()){
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)

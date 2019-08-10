@@ -7,5 +7,11 @@ package com.example.xiaojin20135.basemodule.image;
 
 public enum ImageConstant {
     IMAGE_CONSTANT;
+    //图片列表参数
     public static final String imageList = "imageList";
+    //是否加载网络图片
+    public static final String FROMNET = "fromNet";
+    //是否启用长按监听事件
+    public static final String ENABLELONGCLICK = "enableLongClick";
+
 }

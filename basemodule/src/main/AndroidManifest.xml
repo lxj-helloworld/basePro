@@ -72,7 +72,7 @@
         <activity android:name=".image.view.ImageBrowseActivity" />
         <activity android:name=".webview.BaseWebViewActivity" />
         <activity android:name=".guidepage.GuidePageActivity" />
-        <activity android:name=".map.LocationInMapActivity"></activity>
+
     </application>
 
 </manifest>
