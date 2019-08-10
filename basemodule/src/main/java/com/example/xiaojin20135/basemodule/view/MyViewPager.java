@@ -1,4 +1,4 @@
-package com.example.xiaojin20135.topsprosys.util;
+package com.example.xiaojin20135.basemodule.view;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

@@ -1,35 +1,26 @@
 package com.example.xiaojin20135.basemodule.image.view;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bm.library.PhotoView;
-import com.bumptech.glide.Glide;
 import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.activity.BaseActivity;
-import com.example.xiaojin20135.basemodule.activity.ToolBarActivity;
 import com.example.xiaojin20135.basemodule.dialog.MyItemDialog;
 import com.example.xiaojin20135.basemodule.download.listener.MyDownloadListener;
 import com.example.xiaojin20135.basemodule.download.util.DownloadUtils;
 import com.example.xiaojin20135.basemodule.image.adapter.ImageBrowseAdapter;
 import com.example.xiaojin20135.basemodule.image.listener.ImageLongClick;
 import com.example.xiaojin20135.basemodule.util.MethodsUtils;
+import com.example.xiaojin20135.basemodule.view.MyViewPager;
 
 import java.util.ArrayList;
 
@@ -40,7 +31,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     private ProgressBar loading_progress;//下载进度条
     private TextView mNumberTextView;
     private ArrayList<String> imageList = new ArrayList<> ();
-    private ViewPager imageBrowseViewPager;
+    private MyViewPager imageBrowseViewPager;
     private ImageBrowseAdapter imageBrowseAdapter;
     private int currentIndex = 0;
     //是否是网络图片
@@ -67,7 +58,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     protected void initView () {
         loading_progress = (ProgressBar)findViewById(R.id.loading_progress);
         mNumberTextView = (TextView)findViewById(R.id.number_textview);
-        imageBrowseViewPager = (ViewPager)findViewById (R.id.imageBrowseViewPager);
+        imageBrowseViewPager = (MyViewPager)findViewById (R.id.imageBrowseViewPager);
         if(enableLongClick){
             imageBrowseAdapter = new ImageBrowseAdapter (this,imageList,this);
         }else{
@@ -84,7 +75,6 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
             public void onPageScrolled (int position, float positionOffset, int positionOffsetPixels) {
                 currentIndex = position;
                 Log.d (TAG,"currentIndex = " + currentIndex);
-                updateBottomIndex(position + 1);
             }
             @Override
             public void onPageSelected (int position) {

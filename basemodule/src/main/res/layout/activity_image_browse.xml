@@ -9,7 +9,7 @@
     tools:context="com.example.xiaojin20135.basemodule.image.view.ImageBrowseActivity">
 
 
-    <android.support.v4.view.ViewPager
+    <com.example.xiaojin20135.basemodule.view.MyViewPager
         android:id="@+id/imageBrowseViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
