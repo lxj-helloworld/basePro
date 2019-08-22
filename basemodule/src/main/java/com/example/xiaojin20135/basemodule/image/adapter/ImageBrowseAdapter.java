@@ -27,15 +27,20 @@ public class ImageBrowseAdapter extends PagerAdapter {
     //图片长按事件
     private ImageLongClick imageLongClick;
 
+
+    private PhotoView mCurrentView;
     public ImageBrowseAdapter(BaseActivity context,ArrayList<String> imageList){
         Log.d (TAG,"ImageBrowseAdapter");
         this.context = context;
         this.imageList = imageList;
+
     }
 
     public ImageBrowseAdapter(BaseActivity context,ArrayList<String> imageList,ImageLongClick imageLongClick){
         this(context,imageList);
         this.imageLongClick = imageLongClick;
+
+
     }
 
     @Override
@@ -134,6 +139,15 @@ public class ImageBrowseAdapter extends PagerAdapter {
     @Override
     public void destroyItem (@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView ((View) object);
+
     }
 
+    public PhotoView getView(){
+        return mCurrentView;
+    }
+
+    @Override
+    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+       mCurrentView= (PhotoView) object;
+    }
 }

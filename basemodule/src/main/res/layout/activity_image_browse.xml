@@ -13,16 +13,33 @@
         android:id="@+id/imageBrowseViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <TextView
-        android:id="@+id/number_textview"
+    <LinearLayout
         android:layout_alignBottom="@+id/imageBrowseViewPager"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/roat_left"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="60dp"
+            android:src="@drawable/roatleft"/>
+        <TextView
+            android:id="@+id/number_textview"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/roat_right"
+            android:layout_marginLeft="60dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/roatright"/>
+    </LinearLayout>
+
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,4 +48,5 @@
         android:layout_centerVertical="true"
         android:id="@+id/loading_progress"
         android:visibility="gone"/>
+
 </RelativeLayout>

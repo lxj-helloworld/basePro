@@ -1,5 +1,6 @@
 package com.example.xiaojin20135.basemodule.image.view;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.example.xiaojin20135.basemodule.image.adapter.ImageBrowseAdapter;
 import com.example.xiaojin20135.basemodule.image.listener.ImageLongClick;
 import com.example.xiaojin20135.basemodule.util.MethodsUtils;
 import com.example.xiaojin20135.basemodule.view.MyViewPager;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
 
@@ -38,6 +41,11 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     private boolean fromNet = false;
     //是否启用长按监听事件
     private boolean enableLongClick = true;
+    private PhotoView photoView;
+    private ImageView left;
+    private ImageView right;
+    private boolean isleft;
+    private boolean isright;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -58,6 +66,8 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     protected void initView () {
         loading_progress = (ProgressBar)findViewById(R.id.loading_progress);
         mNumberTextView = (TextView)findViewById(R.id.number_textview);
+        left = (ImageView) findViewById(R.id.roat_left);
+        right = (ImageView) findViewById(R.id.roat_right);
         imageBrowseViewPager = (MyViewPager)findViewById (R.id.imageBrowseViewPager);
         if(enableLongClick){
             imageBrowseAdapter = new ImageBrowseAdapter (this,imageList,this);
@@ -66,10 +76,71 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
         }
         imageBrowseViewPager.setAdapter (imageBrowseAdapter);
         imageBrowseViewPager.setCurrentItem (currentIndex);
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isleft){
+                    isleft=true;
+                    imageBrowseAdapter.getView().animate().rotationBy(-90).setListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animator) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            isleft=false;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animator) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animator) {
+
+                        }
+                    }).start();
+
+                }
+            }
+        });
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isright){
+                    isright=true;
+                    imageBrowseAdapter.getView().animate().rotationBy(90).setListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animator) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            isright=false;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animator) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animator) {
+
+                        }
+                    }).start();
+
+                }
+            }
+        });
     }
 
     @Override
     protected void initEvents () {
+
         imageBrowseViewPager.addOnPageChangeListener (new ViewPager.OnPageChangeListener () {
             @Override
             public void onPageScrolled (int position, float positionOffset, int positionOffsetPixels) {
@@ -79,6 +150,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
             @Override
             public void onPageSelected (int position) {
                 updateBottomIndex(position + 1);
+
             }
             @Override
             public void onPageScrollStateChanged (int state) {
@@ -127,13 +199,13 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         if(item.getItemId () == R.id.delete_item){
-            if(imageList != null && imageList.size () > currentIndex){
-                imageList.remove (currentIndex);
-                imageBrowseAdapter.notifyDataSetChanged ();
-            }
-            if(imageList == null || imageList.size () == 0){
-                back();
-            }
+//            if(imageList != null && imageList.size () > currentIndex){
+//                imageList.remove (currentIndex);
+//                imageBrowseAdapter.notifyDataSetChanged ();
+//            }
+//            if(imageList == null || imageList.size () == 0){
+//                back();
+//            }
         }
         return super.onOptionsItemSelected (item);
     }
