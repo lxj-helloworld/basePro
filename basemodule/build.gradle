@@ -79,8 +79,11 @@ dependencies {
     // 微信图片选择器
     compile 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    /** 图片预览控件   **/
+    /** 图片预览控件  这个有bug别用了 **/
     compile 'com.bm.photoview:library:1.4.1'
+
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+
     /** RxJava库   **/
     compile 'com.gengqiquan:Rx2ActivityResult:0.0.4'
     compile files('libs/zip4j_1.3.2.jar')
