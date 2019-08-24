@@ -17,11 +17,15 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.util.Zip4jConstants;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 
 public class AppExternalFileWriter {
@@ -490,6 +494,63 @@ public class AppExternalFileWriter {
     public String makeFileToZip(File file){
         return makeFileToZip(file,false,false,TimeMethods.TIME_METHODS.getTime());
     }
+
+
+    /**
+     * 解压文件
+     * @param zipFilePath
+     * @return
+     * @throws Exception
+     */
+    public String unZipFile(String zipFilePath) throws Exception {
+        //创建目标文件，
+        try {
+            getAppDirectory();
+        } catch (ExternalFileWriterException e) {
+            e.printStackTrace();
+        }
+
+        String destName = getAppDirectory(false) + "/" + "unzip" ;
+        //解压文件路径
+        String resultName = "";
+
+        ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(zipFilePath));
+        ZipEntry zipEntry;
+        String szName = "";
+        while ((zipEntry = zipInputStream.getNextEntry()) != null){
+            szName = zipEntry.getName();
+            if(zipEntry.isDirectory()){
+                //获取部件的文件名夹
+                szName = szName.substring(0,szName.length() - 1);
+                resultName = destName + File.separator + szName;
+                File folder = new File(resultName);
+                folder.mkdir();
+            }else{
+                Log.d(TAG,"" + destName + File.separator + szName);
+                resultName = destName + File.separator + szName;
+                File file = new File(resultName);
+                if(!file.exists()){
+                    Log.d(TAG,"create the file : " + resultName);
+                    file.getParentFile().mkdirs();
+                    file.createNewFile();
+                }
+                //获取问价你的输出流
+                FileOutputStream out = new FileOutputStream(file);
+                int len;
+                byte[] buffer = new byte[1024];
+                //读取文件(字节)到缓冲区
+                while ((len = zipInputStream.read(buffer)) != -1){
+                    //从缓冲区(0)位置写入字节
+                    out.write(buffer,0,len);
+                    out.flush();
+                }
+                out.close();
+            }
+        }
+        zipInputStream.close();
+        return resultName;
+    }
+
 
 
 

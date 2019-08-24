@@ -42,9 +42,54 @@ public enum FileSaveHelp {
         return saveSuccess;
     }
 
+
+    /**
+     * 压缩文件
+     * @param baseActivity
+     * @param filePath
+     * @return
+     */
+    public String zipFile(Activity baseActivity,String filePath){
+        File file = new File(filePath);
+        String zipPath = new AppExternalFileWriter(baseActivity).makeFileToZip(file);
+        if(!zipPath.equals("")){
+            scanFile(zipPath);
+        }
+        return zipPath;
+    }
+
+
+    /**
+     * 解压文件，传入压缩文件路径
+     * @param baseActivity
+     * @param filePath
+     * @return
+     * @throws Exception
+     */
+    public String unZipFile(Activity baseActivity, String filePath) throws Exception {
+        String zipPath = new AppExternalFileWriter(baseActivity).unZipFile(filePath);
+        if(!zipPath.equals("")){
+            scanFile(zipPath);
+        }
+        return zipPath;
+    }
+
+    /**
+     * 扫描文件
+     * @param activity
+     * @param fileName
+     * @param tag
+     */
     public void scanFile(Activity activity, String fileName, String tag){
-        String filePath = Environment.getExternalStorageDirectory().toString()+"/"+BaseApplication.getInstance ().getString(R.string.topscomm_file) + "/" + fileName+tag;
-        Log.d(TAG,"filePath = " + filePath);
+        scanFile(Environment.getExternalStorageDirectory().toString()+"/"+BaseApplication.getInstance ().getString(R.string.topscomm_file) + "/" + fileName+tag);
+    }
+
+
+    /**
+     * 扫描文件
+     * @param filePath
+     */
+    public void scanFile(String filePath){
         Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         scanIntent.setData(Uri.fromFile(new File(filePath)));
         BaseApplication.getInstance ().sendBroadcast(scanIntent);

@@ -25,6 +25,8 @@ public class SaveToFilesActivity extends ToolBarActivity {
     Button save_file_Btn;
     @BindView(R.id.zip_file_Btn)
     Button zip_file_Btn;
+    @BindView(R.id.unzip_file_Btn)
+    Button unzip_file_Btn;
 
 
     @Override
@@ -58,10 +60,22 @@ public class SaveToFilesActivity extends ToolBarActivity {
             }
         });
 
+        //压缩
         zip_file_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 zipToFile("/storage/emulated/0/thisismineaudio035805166.amr");
+            }
+        });
+        //解压
+        unzip_file_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    unZipFile("/storage/emulated/0/topscomm/20190824011734991.zip");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -88,9 +102,18 @@ public class SaveToFilesActivity extends ToolBarActivity {
      * @param filePath
      */
     private void zipToFile(String filePath){
-        File file = new File(filePath);
-        String zipPath = new AppExternalFileWriter(this).makeFileToZip(file);
+        String zipPath = FileSaveHelp.FILE_SAVE_HELP.zipFile(this,filePath);
         Log.d(TAG,"zipPath = " + zipPath);
         showToast(this,"保存至：" + zipPath);
+    }
+
+    /**
+     * 解压文件，传入压缩文件路径
+     * @param filePath
+     */
+    private void unZipFile(String filePath) throws Exception {
+        String zipPath = FileSaveHelp.FILE_SAVE_HELP.unZipFile(this,filePath);
+        Log.d(TAG,"zipPath = " + zipPath);
+        showToast(this,"解压至：" + zipPath);
     }
 }
