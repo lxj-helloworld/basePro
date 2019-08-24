@@ -28,7 +28,7 @@ public enum FileSaveHelp {
             result = new AppExternalFileWriter(baseActivity).writeDataToFile(fileName,dataFile.toString(),false,true,false);
             Log.d(TAG,"result = " + result);
             if(result){
-                saveSuccess = Environment.getExternalStorageDirectory().toString()+"/"+BaseApplication.getInstance ().getString(R.string.topscomm_file) + "/" + fileName+tag;
+                saveSuccess = Environment.getExternalStorageDirectory().toString()+"/"+BaseApplication.getInstance ().getString(R.string.topscomm_file) + "/" + fileName;
             }else{
                 saveSuccess = "保存失败";
             }

@@ -9,8 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.xiaojin20135.basemodule.activity.ToolBarActivity;
+import com.example.xiaojin20135.basemodule.files.AppExternalFileWriter;
 import com.example.xiaojin20135.basemodule.files.FileSaveHelp;
 import com.example.xiaojin20135.mybaseapp.R;
+
+import java.io.File;
 
 import butterknife.BindView;
 
@@ -20,6 +23,8 @@ public class SaveToFilesActivity extends ToolBarActivity {
     EditText file_content_ET;
     @BindView(R.id.save_file_Btn)
     Button save_file_Btn;
+    @BindView(R.id.zip_file_Btn)
+    Button zip_file_Btn;
 
 
     @Override
@@ -50,7 +55,13 @@ public class SaveToFilesActivity extends ToolBarActivity {
                 }
 
                 saveToFiels(content);
+            }
+        });
 
+        zip_file_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zipToFile("/storage/emulated/0/thisismineaudio035805166.amr");
             }
         });
     }
@@ -69,5 +80,17 @@ public class SaveToFilesActivity extends ToolBarActivity {
     private void saveToFiels(String content){
         Log.d(TAG,"content = " + content);
         FileSaveHelp.FILE_SAVE_HELP.saveToTxtFile(this,content,"hello","txt");
+    }
+
+
+    /**
+     * 压缩文件，传入被压缩文件路径
+     * @param filePath
+     */
+    private void zipToFile(String filePath){
+        File file = new File(filePath);
+        String zipPath = new AppExternalFileWriter(this).makeFileToZip(file);
+        Log.d(TAG,"zipPath = " + zipPath);
+        showToast(this,"保存至：" + zipPath);
     }
 }

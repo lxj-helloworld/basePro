@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.util.ConstantUtil;
+import com.example.xiaojin20135.basemodule.util.TimeMethods;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -435,6 +436,62 @@ public class AppExternalFileWriter {
         file.delete();
         return result;
     }
+
+
+    /**
+     * 文件压缩
+     * @param file  将要被压缩的文件
+     * @param deleteSourceFle  压缩后是否删除源文件
+     * @param isCache
+     * @param fileName 文件名
+     * @return
+     */
+    public String makeFileToZip(File file,boolean deleteSourceFle,boolean isCache,String fileName){
+        //创建目标文件，
+        try {
+            getAppDirectory();
+        } catch (ExternalFileWriterException e) {
+            e.printStackTrace();
+        }
+
+        String destName = getAppDirectory(isCache) + "/" + fileName + ".zip";
+        Log.d(TAG,"destName = " + destName);
+        ZipParameters zipParameters = new ZipParameters();
+        zipParameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
+        zipParameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+
+        //设置解压密码
+        if(ConstantUtil.SET_ZIP_PSW){
+            zipParameters.setEncryptFiles(true);
+            zipParameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
+            zipParameters.setPassword(ConstantUtil.ZIP_PSW);
+        }
+        try {
+            ZipFile zipFile = new ZipFile(destName);
+            zipFile.addFile(file,zipParameters);
+        }catch (ZipException e){
+            e.printStackTrace();
+            Log.d(TAG,"e.getMessage = " + e.getMessage());
+            destName = "";
+        }
+        if(deleteSourceFle){
+            //删除被压缩文件
+            file.delete();
+        }
+        return destName;
+    }
+
+
+    /**
+     * 文件压缩
+     * @param file
+     * @return
+     */
+    public String makeFileToZip(File file){
+        return makeFileToZip(file,false,false,TimeMethods.TIME_METHODS.getTime());
+    }
+
+
 
     /**
      * Writes data to the file. The file will be created in the directory name

@@ -25,4 +25,12 @@
         android:id="@+id/save_file_Btn"
         android:text="保存"/>
 
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/my_btn_style"
+        android:id="@+id/zip_file_Btn"
+        android:text="压缩"/>
+
 </LinearLayout>
