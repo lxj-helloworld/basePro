@@ -50,7 +50,7 @@ public class WeelPickerActivity extends ToolBarActivity {
 
 
     private void getStandardDate(){
-        DateWheelDialog dateWheelDialog = new DateWheelDialog(WeelPickerActivity.this);
+        DateWheelDialog dateWheelDialog = new DateWheelDialog(WeelPickerActivity.this,true,true);
 //        dateWheelDialog.setDate(2016, 12, 01);
         dateWheelDialog.show();
         dateWheelDialog.setOnDateListener (new OnDateListener () {

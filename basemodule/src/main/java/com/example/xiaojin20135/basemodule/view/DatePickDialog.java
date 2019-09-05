@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,6 +28,7 @@ import java.util.Calendar;
  */
 
 public class DatePickDialog {
+
     private static final String TAG = "DatePickDialog";
     private Context context;
     private Dialog dialog;
@@ -44,11 +46,14 @@ public class DatePickDialog {
     private boolean showNegBtn = false;
     //显示时间
     private boolean showTime = false;
+    //仅仅显示年、月
+    private boolean showMonthOnly = false;
 
     //记录的日期
     private String dateValue = "";
     //记录的时间
     private String timeValue = "";
+
 
     public DatePickDialog(Context context,boolean showTime) {
         this.context = context;
@@ -67,6 +72,7 @@ public class DatePickDialog {
         txt_title = (TextView) view.findViewById(R.id.txt_title);
         txt_title.setVisibility(View.GONE);
         date_pick_view = (DatePicker) view.findViewById(R.id.date_pick_view);
+
         //时间选择器
         time_pick_view = (TimePicker)view.findViewById (R.id.time_pick_view);
         time_pick_IV = (ImageView)view.findViewById (R.id.time_pick_IV);
@@ -85,6 +91,12 @@ public class DatePickDialog {
         // 定义Dialog布局和参数
         dialog = new Dialog(context, R.style.AlertDialogStyle);
         dialog.setContentView(view);
+
+
+        //只显示年月
+        if(showMonthOnly){
+            ((ViewGroup)((ViewGroup)date_pick_view.getChildAt(0)).getChildAt(0)).getChildAt(1).setVisibility(View.GONE);
+        }
 
         // 调整dialog背景大小
         lLayout_bg.setLayoutParams(new FrameLayout.LayoutParams((int) (display.getWidth() * 0.85), LinearLayout.LayoutParams.WRAP_CONTENT));

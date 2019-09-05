@@ -60,10 +60,22 @@ public class DateWheelDialog extends Dialog implements View.OnClickListener {
     private String pm = "下午";
     private String amValue = "12:00:00";
     private String pmValue = "24:00:00";
+    private boolean hideDay = false;
+    private boolean hideHalfDay = false;
 
     public DateWheelDialog (Context context) {
         super (context,R.style.AlertDialogStyle);
         this.context = context;
+    }
+
+    public DateWheelDialog (Context context,boolean hideDay) {
+        this(context);
+        this.hideDay = hideDay;
+    }
+
+    public DateWheelDialog (Context context,boolean hideDay,boolean hideHalfDay) {
+        this(context,hideDay);
+        this.hideHalfDay = hideHalfDay;
     }
 
     @Override
@@ -83,6 +95,14 @@ public class DateWheelDialog extends Dialog implements View.OnClickListener {
         wvHalfDay = (WheelView)findViewById (R.id.day_half_WV);
         date_cancel_btn = (Button) findViewById(R.id.date_cancel_btn);
         date_sure_btn = (Button) findViewById(R.id.date_sure_btn);
+
+        if(hideDay){
+            wvDay.setVisibility(View.GONE);
+        }
+
+        if(hideHalfDay){
+            wvHalfDay.setVisibility(View.GONE);
+        }
 
         //如果没有传递默认日期，设置为当前日期
         if (!issetdata) {
@@ -436,6 +456,19 @@ public class DateWheelDialog extends Dialog implements View.OnClickListener {
     }
 
     private void updateDate(){
-        wheel_title_TV.setText (selectYear + "-" + selectMonth + "-" + selectDay + " " + selectHalfDay);
+
+        String result = "";
+
+        if(hideDay){
+            result = selectYear + "-" + selectMonth;
+        }else if(hideHalfDay && !hideDay){
+            result = selectYear + "-" + selectMonth + "-" + selectDay;
+        }else{
+            result = selectYear + "-" + selectMonth + "-" + selectDay + " " + selectHalfDay;
+        }
+
+        wheel_title_TV.setText (result);
+
     }
+
 }
