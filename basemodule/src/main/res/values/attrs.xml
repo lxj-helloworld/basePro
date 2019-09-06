@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="NormalEditText">
+        <attr name="must" format="boolean"></attr>
+        <attr name="text_title" format="string"></attr>
+        <attr name="width_title" format="dimension"></attr>
+    </declare-styleable>
+
+</resources>

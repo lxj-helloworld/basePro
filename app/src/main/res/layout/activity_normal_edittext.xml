@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".normal.NormalEdittextActivity">
+
+    <include layout="@layout/toolbar"></include>
+
+
+    <com.example.xiaojin20135.basemodule.view.normal.NormalEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_mynormal"
+        app:text_title="@string/action_enroll"
+        app:width_title="80dp">
+
+    </com.example.xiaojin20135.basemodule.view.normal.NormalEditText>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_getvalue"
+        android:onClick="onClick"/>
+</LinearLayout>
