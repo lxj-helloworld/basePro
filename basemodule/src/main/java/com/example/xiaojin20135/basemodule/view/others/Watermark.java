@@ -47,6 +47,10 @@ public class Watermark {
      * 透明度  范围 0到255
      */
     private int mAlpha;
+    /**
+     * 偏移地址计算，默认是2
+     */
+    private int mOffsetParas = 2;
     private static Watermark sInstance;
 
     private Watermark() {
@@ -128,6 +132,15 @@ public class Watermark {
         return sInstance;
     }
 
+    /*
+    * @author lixiaojin
+    * create on 2019/9/7 14:31
+    * description: 偏移地址
+    */
+    public Watermark setOffsetParas(int offsetParas){
+        mOffsetParas = offsetParas;
+        return sInstance;
+    }
     /**
      * 显示水印，铺满整个页面
      * @param activity 活动
@@ -160,6 +173,7 @@ public class Watermark {
     }
 
     private class WatermarkDrawable extends Drawable {
+
         private Paint mPaint;
         /**
          * 水印文本
@@ -207,7 +221,7 @@ public class Watermark {
                     fromX = -width + (index++ % 2) * textWidth; // 上下两行的X轴起始点不一样，错开显示
                     offsetWidth = textWidth;
                 }
-                for (float positionX = fromX; positionX < width; positionX += offsetWidth * 3) {
+                for (float positionX = fromX; positionX < width; positionX += offsetWidth * 2) {
                     if(mBitmap != null){
                         mBitmap.setHasAlpha(true);
                         canvas.drawBitmap(mBitmap,positionX ,positionY,mPaint);
