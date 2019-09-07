@@ -30,6 +30,7 @@ import com.example.xiaojin20135.mybaseapp.spinner.MySpinnerActivity;
 import com.example.xiaojin20135.mybaseapp.tablayout.MyTabLayoutActivity;
 import com.example.xiaojin20135.mybaseapp.update.CheckUpdateActivity;
 import com.example.xiaojin20135.mybaseapp.view.IpAndPortActivity;
+import com.example.xiaojin20135.mybaseapp.view.WaterMarkActivity;
 import com.example.xiaojin20135.mybaseapp.xgPush.XgPushActivity;
 
 import java.io.Serializable;
@@ -201,6 +202,8 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
             case R.id.myinput_btn:
                 canGo(NormalEdittextActivity.class);
                 break;
+            case R.id.watermark_btn:
+                canGo(WaterMarkActivity.class);
         }
     }
 

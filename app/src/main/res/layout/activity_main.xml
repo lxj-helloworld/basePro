@@ -197,6 +197,13 @@
                 android:text="自定义输入"
                 android:id="@+id/myinput_btn"
                 android:onClick="onClick"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="水印"
+                android:id="@+id/watermark_btn"
+                android:onClick="onClick"/>
         </LinearLayout>
     </ScrollView>
 
