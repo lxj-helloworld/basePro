@@ -50,7 +50,7 @@ public class Watermark {
     /**
      * 偏移地址计算，默认是2
      */
-    private int mOffsetParas = 2;
+    private double mOffsetParas = 2;
     private static Watermark sInstance;
 
     private Watermark() {
@@ -137,7 +137,7 @@ public class Watermark {
     * create on 2019/9/7 14:31
     * description: 偏移地址
     */
-    public Watermark setOffsetParas(int offsetParas){
+    public Watermark setOffsetParas(double offsetParas){
         mOffsetParas = offsetParas;
         return sInstance;
     }
@@ -221,7 +221,7 @@ public class Watermark {
                     fromX = -width + (index++ % 2) * textWidth; // 上下两行的X轴起始点不一样，错开显示
                     offsetWidth = textWidth;
                 }
-                for (float positionX = fromX; positionX < width; positionX += offsetWidth * 2) {
+                for (float positionX = fromX; positionX < width; positionX += offsetWidth * mOffsetParas) {
                     if(mBitmap != null){
                         mBitmap.setHasAlpha(true);
                         canvas.drawBitmap(mBitmap,positionX ,positionY,mPaint);

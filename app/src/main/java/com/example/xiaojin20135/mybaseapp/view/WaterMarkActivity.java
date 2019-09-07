@@ -16,7 +16,7 @@ public class WaterMarkActivity extends ToolBarActivity {
         super.onCreate(savedInstanceState);
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round);
-        Watermark.getInstance().setLogo(bitmap).setText("1234").setOffsetParas(2).setTextColor(0xDEFF9797).show(this);
+        Watermark.getInstance().setLogo(bitmap).setText("1234").setOffsetParas(1.5).setTextColor(0xDEFF9797).show(this);
     }
 
     @Override
