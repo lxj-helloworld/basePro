@@ -1,10 +1,12 @@
 package com.example.xiaojin20135.basemodule.view.others;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
@@ -13,6 +15,7 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -51,6 +54,10 @@ public class Watermark {
      * 偏移地址计算，默认是2
      */
     private double mOffsetParas = 2;
+    /**
+     * 图片缩放尺寸，默认为1，不缩放
+     */
+    private float mImageScale = 1f;
     private static Watermark sInstance;
 
     private Watermark() {
@@ -141,6 +148,12 @@ public class Watermark {
         mOffsetParas = offsetParas;
         return sInstance;
     }
+
+    public Watermark setImageScale(float imageScale){
+        mImageScale = imageScale;
+        return sInstance;
+    }
+
     /**
      * 显示水印，铺满整个页面
      * @param activity 活动
@@ -165,7 +178,9 @@ public class Watermark {
         }
         ViewGroup rootView = activity.findViewById(android.R.id.content);
         FrameLayout layout = new FrameLayout(activity);
-        layout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        layoutParams.topMargin = getStatusBarHeight(activity) + getDaoHangHeight(activity);
+        layout.setLayoutParams(layoutParams);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             layout.setBackground(drawable);
         }
@@ -224,9 +239,13 @@ public class Watermark {
                 for (float positionX = fromX; positionX < width; positionX += offsetWidth * mOffsetParas) {
                     if(mBitmap != null){
                         mBitmap.setHasAlpha(true);
-                        canvas.drawBitmap(mBitmap,positionX ,positionY,mPaint);
+                        //进行缩放处理
+                        Matrix matrix = new Matrix();
+                        matrix.postScale(mImageScale,mImageScale);
+                        Bitmap bitmap = Bitmap.createBitmap(mBitmap,0,0,mBitmap.getWidth(),mBitmap.getHeight(),matrix,true);
+                        canvas.drawBitmap(bitmap,positionX ,positionY,mPaint);
                         if(!TextUtils.isEmpty(mText)){
-                            canvas.drawText(mText, positionX + mBitmap.getWidth(), positionY + mBitmap.getHeight()/2 + 20, mPaint);
+                            canvas.drawText(mText, positionX + bitmap.getWidth(), positionY + bitmap.getHeight()/2 + 20, mPaint);
                         }
                     }else{
                         if(!TextUtils.isEmpty(mText)){
@@ -258,4 +277,34 @@ public class Watermark {
         float fontScale = Resources.getSystem().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
+
+    public static int getStatusBarHeight(Context context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen",
+                "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    /**
+     * 获取导航栏高度
+     * @param context
+     * @return
+     */
+    public static int getDaoHangHeight(Context context) {
+        int result = 0;
+        int resourceId = 0;
+        int rid = context.getResources().getIdentifier("config_showNavigationBar", "bool", "android");
+        if (rid != 0) {
+            resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+            Log.d(TAG, "高度：" + resourceId);
+            Log.d(TAG, "高度：" + context.getResources().getDimensionPixelSize(resourceId) + "");
+            return context.getResources().getDimensionPixelSize(resourceId);
+        } else
+            return 0;
+
+    }
+
 }
