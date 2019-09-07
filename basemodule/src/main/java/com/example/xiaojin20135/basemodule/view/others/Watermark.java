@@ -219,7 +219,7 @@ public class Watermark {
             mPaint.setColor(mTextColor);
             mPaint.setTextSize(spToPx(mTextSize)); // ConvertUtils.spToPx()这个方法是将sp转换成px，ConvertUtils这个工具类在我提供的demo里面有
             mPaint.setAntiAlias(true);
-            mPaint.setAlpha(200);
+//            mPaint.setAlpha(200);
             mPaint.setStyle(Paint.Style.FILL);
             float textWidth = mPaint.measureText(mText);
 //            canvas.drawColor(0xBB000000);
