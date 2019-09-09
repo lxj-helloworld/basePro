@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.IntRange;
@@ -16,9 +19,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-
 /*
  * @author lixiaojin
  * create on 2019/9/6 20:42
@@ -50,21 +53,27 @@ public class Watermark {
      * 透明度  范围 0到255
      */
     private int mAlpha;
-    /**
-     * 偏移地址计算，默认是2
-     */
-    private double mOffsetParas = 2;
+
     /**
      * 图片缩放尺寸，默认为1，不缩放
      */
     private float mImageScale = 1f;
+
+
+    /**
+     * 偏移地址计算，默认是1.2
+     */
+    private double mOffsetParas = 1.2;
+
     private static Watermark sInstance;
 
     private Watermark() {
         mText = "";
         mTextColor = 0xDEDEDEDE;
-        mTextSize = 23;
+        mTextSize = 18;
         mRotation = -25;
+        mAlpha = 80;
+
     }
 
     public static Watermark getInstance() {
@@ -131,6 +140,16 @@ public class Watermark {
 
     /*
      * @author lixiaojin
+     * create on 2019/9/7 14:31
+     * description: 偏移地址
+     */
+    public Watermark setOffsetParas(double offsetParas){
+        mOffsetParas = offsetParas;
+        return sInstance;
+    }
+
+    /*
+     * @author lixiaojin
      * create on 2019/9/7 08:36
      * description: 设置透明度
      */
@@ -139,172 +158,104 @@ public class Watermark {
         return sInstance;
     }
 
-    /*
-    * @author lixiaojin
-    * create on 2019/9/7 14:31
-    * description: 偏移地址
-    */
-    public Watermark setOffsetParas(double offsetParas){
-        mOffsetParas = offsetParas;
-        return sInstance;
-    }
 
+/*
+* @author lixiaojin
+* create on 2019/9/9 16:52
+* description: LoGo缩放处理
+*/
     public Watermark setImageScale(float imageScale){
         mImageScale = imageScale;
         return sInstance;
     }
 
+
     /**
      * 显示水印，铺满整个页面
-     * @param activity 活动
+     * @param context 活动
      */
-    public void show(Activity activity) {
-        show(activity, mText);
+    public void show(Context context,View view) {
+        show(context,view, mText);
     }
 
     /**
      * 显示水印，铺满整个页面
-     * @param activity 活动
+     * @param context 活动
      * @param text     水印
      */
-    public void show(Activity activity, String text) {
-        WatermarkDrawable drawable = new WatermarkDrawable();
-        drawable.mText = text;
-        drawable.mTextColor = mTextColor;
-        drawable.mTextSize = mTextSize;
-        drawable.mRotation = mRotation;
-        if(mAlpha != 0){
-            drawable.setAlpha(mAlpha);
-        }
-        ViewGroup rootView = activity.findViewById(android.R.id.content);
-        FrameLayout layout = new FrameLayout(activity);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
-        layoutParams.topMargin = getStatusBarHeight(activity) + getDaoHangHeight(activity);
-        layout.setLayoutParams(layoutParams);
+    public void show(Context context, View view,String text) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            layout.setBackground(drawable);
+            view.setBackground(drawTextToBitmap(context, text,mBitmap));
         }
-        rootView.addView(layout);
     }
 
-    private class WatermarkDrawable extends Drawable {
-
-        private Paint mPaint;
-        /**
-         * 水印文本
-         */
-        private String mText;
-        /**
-         * 字体颜色，十六进制形式，例如：0xAEAEAEAE
-         */
-        private int mTextColor;
-        /**
-         * 字体大小，单位为sp
-         */
-        private float mTextSize;
-        /**
-         * 旋转角度
-         */
-        private float mRotation;
-
-        private WatermarkDrawable() {
-            mPaint = new Paint();
+    public BitmapDrawable drawTextToBitmap(Context gContext, String gText, Bitmap logoIcon) {
+        //计算新绘制的图片的图片的宽和高
+        int newWidth = 0;
+        int newHight = 0;
+        //计算文本的宽度
+        Paint paint = new Paint();
+        paint.setColor(Color.GRAY);
+        if(mAlpha != 0){
+            paint.setAlpha(mAlpha); //透明度
         }
 
-        @Override
-        public void draw(@NonNull Canvas canvas) {
-            int width = getBounds().right;
-            int height = getBounds().bottom;
-            int diagonal = (int) Math.sqrt(width * width + height * height); // 对角线的长度
-            mPaint.setColor(mTextColor);
-            mPaint.setTextSize(spToPx(mTextSize)); // ConvertUtils.spToPx()这个方法是将sp转换成px，ConvertUtils这个工具类在我提供的demo里面有
-            mPaint.setAntiAlias(true);
-//            mPaint.setAlpha(200);
-            mPaint.setStyle(Paint.Style.FILL);
-            float textWidth = mPaint.measureText(mText);
-//            canvas.drawColor(0xBB000000);
+        paint.setAntiAlias(true);
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setTextSize(spToPx(mTextSize)); //文本大小
+
+        //文本大小
+        float textWidth = paint.measureText(gText);
+
+        //图片尺寸
+        if(logoIcon != null){
+            //进行缩放处理
+            Matrix matrix = new Matrix();
+            matrix.postScale(mImageScale,mImageScale);
+            logoIcon = Bitmap.createBitmap(mBitmap,0,0,mBitmap.getWidth(),mBitmap.getHeight(),matrix,true);
+
+            int logoWidth = logoIcon.getWidth();
+            int logoHeight = logoIcon.getHeight();
+
+            newWidth = (int) Math.sqrt((logoWidth + textWidth) * (logoWidth + textWidth) + (logoHeight + textWidth) * (logoHeight + textWidth));
+            newHight = newWidth;
+        }else{
+            newWidth = (int) Math.sqrt(( textWidth * 2) * (textWidth * 2) + (textWidth) * (textWidth));
+            newHight = newWidth;
+        }
+
+        newWidth = (int)(newWidth * mOffsetParas);
+        newHight = (int)(newHight * mOffsetParas);
+        try {
+            Bitmap bitmap = Bitmap.createBitmap(newWidth, newHight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            canvas.drawColor(Color.WHITE);
             canvas.rotate(mRotation);
-            int index = 0;
-            float fromX;
-            float offsetWidth = 0;//横向坐标偏移量
-            // 以对角线的长度来做高度，这样可以保证竖屏和横屏整个屏幕都能布满水印
-            for (int positionY = 0; positionY <= diagonal; positionY += diagonal / 3) {
-                if(mBitmap != null){
-                    fromX = -width + (index++ % 2) * (textWidth + mBitmap.getWidth()); // 上下两行的X轴起始点不一样，错开显示
-                    offsetWidth = textWidth + mBitmap.getWidth();
-                }else{
-                    fromX = -width + (index++ % 2) * textWidth; // 上下两行的X轴起始点不一样，错开显示
-                    offsetWidth = textWidth;
-                }
-                for (float positionX = fromX; positionX < width; positionX += offsetWidth * mOffsetParas) {
-                    if(mBitmap != null){
-                        mBitmap.setHasAlpha(true);
-                        //进行缩放处理
-                        Matrix matrix = new Matrix();
-                        matrix.postScale(mImageScale,mImageScale);
-                        Bitmap bitmap = Bitmap.createBitmap(mBitmap,0,0,mBitmap.getWidth(),mBitmap.getHeight(),matrix,true);
-                        canvas.drawBitmap(bitmap,positionX ,positionY,mPaint);
-                        if(!TextUtils.isEmpty(mText)){
-                            canvas.drawText(mText, positionX + bitmap.getWidth(), positionY + bitmap.getHeight()/2 + 20, mPaint);
-                        }
-                    }else{
-                        if(!TextUtils.isEmpty(mText)){
-                            canvas.drawText(mText, positionX, positionY, mPaint);
-                        }
-                    }
-                }
+            if(logoIcon != null){
+                Log.d(TAG,"开始绘制图像");
+                canvas.drawBitmap(logoIcon,0,newHight / 4,paint);
+//                paint.setTextSize(mTextSize); //文本大小
+                canvas.drawText(gText,logoIcon.getWidth(),newHight / 2,paint);
+            }else{
+//                paint.setTextSize(mTextSize); //文本大小
+                canvas.drawText(gText,0,0,paint);
             }
+
             canvas.save();
             canvas.restore();
-        }
+            BitmapDrawable drawable = new BitmapDrawable(gContext.getResources(),bitmap);
+            drawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+            drawable.setDither(true);
+            return drawable;
+        } catch (Exception e) {
 
-        @Override
-        public void setAlpha(@IntRange(from = 0, to = 255) int alpha) {
-            mPaint.setAlpha(alpha);
         }
+        return null;
 
-        @Override
-        public void setColorFilter(@Nullable ColorFilter colorFilter) {
-            mPaint.setColorFilter(colorFilter);
-        }
-
-        @Override
-        public int getOpacity() {
-            return PixelFormat.TRANSLUCENT;
-        }
     }
+
     public static int spToPx(float spValue) {
         float fontScale = Resources.getSystem().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
-
-    public static int getStatusBarHeight(Context context) {
-        int result = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen",
-                "android");
-        if (resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
-
-    /**
-     * 获取导航栏高度
-     * @param context
-     * @return
-     */
-    public static int getDaoHangHeight(Context context) {
-        int result = 0;
-        int resourceId = 0;
-        int rid = context.getResources().getIdentifier("config_showNavigationBar", "bool", "android");
-        if (rid != 0) {
-            resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-            Log.d(TAG, "高度：" + resourceId);
-            Log.d(TAG, "高度：" + context.getResources().getDimensionPixelSize(resourceId) + "");
-            return context.getResources().getDimensionPixelSize(resourceId);
-        } else
-            return 0;
-
-    }
-
 }

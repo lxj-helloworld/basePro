@@ -9,10 +9,21 @@
 
 
     <include layout="@layout/toolbar"></include>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:text="@string/app_name"
+        android:id="@+id/btn_water"
+        android:background="@color/colorAccent"/>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/scroll_content">
         <TextView
+            android:id="@+id/content_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="据法新社7日报道，姆南加古瓦在电视上对全国发表讲话时说：“(执政党)津巴布韦非洲民族联盟-爱国阵线已经集合，并同意赋予他应得的民族英雄地位。”
