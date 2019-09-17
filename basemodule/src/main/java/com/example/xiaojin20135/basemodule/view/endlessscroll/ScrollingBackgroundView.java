@@ -331,7 +331,7 @@ public class ScrollingBackgroundView extends View {
         try {
             Bitmap bitmap = Bitmap.createBitmap(newWidth, newHight, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
-            canvas.drawColor(Color.WHITE);
+//            canvas.drawColor(Color.WHITE);
             canvas.rotate(mRotation);
             if(logoIcon != null){
                 Log.d(TAG,"开始绘制图像");
@@ -385,7 +385,7 @@ public class ScrollingBackgroundView extends View {
         return this;
     }
 
-    public ScrollingBackgroundView setImageScale(int imageScale){
+    public ScrollingBackgroundView setImageScale(float imageScale){
         mImageScale = imageScale;
         return this;
     }

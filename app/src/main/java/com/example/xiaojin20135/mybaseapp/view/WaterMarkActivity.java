@@ -46,9 +46,11 @@ public class WaterMarkActivity extends ToolBarActivity {
 
         final ScrollingBackgroundView scrollingBackgroundView = new ScrollingBackgroundView(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        scrollingBackgroundView.setImageScale(0.2f);
         scrollingBackgroundView.setDrawable(scrollingBackgroundView.drawTextToBitmap(this,"0903",bitmap));
-        scrollingBackgroundView.setAlpha((float) 0.9);
+        scrollingBackgroundView.setAlpha((float) 0.25);
         scrollingBackgroundView.setLayoutParams(params);
+
         re_rl.addView(scrollingBackgroundView,0);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
