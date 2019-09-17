@@ -10,6 +10,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -73,7 +74,6 @@ public class Watermark {
         mTextSize = 18;
         mRotation = -25;
         mAlpha = 80;
-
     }
 
     public static Watermark getInstance() {
@@ -186,6 +186,9 @@ public class Watermark {
     public void show(Context context, View view,String text) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.setBackground(drawTextToBitmap(context, text,mBitmap));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                view.setBackgroundTintMode(PorterDuff.Mode.CLEAR);
+            }
         }
     }
 
@@ -251,7 +254,6 @@ public class Watermark {
 
         }
         return null;
-
     }
 
     public static int spToPx(float spValue) {

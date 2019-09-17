@@ -170,7 +170,7 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
                 canGo (IpAndPortActivity.class);
                 break;
             case R.id.webView_btn:
-                bundle.putString (URLWEB,"https://www.baidu.com/");
+                bundle.putString (URLWEB,"http://www.divcss5.com/html/h380.shtml");
                 canGo (BaseWebViewActivity.class,bundle);
                 break;
             case R.id.wheelview_btn:
