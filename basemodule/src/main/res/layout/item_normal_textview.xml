@@ -11,8 +11,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:id="@+id/tv_left_title"
-        style="@style/title_left"
-        android:singleLine="true"/>
+        style="@style/title_left"/>
 
     <TextView
         android:layout_width="0dp"
