@@ -55,7 +55,6 @@ public class SaveToFilesActivity extends ToolBarActivity {
                     file_content_ET.setError("不能为空");
                     return;
                 }
-
                 saveToFiels(content);
             }
         });
@@ -67,6 +66,7 @@ public class SaveToFilesActivity extends ToolBarActivity {
                 zipToFile("/storage/emulated/0/thisismineaudio035805166.amr");
             }
         });
+
         //解压
         unzip_file_Btn.setOnClickListener(new View.OnClickListener() {
             @Override

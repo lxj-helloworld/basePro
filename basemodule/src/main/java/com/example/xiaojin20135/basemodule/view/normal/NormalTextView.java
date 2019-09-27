@@ -61,9 +61,16 @@ public class NormalTextView extends LinearLayout {
 
     public void setmTitleText(String mTitleText) {
         this.mTitleText = mTitleText;
+        if(mTv_left_title != null){
+            mTv_left_title.setText(mTitleText);
+        }
     }
 
     public void setRightValue(String rightValue){
-        this.mTv_value.setText(rightValue);
+        if(mTv_value != null){
+            this.mTv_value.setText(rightValue);
+        }
+
+
     }
 }

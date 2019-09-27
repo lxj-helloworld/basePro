@@ -204,6 +204,13 @@
                 android:text="水印"
                 android:id="@+id/watermark_btn"
                 android:onClick="onClick"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义显示"
+                android:id="@+id/normal_textvew_btn"
+                android:onClick="onClick"/>
         </LinearLayout>
     </ScrollView>
 

@@ -36,7 +36,7 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     compile project(path: ':basemodule')
-    compile 'com.jakewharton:butterknife:8.4.0'
+    implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     //信鸽jar，不包含厂商通道
     // compile 'com.tencent.xinge:xinge:4.0.3-release'

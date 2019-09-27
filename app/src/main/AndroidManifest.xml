@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:replace="android:label,android:name">
+        <activity android:name=".normal.NormalTextViewActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,7 +54,7 @@
         <activity android:name=".security.SecurityActivity" />
         <activity android:name=".file.SaveToFilesActivity" />
         <activity android:name=".normal.NormalEdittextActivity" />
-        <activity android:name=".view.WaterMarkActivity"></activity>
+        <activity android:name=".view.WaterMarkActivity" />
     </application>
 
 </manifest>
