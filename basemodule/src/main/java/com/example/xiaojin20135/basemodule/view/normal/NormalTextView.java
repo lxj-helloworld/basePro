@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class NormalTextView extends LinearLayout {
 
     private LinearLayout mLl_normal_textvew;
     private TextView mTv_left_title,mTv_value;
+    private ImageView linebackground_iv;
 
 
     private String mTitleText = "";//左侧title值
@@ -49,6 +51,7 @@ public class NormalTextView extends LinearLayout {
         mLl_normal_textvew = findViewById(R.id.ll_normal_textview);
         mTv_left_title = findViewById(R.id.tv_left_title);
         mTv_value = findViewById(R.id.tv_value);
+        linebackground_iv = findViewById(R.id.linebackground_iv);
 
         if(getResources().getDimension(R.dimen.title_width) != mWidthTitle){
             ViewGroup.LayoutParams params = mTv_left_title.getLayoutParams();

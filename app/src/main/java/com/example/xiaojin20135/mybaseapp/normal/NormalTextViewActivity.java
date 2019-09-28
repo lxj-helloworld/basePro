@@ -2,6 +2,7 @@ package com.example.xiaojin20135.mybaseapp.normal;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.xiaojin20135.basemodule.activity.ToolBarActivity;
@@ -11,6 +12,7 @@ import com.example.xiaojin20135.mybaseapp.R;
 public class NormalTextViewActivity extends ToolBarActivity {
 
     private NormalTextView normal_textview1,normal_textview2;
+    private ImageView linebackground_iv; //分割线
 
 
     @Override

@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="@dimen/left_title_8"
             android:layout_height="wrap_content"
-            android:text="第一个值"
+            android:text=""
             android:id="@+id/tv_left_title"
 
             style="@style/title_left"/>
@@ -23,12 +23,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_value"
             android:layout_weight="1"
-            android:text="第一个IE之"
+            android:text=""
             style="@style/value_right"/>
     </LinearLayout>
 
 
     <ImageView
+        android:id="@+id/linebackground_iv"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/grey"
