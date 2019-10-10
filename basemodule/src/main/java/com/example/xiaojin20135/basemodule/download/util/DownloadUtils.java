@@ -12,6 +12,7 @@ import com.example.xiaojin20135.basemodule.activity.BaseApplication;
 import com.example.xiaojin20135.basemodule.download.listener.MyDownloadListener;
 import com.example.xiaojin20135.basemodule.download.retrofit.RetrofitApi;
 import com.example.xiaojin20135.basemodule.download.retrofit.RetrofitRequest;
+import com.example.xiaojin20135.basemodule.util.TimeMethods;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,12 +65,12 @@ public class DownloadUtils {
                 name = name.substring(i);
                 int j = name.lastIndexOf("=");
                 if(j != -1){
-                    name = name.substring(j);
+                    name = name.substring(j).replace("=","_");
                 }
                 if(!judgeImage(name)){
                     name = name + ".PNG";
                 }
-                mFilePath = mFileFolder + name;
+                mFilePath = mFileFolder + "/" + TimeMethods.TIME_METHODS.getTimeMillStr() + name;
             }
         }
         if (TextUtils.isEmpty(mFilePath)) {

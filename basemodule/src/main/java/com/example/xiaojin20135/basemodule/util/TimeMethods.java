@@ -30,6 +30,16 @@ public enum TimeMethods {
     }
 
     /**
+     * 获取时间字符串，纯数字
+     * @return
+     */
+    public String getTimeMillStr(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("SSS");
+        return simpleDateFormat.format(new Date());
+    }
+
+
+    /**
      * 获取当前时间字符串，格式化 年月日时分秒
      * @return
      */

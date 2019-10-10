@@ -128,7 +128,7 @@ public class PickImageActivity extends ToolBarActivity {
 
     private void showNetImages(){
         ArrayList<String> photos = new ArrayList<>();
-        photos.add("http://tcmrlineloss.topscomm.net:5101/app_download/img/zjzz.png");
+        photos.add("http://172.20.3.53:8919/toa/cbo/cboAttachment_download.action?attachmentId=19080300000002");
         photos.add("http://tcmrlineloss.topscomm.net:5101/app_download/img/live_weixin.png");
         photos.add("https://article-fd.zol-img.com.cn/g2/M00/0E/00/ChMlWVyJwQeIRQrvAA_BjB8NhecAAIyDANWGdgAD8Gk692.jpg");
         photos.add("http://tcmrlineloss.topscomm.net:5101/app_download/img/erweima.jpg");
