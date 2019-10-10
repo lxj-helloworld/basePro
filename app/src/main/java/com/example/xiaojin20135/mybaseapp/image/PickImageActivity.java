@@ -140,7 +140,7 @@ public class PickImageActivity extends ToolBarActivity {
         bundle.putBoolean(FROMNET,true);
         bundle.putInt("index",0);
         bundle.putBoolean(FROMNET,true);
-        bundle.putBoolean(ENABLELONGCLICK,false);
+        bundle.putBoolean(ENABLELONGCLICK,true);
         canGo(ImageBrowseActivity.class,bundle);
     }
 

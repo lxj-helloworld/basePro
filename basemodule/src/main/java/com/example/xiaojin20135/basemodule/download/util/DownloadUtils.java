@@ -43,6 +43,10 @@ public class DownloadUtils {
     private String mFileFolder = Environment.getExternalStorageDirectory() + "/Documents";
     // 下载到本地的文件路径
     private String mFilePath;
+    private String[] FILETYPES = new String[]{
+            ".jpg", ".bmp", ".jpeg", ".png", ".gif",
+            ".JPG", ".BMP", ".JPEG", ".PNG", ".GIF"
+    };
 
     public DownloadUtils(String host) {
         if (mApi == null) {
@@ -58,6 +62,13 @@ public class DownloadUtils {
             int i = name.lastIndexOf('/');//一定是找最后一个'/'出现的位置
             if (i != -1) {
                 name = name.substring(i);
+                int j = name.lastIndexOf("=");
+                if(j != -1){
+                    name = name.substring(j);
+                }
+                if(!judgeImage(name)){
+                    name = name + ".PNG";
+                }
                 mFilePath = mFileFolder + name;
             }
         }
@@ -181,5 +192,23 @@ public class DownloadUtils {
         Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         scanIntent.setData(Uri.fromFile(new File(filePath)));
         BaseApplication.getInstance ().sendBroadcast(scanIntent);
+    }
+
+    /*
+    * @author lixiaojin
+    * create on 2019-10-10 14:43
+    * description: 校验是否是图片
+    *如果有图片后缀，返回true，如果没有，返回false
+    */
+    private boolean judgeImage(String name){
+        boolean result = false;
+
+        for(int i=0;i<FILETYPES.length;i++){
+            if(name.indexOf(FILETYPES[i]) > -1){
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 }
