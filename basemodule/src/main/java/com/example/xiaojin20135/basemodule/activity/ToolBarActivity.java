@@ -1,5 +1,7 @@
 package com.example.xiaojin20135.basemodule.activity;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,15 +22,37 @@ public abstract class ToolBarActivity extends BaseActivity {
         if(toolbar != null){
             toolbar.setTitle("");
             toolbar.setPopupTheme(R.style.AppTheme_AppBarOverlay);
-            toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
             setSupportActionBar(toolbar);
             if(getSupportActionBar() != null){
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
             initToolbar();
-            setIcon(R.drawable.ic_back);
+            if(BaseApplication.getInstance().isLight){
+                toolbar.setBackgroundColor(getResources().getColor(R.color.grey));
+                title.setTextColor(getResources().getColor(R.color.black));
+                statusBarStyle();
+            }else{
+                toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                setIcon(R.drawable.ic_back);
+            }
+        }
+
+    }
+
+    /*
+    * @author lixiaojin
+    * create on 2019-10-14 20:50
+    * description: 状态栏处理
+    */
+    public void statusBarStyle(){
+        if(Build.VERSION.SDK_INT >= 21){
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
     }
+
+
     public void initToolbar(){
 //        Log.d(TAG,"in initToolbar 111111111111111111111" );
         toolbar.setNavigationOnClickListener(new View.OnClickListener(){

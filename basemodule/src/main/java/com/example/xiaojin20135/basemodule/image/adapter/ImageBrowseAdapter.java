@@ -39,8 +39,6 @@ public class ImageBrowseAdapter extends PagerAdapter {
     public ImageBrowseAdapter(BaseActivity context,ArrayList<String> imageList,ImageLongClick imageLongClick){
         this(context,imageList);
         this.imageLongClick = imageLongClick;
-
-
     }
 
     @Override
@@ -117,7 +115,6 @@ public class ImageBrowseAdapter extends PagerAdapter {
         image.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
-
                 context.finish();
             }
         });

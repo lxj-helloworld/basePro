@@ -17,6 +17,7 @@ import com.example.xiaojin20135.basemodule.retrofit.util.AppContextUtil;
 public class BaseApplication extends Application {
     private static BaseApplication app;
     private static Activity activity;
+    public boolean isLight = false; //浅色主题
 
 
     @Override

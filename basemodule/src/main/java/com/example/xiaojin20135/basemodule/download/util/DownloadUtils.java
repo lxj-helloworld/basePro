@@ -67,7 +67,10 @@ public class DownloadUtils {
                 if(j != -1){
                     name = name.substring(j).replace("=","_");
                 }
-                if(!judgeImage(name)){
+                //如果已经包含后缀，不处理，如果没有后缀，按照图片处理
+                if(name.indexOf(".") > -1){
+
+                }else{
                     name = name + ".PNG";
                 }
                 mFilePath = mFileFolder + "/" + TimeMethods.TIME_METHODS.getTimeMillStr() + name;
@@ -195,21 +198,21 @@ public class DownloadUtils {
         BaseApplication.getInstance ().sendBroadcast(scanIntent);
     }
 
-    /*
-    * @author lixiaojin
-    * create on 2019-10-10 14:43
-    * description: 校验是否是图片
-    *如果有图片后缀，返回true，如果没有，返回false
-    */
-    private boolean judgeImage(String name){
-        boolean result = false;
-
-        for(int i=0;i<FILETYPES.length;i++){
-            if(name.indexOf(FILETYPES[i]) > -1){
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }
+//    /*
+//    * @author lixiaojin
+//    * create on 2019-10-10 14:43
+//    * description: 校验是否是图片
+//    *如果有图片后缀，返回true，如果没有，返回false
+//    */
+//    private boolean judgeImage(String name){
+//        boolean result = false;
+//
+//        for(int i=0;i<FILETYPES.length;i++){
+//            if(name.indexOf(FILETYPES[i]) > -1){
+//                result = true;
+//                break;
+//            }
+//        }
+//        return result;
+//    }
 }
