@@ -4,6 +4,7 @@
     <declare-styleable name="NormalEditText">
         <attr name="must" format="boolean"></attr>
         <attr name="text_title" format="string"></attr>
+        <attr name="text_hint" format="string"></attr>
         <attr name="width_title" format="dimension"></attr>
         <attr name="linebackground" format="color"></attr>
     </declare-styleable>

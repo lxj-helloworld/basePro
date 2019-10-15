@@ -14,5 +14,6 @@
     <color name="actionsheet_gray">#8F8F8F</color>
     <color name="spinnerbackground">#cccccc</color>
     <color name="grey">#EFEFEF</color>
+    <color name="grey_light">#EEEEEE</color>
     <color name="spinner_text">#3F51B5</color>
 </resources>

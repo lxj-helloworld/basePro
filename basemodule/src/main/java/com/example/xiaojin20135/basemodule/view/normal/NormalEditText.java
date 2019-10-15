@@ -28,6 +28,7 @@ public class NormalEditText extends LinearLayout {
 
     private String mTitleText = ""; //左侧title名称
     private Boolean mMust = true; //是否必填
+    private String mHint = ""; //默认提示信息
     private Float mWidthTitle;
 
     public NormalEditText(Context context) {
@@ -42,6 +43,8 @@ public class NormalEditText extends LinearLayout {
         mTitleText = mTypedArray.getString(R.styleable.NormalEditText_text_title);
         mMust = mTypedArray.getBoolean(R.styleable.NormalEditText_must,true);
         mWidthTitle = mTypedArray.getDimension(R.styleable.NormalEditText_width_title,getResources().getDimension(R.dimen.title_width));
+        mHint = mTypedArray.getString(R.styleable.NormalEditText_text_hint);
+
 
         mTypedArray.recycle();
 
@@ -75,6 +78,11 @@ public class NormalEditText extends LinearLayout {
             mItem_notnull.setVisibility(GONE);
         }
         setTitleLeft(mTitleText);
+
+        //设置hint属性
+        if(!"".equals(mHint)){
+            mEt_value.setHint(mHint);
+        }
 
     }
 

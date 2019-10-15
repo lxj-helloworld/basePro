@@ -23,10 +23,12 @@ public class NormalTextView extends LinearLayout {
     private LinearLayout mLl_normal_textvew;
     private TextView mTv_left_title,mTv_value;
     private ImageView linebackground_iv;
+    private TextView mItem_notnull;
 
 
     private String mTitleText = "";//左侧title值
     private Float mWidthTitle;
+    private Boolean mMust = true; //是否必填
 
 
     public NormalTextView(Context context) {
@@ -38,6 +40,7 @@ public class NormalTextView extends LinearLayout {
         TypedArray mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.NormalEditText);
         mTitleText = mTypedArray.getString(R.styleable.NormalEditText_text_title);
         mWidthTitle = mTypedArray.getDimension(R.styleable.NormalEditText_width_title,getResources().getDimension(R.dimen.title_width));
+        mMust = mTypedArray.getBoolean(R.styleable.NormalEditText_must,false);
         mTypedArray.recycle();
         initView(context);
     }
@@ -48,6 +51,7 @@ public class NormalTextView extends LinearLayout {
 
     private void initView(Context context){
         LayoutInflater.from(context).inflate(R.layout.item_normal_textview,this,true);
+        mItem_notnull = findViewById(R.id.item_notnull);
         mLl_normal_textvew = findViewById(R.id.ll_normal_textview);
         mTv_left_title = findViewById(R.id.tv_left_title);
         mTv_value = findViewById(R.id.tv_value);
@@ -57,6 +61,12 @@ public class NormalTextView extends LinearLayout {
             ViewGroup.LayoutParams params = mTv_left_title.getLayoutParams();
             params.width = mWidthTitle.intValue();
             mTv_left_title.setLayoutParams(params);
+        }
+        //设置是否是必填
+        if(mMust){
+            mItem_notnull.setVisibility(VISIBLE);
+        }else{
+            mItem_notnull.setVisibility(GONE);
         }
         setmTitleText(mTitleText);
     }

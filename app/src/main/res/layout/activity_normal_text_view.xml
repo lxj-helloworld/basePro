@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/normal_textview1"
+        app:must="true"
         ></com.example.xiaojin20135.basemodule.view.normal.NormalTextView>
 
     <com.example.xiaojin20135.basemodule.view.normal.NormalTextView

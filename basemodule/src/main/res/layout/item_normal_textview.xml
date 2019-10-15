@@ -15,7 +15,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:id="@+id/tv_left_title"
-
             style="@style/title_left"/>
 
         <TextView
@@ -24,9 +23,13 @@
             android:id="@+id/tv_value"
             android:layout_weight="1"
             android:text=""
+            android:layout_gravity="center_vertical"
             style="@style/value_right"/>
-    </LinearLayout>
 
+        <include layout="@layout/item_notnull"
+            android:id="@+id/item_notnull"
+            />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/linebackground_iv"

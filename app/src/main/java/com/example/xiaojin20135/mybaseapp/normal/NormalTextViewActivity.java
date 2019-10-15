@@ -18,7 +18,7 @@ public class NormalTextViewActivity extends ToolBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        normal_textview1.setmTitleText("第一个title");
+        normal_textview1.setmTitleText("第一个title第一个title第一个title第一个title第一个title第一个title");
         normal_textview1.setRightValue("第一个值");
 
         normal_textview2.setmTitleText("第二个title");

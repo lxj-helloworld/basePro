@@ -20,8 +20,6 @@ public class NormalEdittextActivity extends ToolBarActivity {
         super.onCreate(savedInstanceState);
 
 
-
-
     }
 
     @Override
