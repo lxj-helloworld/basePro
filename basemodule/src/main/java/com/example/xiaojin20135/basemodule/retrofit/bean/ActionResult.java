@@ -8,6 +8,8 @@ package com.example.xiaojin20135.basemodule.retrofit.bean;
 public class ActionResult {
     private String message;
     private Boolean success;
+    private String code;
+    private String extend;
 
     public String getMessage() {
         return message;
@@ -27,5 +29,21 @@ public class ActionResult {
 
     public String toString(){
         return "message = " + message + ";success = " +success;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getExtend() {
+        return extend;
+    }
+
+    public void setExtend(String extend) {
+        this.extend = extend;
     }
 }
