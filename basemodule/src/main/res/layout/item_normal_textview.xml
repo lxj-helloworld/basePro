@@ -28,6 +28,7 @@
 
         <include layout="@layout/item_notnull"
             android:id="@+id/item_notnull"
+            android:visibility="gone"
             />
     </LinearLayout>
 
