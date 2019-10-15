@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.activity.BaseActivity;
 import com.example.xiaojin20135.basemodule.image.listener.ImageLongClick;
+import com.example.xiaojin20135.basemodule.image.view.ImageBrowseActivity;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class ImageBrowseAdapter extends PagerAdapter {
         return POSITION_NONE;
     }
 
-    public View instantiateItem(ViewGroup container, final int position){
+    public View instantiateItem(final ViewGroup container, final int position){
         Log.d (TAG,"instantiateItem position = " + position + " :" + imageList.get (position));
 //        final PhotoView image = new PhotoView (context);
 //        // 开启图片缩放功能
@@ -115,7 +116,12 @@ public class ImageBrowseAdapter extends PagerAdapter {
         image.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
-                context.finish();
+                if(context instanceof ImageBrowseActivity){
+                    ((ImageBrowseActivity)context).back();
+                }else{
+                    context.finish();
+                }
+
             }
         });
         //长按图片

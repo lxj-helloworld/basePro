@@ -100,4 +100,22 @@ public enum MethodsUtils {
         return host;
     }
 
+    /*
+    * @author lixiaojin
+    * create on 2019-10-15 14:10
+    * description:字符串补零处理
+    */
+    public String formatZeroStr(String str,int len){
+        String result = "";
+        if(str == null){
+            return result;
+        }
+
+        while (str.length() < len){
+            str = "0" + str;
+        }
+
+        return str;
+    }
+
 }

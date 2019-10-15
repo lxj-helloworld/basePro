@@ -146,11 +146,11 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
             public void onPageScrolled (int position, float positionOffset, int positionOffsetPixels) {
                 currentIndex = position;
                 Log.d (TAG,"currentIndex = " + currentIndex);
+                updateBottomIndex(position + 1);
             }
             @Override
             public void onPageSelected (int position) {
                 updateBottomIndex(position + 1);
-
             }
             @Override
             public void onPageScrollStateChanged (int state) {
@@ -220,7 +220,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
         return super.onKeyDown(keyCode, event);
     }
 
-    private void back(){
+    public void back(){
         Intent intent = new Intent ();
         intent.putStringArrayListExtra ("imageList",imageList);
         setResult (RESULT_OK,intent);
