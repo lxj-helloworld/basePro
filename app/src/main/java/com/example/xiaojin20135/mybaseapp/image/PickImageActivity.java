@@ -29,6 +29,7 @@ import com.qingmei2.rximagepicker_extension_wechat.WechatConfigrationBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 import io.reactivex.functions.Consumer;
 
@@ -128,8 +129,8 @@ public class PickImageActivity extends ToolBarActivity {
 
     private void showNetImages(){
         ArrayList<String> photos = new ArrayList<>();
-        photos.add("http://172.20.3.53:8919/toa/cbo/cboAttachment_download.action?attachmentId=19101400000001&t=1571051646000");
         photos.add("http://172.20.3.53:8919/toa/cbo/cboAttachment_download.action?attachmentId=19080300000002");
+        photos.add("http://172.20.3.53:8925/li/cbo/cboAttachment_download.action?attachmentId=19101600001002");
         photos.add("http://tcmrlineloss.topscomm.net:5101/app_download/img/live_weixin.png");
         photos.add("https://article-fd.zol-img.com.cn/g2/M00/0E/00/ChMlWVyJwQeIRQrvAA_BjB8NhecAAIyDANWGdgAD8Gk692.jpg");
         photos.add("http://tcmrlineloss.topscomm.net:5101/app_download/img/erweima.jpg");

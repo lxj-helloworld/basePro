@@ -30,6 +30,7 @@ public class NormalEditText extends LinearLayout {
     private Boolean mMust = true; //是否必填
     private String mHint = ""; //默认提示信息
     private Float mWidthTitle;
+    private boolean mOnlyClick;//只可点击，不可编辑
 
     public NormalEditText(Context context) {
         super(context);
@@ -44,7 +45,7 @@ public class NormalEditText extends LinearLayout {
         mMust = mTypedArray.getBoolean(R.styleable.NormalEditText_must,true);
         mWidthTitle = mTypedArray.getDimension(R.styleable.NormalEditText_width_title,getResources().getDimension(R.dimen.title_width));
         mHint = mTypedArray.getString(R.styleable.NormalEditText_text_hint);
-
+        mOnlyClick = mTypedArray.getBoolean(R.styleable.NormalEditText_only_click,false);
 
         mTypedArray.recycle();
 
@@ -82,6 +83,13 @@ public class NormalEditText extends LinearLayout {
         //设置hint属性
         if(!"".equals(mHint)){
             mEt_value.setHint(mHint);
+        }
+
+        //设置点击事件
+        if(mOnlyClick){
+            mEt_value.setCursorVisible(false);
+            mEt_value.setFocusable(false);
+            mEt_value.setFocusableInTouchMode(false);
         }
 
     }

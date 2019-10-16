@@ -2,6 +2,7 @@
 <resources>
 
     <declare-styleable name="NormalEditText">
+        <attr name="only_click" format="boolean"></attr>
         <attr name="must" format="boolean"></attr>
         <attr name="text_title" format="string"></attr>
         <attr name="text_hint" format="string"></attr>
