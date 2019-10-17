@@ -75,7 +75,7 @@ public class DatePickDialog {
 
     public DatePickDialog(Context context,boolean showTime,String date) {
         this(context,showTime);
-        if(!"".equals(date) || date.length() == 10){
+        if(!"".equals(date) && date.length() == 10){
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
             try {
                 this.defaultsDate= dateFormat.parse(date);
