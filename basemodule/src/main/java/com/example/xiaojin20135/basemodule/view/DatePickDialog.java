@@ -19,7 +19,10 @@ import android.widget.TimePicker;
 import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.listener.DatePickListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by lixiaojin on 2018-07-19 18:34.
@@ -46,6 +49,8 @@ public class DatePickDialog {
     private boolean showNegBtn = false;
     //显示时间
     private boolean showTime = false;
+    //默认时间
+    private Date defaultsDate;
     //仅仅显示年、月
     private boolean showMonthOnly = false;
 
@@ -62,6 +67,23 @@ public class DatePickDialog {
         display = windowManager.getDefaultDisplay();
     }
 
+    public DatePickDialog(Context context,boolean showTime,Date date) {
+        this(context,showTime);
+        this.defaultsDate = date;
+    }
+
+
+    public DatePickDialog(Context context,boolean showTime,String date) {
+        this(context,showTime);
+        if(!"".equals(date) || date.length() == 10){
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+            try {
+                this.defaultsDate= dateFormat.parse(date);
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
+        }
+    }
 
     public DatePickDialog builder() {
         // 获取Dialog布局
@@ -114,6 +136,10 @@ public class DatePickDialog {
      */
     private void intDateValue(){
         Calendar c = Calendar.getInstance();
+        if(defaultsDate == null){
+            defaultsDate = new Date();
+        }
+        c.setTime(defaultsDate);
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
@@ -131,6 +157,10 @@ public class DatePickDialog {
     private void initEvents(){
         // 获取当前的年、月、日、小时、分钟
         Calendar c = Calendar.getInstance();
+        if(defaultsDate == null){
+            defaultsDate = new Date();
+        }
+        c.setTime(defaultsDate);
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
@@ -258,7 +288,7 @@ public class DatePickDialog {
 
 
     public String buling(String str,int len){
-        while(str.length() < 2){
+        while(str.length() < len){
             str = "0" + str;
         }
         return str;

@@ -13,6 +13,8 @@ import com.example.xiaojin20135.mybaseapp.R;
 
 public class DatePickerActivity extends ToolBarActivity {
 
+    private String currentDate = "";
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -51,11 +53,12 @@ public class DatePickerActivity extends ToolBarActivity {
     }
 
     private void pickDate(final boolean showTime){
-        new DatePickDialog (this,showTime).builder().setTitle("选择日期")
-            .setPositiveButton("确认", new DatePickListener () {
+        new DatePickDialog (this,showTime,"2099-09-12").builder().setTitle("选择日期")
+            .setPositiveButton("确认",new DatePickListener () {
                 @Override
                 public void onClick(View v) {
-                    Log.d ("LikeIosDialogActivity","dataValue = " + this.getDateValue () + " " + this.getTimeValue ());
+                    currentDate = this.getDateValue ();
+                    Log.d ("DatePickerActivity","dataValue = " + currentDate);
                     if(showTime){
                         Toast.makeText (DatePickerActivity.this, this.getDateValue () + " " + this.getTimeValue () + "",Toast.LENGTH_LONG).show ();
                     }else{
