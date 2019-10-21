@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -536,6 +538,41 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         startActivityForResult (intent,requestCode);
     }
 
+    /*
+    * @author lixiaojin
+    * create on 2019-10-21 15:51
+    * description: 获取软键盘
+    */
+    public boolean getIsOpen() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        return imm.isActive();
+    }
 
+    /*
+    * @author lixiaojin
+    * create on 2019-10-21 16:00
+    * description:
+    */
+    public void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            //强制隐藏键盘
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            if(getIsOpen()){
+                hideInput();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }
 
