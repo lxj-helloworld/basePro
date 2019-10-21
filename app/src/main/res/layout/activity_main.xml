@@ -123,11 +123,11 @@
                 android:onClick="onClick"/>
 
             <Button
+                android:id="@+id/sel_dialog_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="弹出选择框"
-                android:id="@+id/sel_dialog_btn"
-                android:onClick="onClick"/>
+                android:onClick="onClick"
+                android:text="弹出选择框" />
 
             <Button
                 android:layout_width="match_parent"
