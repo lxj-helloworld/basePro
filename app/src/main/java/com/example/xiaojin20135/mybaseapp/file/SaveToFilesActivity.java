@@ -64,6 +64,9 @@ public class SaveToFilesActivity extends ToolBarActivity {
             @Override
             public void onClick(View v) {
                 zipToFile("/storage/emulated/0/thisismineaudio035805166.amr");
+//                SaveToFilesActivity.this.finish();
+//                hideSoftinput();
+
             }
         });
 

@@ -562,9 +562,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+
+    public void hideSoftinput(){
         try {
             if(getIsOpen()){
                 hideInput();
@@ -572,7 +571,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 }
 
