@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +16,14 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.xiaojin20135.basemodule.R;
+import com.example.xiaojin20135.basemodule.deivceinfo.DeviceUtils;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ActionResult;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ResponseBean;
 import com.example.xiaojin20135.basemodule.retrofit.helper.RetrofitManager;
@@ -27,6 +31,7 @@ import com.example.xiaojin20135.basemodule.retrofit.presenter.PresenterImpl;
 import com.example.xiaojin20135.basemodule.retrofit.view.IBaseView;
 import com.example.xiaojin20135.basemodule.util.ConstantUtil;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -572,5 +577,21 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
             e.printStackTrace();
         }
     }
+
+
+    //得到系统statusbar的高度
+    public static int getStatusBarHeight(Context context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+
+
+
+
 }
 

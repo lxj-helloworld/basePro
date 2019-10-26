@@ -1,14 +1,20 @@
 package com.example.xiaojin20135.basemodule.activity;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.xiaojin20135.basemodule.R;
+
+import static com.example.xiaojin20135.basemodule.status.StatusHelp.setWindowStatusBarColor;
 
 public abstract class ToolBarActivity extends BaseActivity {
     public Toolbar toolbar;
@@ -29,7 +35,7 @@ public abstract class ToolBarActivity extends BaseActivity {
             }
             initToolbar();
             if(BaseApplication.getInstance().isLight){
-                toolbar.setBackgroundColor(getResources().getColor(R.color.grey));
+                toolbar.setBackgroundColor(Color.TRANSPARENT);
                 title.setTextColor(getResources().getColor(R.color.black));
                 statusBarStyle();
             }else{
@@ -46,11 +52,21 @@ public abstract class ToolBarActivity extends BaseActivity {
     * description: 状态栏处理
     */
     public void statusBarStyle(){
-        if(Build.VERSION.SDK_INT >= 21){
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        if(Build.VERSION.SDK_INT >= 21){
+//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            setWindowStatusBarColor(this,R.color.white,true);
         }
     }
+
+
+
+
 
 
     public void initToolbar(){

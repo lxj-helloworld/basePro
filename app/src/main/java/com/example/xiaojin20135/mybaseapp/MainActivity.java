@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.xiaojin20135.basemodule.status.StatusHelp.setWindowStatusBarColor;
 import static com.example.xiaojin20135.basemodule.util.ConstantUtil.MAP;
 import static com.example.xiaojin20135.basemodule.util.ConstantUtil.URLWEB;
 
@@ -52,6 +53,8 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setTitleText(R.string.main_page);
 //        initMenu();
+
+
     }
 
     @Override

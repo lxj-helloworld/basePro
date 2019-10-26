@@ -47,4 +47,12 @@ public class BaseApplication extends Application {
     public static Activity getActivity(){
         return activity;
     }
+
+    public boolean isLight() {
+        return isLight;
+    }
+
+    public void setLight(boolean light) {
+        isLight = light;
+    }
 }
