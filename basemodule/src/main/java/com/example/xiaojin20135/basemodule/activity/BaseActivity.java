@@ -73,6 +73,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         TAG = this.getLocalClassName();
         Log.d("BaseActivity",TAG);
         presenterImpl = new PresenterImpl (this,this);
+
+
     }
 
     protected abstract int getLayoutId();

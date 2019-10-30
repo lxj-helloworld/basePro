@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.xiaojin20135.basemodule.activity.BaseActivity;
 import com.example.xiaojin20135.basemodule.activity.ToolBarActivity;
 import com.example.xiaojin20135.basemodule.guidepage.GuidePageActivity;
 import com.example.xiaojin20135.basemodule.menuitem.adapter.MenuItemAdapter;
@@ -51,10 +52,9 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitleText(R.string.main_page);
 //        initMenu();
 
-
+        hideBarIcon();
     }
 
     @Override

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/gray"
     tools:context="com.example.xiaojin20135.mybaseapp.view.IpAndPortActivity">
     <include layout="@layout/toolbar"></include>
 
