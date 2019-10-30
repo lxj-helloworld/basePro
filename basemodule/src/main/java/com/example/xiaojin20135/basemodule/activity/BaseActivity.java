@@ -579,19 +579,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     }
 
 
-    //得到系统statusbar的高度
-    public static int getStatusBarHeight(Context context) {
-        int result = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
-
-
-
-
 
 }
 

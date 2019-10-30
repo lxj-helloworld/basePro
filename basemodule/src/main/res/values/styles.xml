@@ -15,9 +15,9 @@
         <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter_anim</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="title_left" parent="AlertDialog.AppCompat.Light">
         <item name="android:gravity">right|center_vertical</item>
@@ -74,5 +74,11 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <!--自定义输入框下划线-->
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#EBEBEB</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
 </resources>

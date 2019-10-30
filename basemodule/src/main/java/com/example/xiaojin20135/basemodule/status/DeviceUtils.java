@@ -23,9 +23,7 @@ public class DeviceUtils {
     public void DeviceUtil() {
     }
 
-
     public static boolean isMIUI() {
-//		return (Build.BRAND.equals("Xiaomi") | Build.DISPLAY.equals("Xiaomi"));
         try {
             String rom = getDeviceProp("ro.miui.ui.version.name");
             return (DeviceUtils.ROM_MIUI_V5.equals(rom) || DeviceUtils.ROM_MIUI_V6.equals(rom) || DeviceUtils.ROM_MIUI_V7.equals(rom));
@@ -39,50 +37,6 @@ public class DeviceUtils {
     public static String ROM_MIUI_V6 = "V6";
     public static String ROM_MIUI_V7 = "V7";
 
-    public static void openSystemStart_huawei(Context mContext) {
-        try {
-            Intent intent = new Intent();
-            intent.setClassName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.bootstart.BootStartActivity");
-            mContext.startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void offWindow_huawei(Context mContext) {
-        try {
-            Intent intent = new Intent();
-            intent.setClassName("com.huawei.systemmanager", "com.huawei.notificationmanager.ui.NotificationManagmentActivity");
-            mContext.startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static boolean isHuawei() {
-        return ("huawei".equalsIgnoreCase(Build.BRAND)) || ("huawei".equalsIgnoreCase(Build.MANUFACTURER));
-    }
-
-    public static boolean emuiVersion3() {
-        float version = 0;
-        try {
-            String emuiVersion = getDeviceProp("ro.build.version.emui");
-            if (!TextUtils.isEmpty(emuiVersion)) {
-                if (emuiVersion.contains("_")) {
-                    emuiVersion = emuiVersion.substring(emuiVersion.indexOf("_") + 1);
-                    try {
-                        version = Float.parseFloat(emuiVersion);
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return (version > 2.0f);
-    }
 
     public static String getDeviceProp(String key) throws JSONException {
         List<String> list = runComm("getprop");

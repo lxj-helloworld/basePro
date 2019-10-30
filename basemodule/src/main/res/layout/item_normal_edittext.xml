@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:id="@+id/ll_normal_input"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:padding="@dimen/info_margin_5">
 
     <TextView
@@ -19,7 +21,7 @@
         android:id="@+id/et_value"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
-        style="@style/value_right"/>
+        android:theme="@style/MyEditText"/>
 
     <include layout="@layout/item_notnull"
         android:id="@+id/item_notnull"

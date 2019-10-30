@@ -1,6 +1,7 @@
 package com.example.xiaojin20135.basemodule.status;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
@@ -10,17 +11,17 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.xiaojin20135.basemodule.R;
+import com.example.xiaojin20135.basemodule.util.MethodsUtils;
+import com.example.xiaojin20135.basemodule.util.TimeMethods;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import static com.example.xiaojin20135.basemodule.activity.BaseActivity.getStatusBarHeight;
 
 public enum StatusHelp {
     STATUS_HELP;
 
     private static final String TAG = "StatusHelp";
-
 
     //有色状态栏，想要和导航栏颜色不一样就设置不一样的颜色即可
     public static void setWindowStatusBarColor(Activity activity, int color, boolean isLightMode) {
@@ -66,7 +67,6 @@ public enum StatusHelp {
     public static int StatusBarLightMode(Activity activity) {
         int result = 0;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
             if (DeviceUtils.isMIUI() && MIUISetStatusBarLightMode(activity.getWindow(), true)) {
                 result = 1;
                 //miui android 7.0无法通过反射修改
@@ -89,7 +89,6 @@ public enum StatusHelp {
     /**
      * 设置状态栏图标为深色和魅族特定的文字风格
      * 可以用来判断是否为Flyme用户
-     *
      * @param window 需要设置的窗口
      * @param dark   是否把状态栏字体及图标颜色设置为深色
      * @return boolean 成功执行返回true
@@ -114,12 +113,11 @@ public enum StatusHelp {
                 window.setAttributes(lp);
                 result = true;
             } catch (Exception e) {
-
+                Log.d(TAG,"Flame ：" + e.getMessage());
             }
         }
         return result;
     }
-
 
     /**
      * 设置状态栏字体图标为深色，需要MIUIV6以上
@@ -139,20 +137,27 @@ public enum StatusHelp {
                 Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
                 if (dark) {
                     extraFlagField.invoke(window, darkModeFlag, darkModeFlag);//状态栏透明且黑色字体
-                    Log.d(TAG, "miui method: 1");
+                    Log.d(TAG, "状态栏透明且黑色字体");
                 } else {
                     extraFlagField.invoke(window, 0, darkModeFlag);//清除黑色字体
-                    Log.d(TAG, "miui method: 2");
+                    Log.d(TAG, "清除黑色字体");
                 }
                 result = true;
-
             } catch (Exception e) {
-                Log.d(TAG, "miui method: error");
+                Log.d(TAG, "miui 系统设置黑色字体错误");
             }
         }
         return result;
     }
 
-
+    //得到系统statusbar的高度
+    public static int getStatusBarHeight(Context context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 
 }
