@@ -3,6 +3,7 @@ package com.example.xiaojin20135.mybaseapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 

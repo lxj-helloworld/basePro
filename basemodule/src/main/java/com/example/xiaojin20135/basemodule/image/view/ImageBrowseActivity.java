@@ -40,12 +40,18 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     //是否是网络图片
     private boolean fromNet = false;
     //是否启用长按监听事件
-    private boolean enableLongClick = true;
+    private boolean enableLongClick = false;
     private PhotoView photoView;
     private ImageView left;
     private ImageView right;
     private boolean isleft;
     private boolean isright;
+
+    //删除
+    private ImageView delete_iv;
+    //下载
+    private ImageView download_iv;
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -55,6 +61,9 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //展示数据
         showData();
+
+        //初始化下载和删除功能
+        initDowns();
     }
 
     @Override
@@ -76,6 +85,30 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
         }
         imageBrowseViewPager.setAdapter (imageBrowseAdapter);
         imageBrowseViewPager.setCurrentItem (currentIndex);
+
+        delete_iv = findViewById(R.id.delete_iv);
+        download_iv = findViewById(R.id.download_iv);
+    }
+
+    @Override
+    protected void initEvents () {
+
+        imageBrowseViewPager.addOnPageChangeListener (new ViewPager.OnPageChangeListener () {
+            @Override
+            public void onPageScrolled (int position, float positionOffset, int positionOffsetPixels) {
+                currentIndex = position;
+                Log.d (TAG,"currentIndex = " + currentIndex);
+                updateBottomIndex(position + 1);
+            }
+            @Override
+            public void onPageSelected (int position) {
+                updateBottomIndex(position + 1);
+            }
+            @Override
+            public void onPageScrollStateChanged (int state) {
+
+            }
+        });
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,27 +169,23 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
                 }
             }
         });
-    }
 
-    @Override
-    protected void initEvents () {
-
-        imageBrowseViewPager.addOnPageChangeListener (new ViewPager.OnPageChangeListener () {
+        //下载
+        download_iv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPageScrolled (int position, float positionOffset, int positionOffsetPixels) {
-                currentIndex = position;
-                Log.d (TAG,"currentIndex = " + currentIndex);
-                updateBottomIndex(position + 1);
-            }
-            @Override
-            public void onPageSelected (int position) {
-                updateBottomIndex(position + 1);
-            }
-            @Override
-            public void onPageScrollStateChanged (int state) {
-
+            public void onClick(View v) {
+                downLoadImage();
             }
         });
+
+        //删除
+        delete_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteImage();
+            }
+        });
+
     }
 
     @Override
@@ -166,7 +195,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
             currentIndex = intent.getIntExtra("index", 0);
             fromNet = intent.getBooleanExtra(FROMNET,false);
             imageList = (ArrayList<String>) intent.getStringArrayListExtra("imageList");
-            enableLongClick = intent.getBooleanExtra(ENABLELONGCLICK,true);
+//            enableLongClick = intent.getBooleanExtra(ENABLELONGCLICK,true);
         }
     }
 
@@ -253,17 +282,42 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
                 @Override
                 public void onDialogItemClick(int requestCode, int position, String item) {
                     if(position == 0){
-                        if(imageList != null && imageList.size () > currentIndex){
-                            imageList.remove (currentIndex);
-                            imageBrowseAdapter.notifyDataSetChanged ();
-                        }
-                        if(imageList == null || imageList.size () == 0){
-                            back();
-                        }
+                        deleteImage();
                     }
                 }
             });
             myItemDialog.show();
+        }
+    }
+
+    /*
+    * @author lixiaojin
+    * create on 2019-11-05 11:28
+    * description: 初始化删除和下载功能
+    */
+    private void initDowns(){
+        if(fromNet){ //如果是网络图片，显示下载按钮，隐藏删除按钮
+            delete_iv.setVisibility(View.GONE);
+            download_iv.setVisibility(View.VISIBLE);
+        }else{ //如果是本地图片，显示删除按钮，隐藏下载按钮
+            delete_iv.setVisibility(View.VISIBLE);
+            download_iv.setVisibility(View.GONE);
+        }
+    }
+
+
+    /*
+    * @author lixiaojin
+    * create on 2019-11-05 11:34
+    * description: 删除图片
+    */
+    private void deleteImage(){
+        if(imageList != null && imageList.size () > currentIndex){
+            imageList.remove (currentIndex);
+            imageBrowseAdapter.notifyDataSetChanged ();
+        }
+        if(imageList == null || imageList.size () == 0){
+            back();
         }
     }
 

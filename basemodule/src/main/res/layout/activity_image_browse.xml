@@ -13,6 +13,35 @@
         android:id="@+id/imageBrowseViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:gravity="right">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/delete_iv"
+            app:srcCompat="@drawable/ic_shanchu"
+            android:layout_marginTop="@dimen/info_margin_20"
+            android:layout_marginRight="@dimen/info_margin_30"
+            ></ImageView>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/download_iv"
+            app:srcCompat="@drawable/ic_xiazai"
+            android:layout_marginRight="@dimen/info_margin_30"
+            android:layout_marginTop="@dimen/info_margin_20"
+            ></ImageView>
+
+    </LinearLayout>
+
+
+
     <LinearLayout
         android:layout_alignBottom="@+id/imageBrowseViewPager"
         android:layout_centerHorizontal="true"

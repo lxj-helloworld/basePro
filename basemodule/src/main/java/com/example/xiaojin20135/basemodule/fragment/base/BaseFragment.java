@@ -21,9 +21,11 @@ import com.example.xiaojin20135.basemodule.retrofit.bean.ActionResult;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ResponseBean;
 import com.example.xiaojin20135.basemodule.retrofit.helper.RetrofitManager;
 import com.example.xiaojin20135.basemodule.retrofit.presenter.PresenterImpl;
+import com.example.xiaojin20135.basemodule.retrofit.util.HttpError;
 import com.example.xiaojin20135.basemodule.retrofit.view.IBaseView;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.ButterKnife;
@@ -36,6 +38,16 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     public static String TAG = "";
     private PresenterImpl presenterImpl;
     public  boolean isShowProgressDialog=true;
+
+    private String lastUrl = ""; //最后一次请求url
+    private Map lastMap = new HashMap(); //最后一次请求参数
+    private String lastMethodName = "";//最后一次请求的方法名
+    private String lastErrorMethodName = "";//最后一次请求的错误方法名
+    private MultipartBody.Part[] lastFilePart = null;//最后一次请求附件
+    private String lastSuffix = "";//最后一次请求后缀
+
+    private int lastReqCode = -1;
+
     public BaseFragment () {
         TAG = this.getClass ().getSimpleName ();
         Log.d("BaseActivity",TAG);
@@ -120,6 +132,10 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @Describe 请求数据 ，带完整路径，自定义回调方法
      */
     public void tryToGetData(String url,String methodName,Map paraMap) {
+        lastReqCode = 1;
+        lastUrl = url;
+        lastMethodName = methodName;
+        lastMap = paraMap;
         presenterImpl.loadData (url + ".json",methodName,paraMap);
     }
 
@@ -129,6 +145,11 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @Describe 请求数据 ，带完整路径，自定义回调方法
      */
     public void tryToGetData(String url,String methodName,String errorMethodName,Map paraMap) {
+        lastReqCode = 2;
+        lastUrl = url;
+        lastMethodName = methodName;
+        lastErrorMethodName = errorMethodName;
+        lastMap = paraMap;
         presenterImpl.loadData (url + ".json",methodName,errorMethodName,paraMap);
     }
 
@@ -138,6 +159,9 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @Describe 请求数据 ，带完整路径，固定回调方法
      */
     public void tryToGetData(String url,Map paraMap) {
+        lastReqCode = 3;
+        lastUrl = url;
+        lastMap = paraMap;
         presenterImpl.loadData (url + ".json",paraMap);
     }
 
@@ -147,6 +171,9 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @Describe 请求数据，带请求方法，并自定义回调方法
      */
     public void getDataWithMethod(String url,Map paraMap) {
+        lastReqCode = 4;
+        lastUrl = url;
+        lastMap = paraMap;
         presenterImpl.loadData (RetrofitManager.RETROFIT_MANAGER.BASE_URL + url + ".json",url,paraMap);
     }
 
@@ -156,6 +183,10 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @Describe 上传文件
      */
     public void uploadFileWithMethod(String url,Map paraMap, MultipartBody.Part[] filePart){
+        lastReqCode = 5;
+        lastUrl = url;
+        lastMap = paraMap;
+        lastFilePart = filePart;
         presenterImpl.uploadFile (RetrofitManager.RETROFIT_MANAGER.BASE_URL + url + ".json",url,paraMap,filePart);
     }
 
@@ -167,6 +198,10 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @param filePart
      */
     public void uploadFileWithTotalUrl(String url,Map paraMap, MultipartBody.Part[] filePart){
+        lastReqCode = 6;
+        lastUrl = url;
+        lastMap = paraMap;
+        lastFilePart = filePart;
         presenterImpl.uploadFile (url + ".json",url,paraMap,filePart);
     }
 
@@ -176,6 +211,9 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @Describe 请求数据，带请求方法，固定回调方法
      */
     public void getDataWithCommonMethod(String url,Map paraMap) {
+        lastReqCode = 7;
+        lastUrl = url;
+        lastMap = paraMap;
         presenterImpl.loadData (RetrofitManager.RETROFIT_MANAGER.BASE_URL + url + ".json",paraMap);
     }
 
@@ -186,6 +224,10 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @Describe 请求数据，带请求方法和和后缀，自定义回调方法
      */
     public void getDataWithMethod(String url,String suffix,Map paraMap){
+        lastReqCode = 8;
+        lastUrl = url;
+        lastSuffix = suffix;
+        lastMap = paraMap;
         presenterImpl.loadData (RetrofitManager.RETROFIT_MANAGER.BASE_URL + url + suffix,url,paraMap);
     }
 
@@ -195,6 +237,10 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @Describe 请求数据，带请求方法和和后缀，固定回调方法
      */
     public void getDataWithCommonMethod(String url,String suffix,Map paraMap){
+        lastReqCode = 9;
+        lastUrl = url;
+        lastSuffix = suffix;
+        lastMap = paraMap;
         presenterImpl.loadData (RetrofitManager.RETROFIT_MANAGER.BASE_URL + url + suffix,paraMap);
     }
 
@@ -206,7 +252,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     @Override
     public void loadError (Throwable throwable) {
         Log.d (TAG,"loadDataError");
-        requestError (throwable.getLocalizedMessage ());
+        requestError (HttpError.getErrorMessage(throwable));
         //((BaseActivity)getActivity ()).showToast (getActivity (),throwable.getLocalizedMessage ());
     }
 
@@ -332,10 +378,56 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     @Override
     public void requestError (String message) {
         Log.d (TAG,"requestError : " + message);
+        Log.e(TAG,"**********************************\r\n 当前请求信息：lastUrl = " + lastUrl);
+        Log.e(TAG,"\r\n*lastMethodName = " + lastMethodName);
+        Log.e(TAG,"\r\n*lastMap = " + lastMap.toString());
+        Log.e(TAG,"\r\n*lastErrorMethodName = " + lastErrorMethodName);
+        Log.e(TAG,"\r\n*lastFilePart = " + lastFilePart);
+        Log.e(TAG,"\r\n*lastSuffix = " + lastSuffix);
+        Log.e(TAG,"\r\n**********************************");
         if(getActivity ()!=null) {
             ((BaseActivity) getActivity ()).showToast (getActivity (), message);
         }
     }
+
+    /*
+     * @author lixiaojin
+     * create on 2019-11-06 10:56
+     * description: HTTP错误后重试
+     */
+    public void tryAgain(){
+        switch (lastReqCode){
+            case 1:
+                tryToGetData(lastUrl,lastMethodName,lastMap);
+                break;
+            case 2:
+                tryToGetData(lastUrl,lastMethodName,lastErrorMethodName,lastMap);
+                break;
+            case 3:
+                tryToGetData(lastUrl,lastMap);
+                break;
+            case 4:
+                getDataWithMethod(lastUrl,lastMap);
+                break;
+            case 5:
+                uploadFileWithMethod(lastUrl,lastMap,lastFilePart);
+                break;
+            case 6:
+                uploadFileWithTotalUrl(lastUrl,lastMap,lastFilePart);
+                break;
+            case 7:
+                getDataWithCommonMethod(lastUrl,lastMap);
+                break;
+            case 8:
+                getDataWithMethod(lastUrl,lastSuffix,lastMap);
+                break;
+            case 9:
+                getDataWithCommonMethod(lastUrl,lastSuffix,lastMap);
+                break;
+        }
+    }
+
+
     /**
      * 界面跳转，不传参
      * @param tClass
