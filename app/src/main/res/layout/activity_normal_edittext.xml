@@ -16,6 +16,7 @@
         app:text_title="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
         app:text_hint="@string/action_enroll"
         app:width_title="80dp"
+        app:text_alignment="center"
         app:only_click="false">
 
     </com.example.xiaojin20135.basemodule.view.normal.NormalEditText>
