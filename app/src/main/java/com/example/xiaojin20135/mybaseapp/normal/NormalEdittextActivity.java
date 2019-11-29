@@ -45,4 +45,9 @@ public class NormalEdittextActivity extends ToolBarActivity {
     public void onClick(View view) {
         Log.d(TAG,"value = " + ll_mynormal.mEt_value.getText());
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+    }
 }
