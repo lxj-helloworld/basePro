@@ -13,6 +13,7 @@ import com.example.xiaojin20135.basemodule.guidepage.GuidePageActivity;
 import com.example.xiaojin20135.basemodule.menuitem.adapter.MenuItemAdapter;
 import com.example.xiaojin20135.basemodule.menuitem.fragment.MenuItemFragment;
 import com.example.xiaojin20135.basemodule.menuitem.listener.IMemuItemClick;
+import com.example.xiaojin20135.basemodule.util.LogUtils;
 import com.example.xiaojin20135.basemodule.webview.BaseWebViewActivity;
 import com.example.xiaojin20135.mybaseapp.alert.ItemAlertActivity;
 import com.example.xiaojin20135.mybaseapp.approve.ApproveTestActivity;
@@ -56,6 +57,20 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
 //        initMenu();
 
         hideBarIcon();
+
+        LogUtils.DEBUG = true;
+        LogUtils.v(TAG,"this is v info");
+        LogUtils.d(TAG,"this is d info");
+        LogUtils.i(TAG,"this is i info");
+        LogUtils.w(TAG,"this is w info");
+        LogUtils.e(TAG,"this is e info");
+
+        LogUtils.DEBUG = false;
+        LogUtils.v(TAG,"this is v info");
+        LogUtils.d(TAG,"this is d info");
+        LogUtils.i(TAG,"this is i info");
+        LogUtils.w(TAG,"this is w info");
+        LogUtils.e(TAG,"this is e info");
     }
 
     @Override
@@ -75,7 +90,7 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
 
     @Override
     protected void loadData() {
-//        Log.d(TAG,"in loadData");
+        Log.d(TAG,"in loadData");
     }
 
     @Override
