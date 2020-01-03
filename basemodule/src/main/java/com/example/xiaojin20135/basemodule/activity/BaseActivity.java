@@ -95,7 +95,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     protected void onPause() {
         if(progressDialog!=null){
-            progressDialog.dismiss ();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if(!this.isDestroyed()){
+                    progressDialog.dismiss ();
+                }
+            }else{
+                progressDialog.dismiss ();
+            }
         }
         super.onPause();
     }
@@ -262,8 +268,17 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     public void dismissProgress () {
         if(progressDialog != null){
-            progressDialog.hide();
-            progressDialog.dismiss();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if(this.isDestroyed()){
+                    progressDialog = null;
+                }else{
+                    progressDialog.hide();
+                    progressDialog.dismiss();
+                }
+            }else{
+                progressDialog.hide();
+                progressDialog.dismiss();
+            }
         }
     }
 
