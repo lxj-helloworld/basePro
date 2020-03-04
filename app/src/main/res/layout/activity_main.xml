@@ -211,6 +211,31 @@
                 android:text="自定义显示"
                 android:id="@+id/normal_textvew_btn"
                 android:onClick="onClick"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EventBus"
+                android:id="@+id/events_bus_btn"
+                android:onClick="onClick"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义View"
+                android:id="@+id/self_view_btn"
+                android:onClick="onClick"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义浮层"
+                android:id="@+id/self_popup_btn"
+                android:onClick="onClick"/>
+
+
+            self_popup_btn
         </LinearLayout>
     </ScrollView>
 

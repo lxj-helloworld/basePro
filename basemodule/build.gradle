@@ -13,7 +13,11 @@ android {
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -87,4 +91,10 @@ dependencies {
     /** RxJava库   **/
     compile 'com.gengqiquan:Rx2ActivityResult:0.0.4'
     compile files('libs/zip4j_1.3.2.jar')
+
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.2.0'
 }

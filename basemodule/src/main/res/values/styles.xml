@@ -6,6 +6,8 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@style/transformer</item>
+
+        <item name="skin_support_popup_bg">@color/black</item>
     </style>
 
     <style name="transformer" parent="@android:style/Animation.Activity">

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.xiaojin20135.basemodule.activity.ToolBarActivity;
 import com.example.xiaojin20135.basemodule.util.MethodsUtils;
 import com.example.xiaojin20135.basemodule.view.edittext.ip.IPEditText;
@@ -13,6 +14,7 @@ import com.example.xiaojin20135.mybaseapp.R;
 
 import butterknife.BindView;
 
+@Route(path = "/router/ipActivity")
 public class IpAndPortActivity extends ToolBarActivity {
     @BindView (R.id.ip_ET)
     IPView ip_ET;

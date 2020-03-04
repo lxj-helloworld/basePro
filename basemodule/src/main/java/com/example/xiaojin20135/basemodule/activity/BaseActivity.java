@@ -22,8 +22,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.deivceinfo.DeviceUtils;
+import com.example.xiaojin20135.basemodule.event.EventBaseUtil;
+import com.example.xiaojin20135.basemodule.event.MyEvent;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ActionResult;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ResponseBean;
 import com.example.xiaojin20135.basemodule.retrofit.helper.RetrofitManager;
@@ -31,6 +34,9 @@ import com.example.xiaojin20135.basemodule.retrofit.presenter.PresenterImpl;
 import com.example.xiaojin20135.basemodule.retrofit.util.HttpError;
 import com.example.xiaojin20135.basemodule.retrofit.view.IBaseView;
 import com.example.xiaojin20135.basemodule.util.ConstantUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -83,6 +89,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         TAG = this.getLocalClassName();
         Log.d("BaseActivity",TAG);
         presenterImpl = new PresenterImpl (this,this);
+
+        //注册EventBus事件 ,如果重写了需要注册事件。
+        if(isRegisterEventBus()){
+            EventBaseUtil.register(this);
+        }
 
 
     }
@@ -593,6 +604,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     }
 
     /**
+     *  基于ARouter
+     *  界面跳转，不传参
+     * @param path
+     */
+    protected void canGo(String path){
+        canGo(path,null);
+    }
+
+    /**
      * 界面跳转，带参数
      * @param tClass
      * @param bundle
@@ -604,6 +624,17 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         }
         startActivity (intent);
     }
+
+    /**
+     * 基于ARouter
+     * 界面跳转，带参数
+     * @param path
+     * @param bundle
+     */
+    protected void canGo(String path,Map bundle){
+        ARouter.getInstance().build(path).navigation();
+    }
+
 
     /**
      * @author lixiaojin
@@ -691,5 +722,58 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     }
 
+
+    /**
+     * EventBus
+     * 是否注册事件
+     * true: 绑定EventBus事件分发
+     * false : 不绑定
+     */
+    public boolean isRegisterEventBus(){
+        return false;
+    }
+
+    /*
+    * @author lixiaojin
+    * create on 2020-02-26 16:03
+    * description: 接收事件并分发
+    */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBusCome(MyEvent event){
+        if(event != null){
+            receiveEvent(event);
+        }
+    }
+
+    /*
+    * @author lixiaojin
+    * create on 2020-02-26 16:07
+    * description: 接收黏性事件并分发
+    */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onStickyEventBusCome(MyEvent event){
+        if(event != null){
+            receiveEvent(event);
+        }
+    }
+
+
+    /*
+    * @author lixiaojin
+    * create on 2020-02-26 16:03
+    * description: 接收到分发的事件
+    */
+    public void receiveEvent(MyEvent event){
+        //重写该方法，进行逻辑处理
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //取消订阅事件
+        if(isRegisterEventBus()){
+            EventBaseUtil.unRegister(this);
+        }
+    }
 }
 

@@ -34,7 +34,9 @@ import com.example.xiaojin20135.mybaseapp.spinner.MySpinnerActivity;
 import com.example.xiaojin20135.mybaseapp.tablayout.MyTabLayoutActivity;
 import com.example.xiaojin20135.mybaseapp.update.CheckUpdateActivity;
 import com.example.xiaojin20135.mybaseapp.view.IpAndPortActivity;
+import com.example.xiaojin20135.mybaseapp.view.SelfViewActivity;
 import com.example.xiaojin20135.mybaseapp.view.WaterMarkActivity;
+import com.example.xiaojin20135.mybaseapp.view.widget.MyPopupActivity;
 import com.example.xiaojin20135.mybaseapp.xgPush.XgPushActivity;
 
 import java.io.Serializable;
@@ -58,19 +60,19 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
 
         hideBarIcon();
 
-        LogUtils.DEBUG = true;
-        LogUtils.v(TAG,"this is v info");
-        LogUtils.d(TAG,"this is d info");
-        LogUtils.i(TAG,"this is i info");
-        LogUtils.w(TAG,"this is w info");
-        LogUtils.e(TAG,"this is e info");
-
-        LogUtils.DEBUG = false;
-        LogUtils.v(TAG,"this is v info");
-        LogUtils.d(TAG,"this is d info");
-        LogUtils.i(TAG,"this is i info");
-        LogUtils.w(TAG,"this is w info");
-        LogUtils.e(TAG,"this is e info");
+//        LogUtils.DEBUG = true;
+//        LogUtils.v(TAG,"this is v info");
+//        LogUtils.d(TAG,"this is d info");
+//        LogUtils.i(TAG,"this is i info");
+//        LogUtils.w(TAG,"this is w info");
+//        LogUtils.e(TAG,"this is e info");
+//
+//        LogUtils.DEBUG = false;
+//        LogUtils.v(TAG,"this is v info");
+//        LogUtils.d(TAG,"this is d info");
+//        LogUtils.i(TAG,"this is i info");
+//        LogUtils.w(TAG,"this is w info");
+//        LogUtils.e(TAG,"this is e info");
     }
 
     @Override
@@ -187,7 +189,8 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
                 canGo (PickImageActivity.class);
                 break;
             case R.id.ip_port_btn:
-                canGo (IpAndPortActivity.class);
+//                canGo (IpAndPortActivity.class);
+                canGo("/router/ipActivity");
                 break;
             case R.id.webView_btn:
                 bundle.putString (URLWEB,"http://www.divcss5.com/html/h380.shtml");
@@ -228,6 +231,16 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
             case R.id.normal_textvew_btn:
                 canGo(NormalTextViewActivity.class);
                 break;
+            case R.id.events_bus_btn:
+                canGo(MyEventBusActivity.class);
+                break;
+            case R.id.self_view_btn:
+                canGo(SelfViewActivity.class);
+                break;
+            case R.id.self_popup_btn:
+                canGo(MyPopupActivity.class);
+                break;
+
         }
     }
 

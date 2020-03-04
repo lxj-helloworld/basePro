@@ -23,6 +23,13 @@ android {
                 HW_APPID     : "100425261",
                 PACKAGE_NAME : "com.example.xiaojin20135.mybaseapp"
         ]*/
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
     }
 
 
@@ -53,4 +60,8 @@ dependencies {
     //华为推送
     // compile 'com.tencent.xinge:xghw:3.2.6-release'
     // compile 'com.tencent.xinge:mipush:3.2.6-release'
+
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
 }

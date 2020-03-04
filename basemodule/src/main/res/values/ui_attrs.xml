@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="skin_support_popup_border_color" format="reference|color" />
+    <attr name="skin_support_popup_bg" format="reference"/>
+    <attr name="popup_border_width" format="dimension" />
+    <attr name="popup_radius" format="dimension" />
+
+    <attr name="alpha_pressed" format="float" />
+    <attr name="alpha_disabled" format="float" />
+</resources>

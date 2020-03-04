@@ -8,6 +8,7 @@ import android.os.Vibrator;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.xiaojin20135.basemodule.retrofit.util.AppContextUtil;
 
 /**
@@ -29,9 +30,14 @@ public class BaseApplication extends Application {
     public void onCreate() {
         Log.d("BaseApplication","onCreate");
         super.onCreate();
+        // 尽可能早，推荐在Application中初始化
+        ARouter.openLog();
+        ARouter.openDebug();
+        ARouter.init(this);
         MultiDex.install(this);
         AppContextUtil.init(this);
         app = this;
+
 
     }
 
