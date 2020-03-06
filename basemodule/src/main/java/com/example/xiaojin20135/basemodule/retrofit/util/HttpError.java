@@ -1,5 +1,7 @@
 package com.example.xiaojin20135.basemodule.retrofit.util;
 
+import com.example.xiaojin20135.basemodule.util.CrashHandler;
+
 import retrofit2.adapter.rxjava.HttpException;
 
 public enum HttpError {
@@ -37,7 +39,8 @@ public enum HttpError {
                     break;
             }
         }else{
-            message = throwable.getMessage();
+            CrashHandler.getInstance().handleException(throwable);
+            message = "未知错误";
         }
         return message;
     }
