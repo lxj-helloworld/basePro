@@ -291,7 +291,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
                     Log.d (TAG,"调用自定义方法");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    ((BaseActivity)getActivity ()).showAlertDialog (getActivity (),e.getLocalizedMessage ());
+                    ((BaseActivity)getActivity ()).showAlertDialog (getActivity (),"没有找到自定义回调："+e.getLocalizedMessage ());
                 }
             }else{
                 ((BaseActivity)getActivity ()).showAlertDialog (getActivity (),"not found "+methodName+" method");
@@ -322,7 +322,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
                     Log.d (TAG,"调用自定义方法");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    ((BaseActivity)getActivity ()).showAlertDialog (getActivity (),e.getLocalizedMessage ());
+                    ((BaseActivity)getActivity ()).showAlertDialog (getActivity (),"没有找到自定义回调："+e.getLocalizedMessage ());
                 }
             }else{
                 ((BaseActivity)getActivity ()).showAlertDialog (getActivity (),"not found "+methodName+" method");

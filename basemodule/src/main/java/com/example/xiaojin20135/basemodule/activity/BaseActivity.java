@@ -443,7 +443,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
                     Log.d (TAG,"调用自定义方法");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showAlertDialog (this,e.getLocalizedMessage ());
+                    showAlertDialog (this,"没有找到自定义回调："+e.getLocalizedMessage ());
                 }
             }else{
                 showAlertDialog (this,"not found "+methodName+" method");
@@ -475,7 +475,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
                     Log.d (TAG,"调用自定义方法");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showAlertDialog (this,e.getLocalizedMessage ());
+                    showAlertDialog (this,"没有找到自定义回调："+e.getLocalizedMessage ());
                 }
             }else{
                 showAlertDialog (this,"not found "+methodName+" method");
@@ -497,7 +497,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
                     Log.d (TAG,"调用自定义方法");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showAlertDialog (this,e.getLocalizedMessage ());
+                    showAlertDialog (this,"没有找到自定义回调："+e.getLocalizedMessage ());
                 }
             }else{
                 showAlertDialog (this,"not found "+errorMethodName+" method");
