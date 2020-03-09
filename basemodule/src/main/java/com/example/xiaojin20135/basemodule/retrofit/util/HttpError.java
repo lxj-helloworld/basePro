@@ -1,6 +1,14 @@
 package com.example.xiaojin20135.basemodule.retrofit.util;
 
+import android.content.Context;
+
 import com.example.xiaojin20135.basemodule.util.CrashHandler;
+import com.example.xiaojin20135.basemodule.util.NetworkUtil;
+import com.google.gson.JsonSyntaxException;
+
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 import retrofit2.adapter.rxjava.HttpException;
 
@@ -17,16 +25,17 @@ public enum HttpError {
     public static final int GATEWAY_TIMEOUT = 504; //网关超时
 
     /*
-    * @author lixiaojin
-    * create on 2019-11-05 13:46
-    * description:
-    */
-    public static String getErrorMessage(Throwable throwable){
+     * @author lixiaojin
+     * create on 2019-11-05 13:46
+     * description:
+     */
+    public static String getErrorMessage(Throwable throwable, Context context) {
         String message = "";
+        CrashHandler.getInstance().handleException(throwable);
 
-        if(throwable instanceof HttpException){
-            HttpException httpException = (HttpException)throwable;
-            switch (httpException.code()){
+        if (throwable instanceof HttpException) {
+            HttpException httpException = (HttpException) throwable;
+            switch (httpException.code()) {
                 case UNAUTHORIZED:
                 case FORBIDDEN:
                 case NOT_FOUND:
@@ -38,9 +47,20 @@ public enum HttpError {
                     message = "网络错误(" + httpException.code() + ")";
                     break;
             }
-        }else{
-            CrashHandler.getInstance().handleException(throwable);
-            message = "未知错误";
+        } else if ( throwable instanceof SocketTimeoutException || throwable instanceof SocketException) {
+            message = "网络连接超时，请检查您的网络状态！";
+        }else if( throwable instanceof  IllegalArgumentException || throwable instanceof JsonSyntaxException){
+            message="未能请求到数据！";
+        }else if (throwable  instanceof UnknownHostException ){
+            if (!NetworkUtil.isNetAvailable(context)) {
+                message="hello?好像没网络啊！";
+                //无网络
+            } else {
+                //主机挂了，也就是你服务器关了
+                message="服务器开小差,请稍后重试！";
+            }
+        }else {//其他错误
+            message="哎呀故障了！";
         }
         return message;
     }

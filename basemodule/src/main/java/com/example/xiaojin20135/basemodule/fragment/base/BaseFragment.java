@@ -3,17 +3,14 @@ package com.example.xiaojin20135.basemodule.fragment.base;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.activity.BaseActivity;
@@ -252,7 +249,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     @Override
     public void loadError (Throwable throwable) {
         Log.d (TAG,"loadDataError");
-        requestError (HttpError.getErrorMessage(throwable));
+        requestError (HttpError.getErrorMessage(throwable,getActivity()));
         //((BaseActivity)getActivity ()).showToast (getActivity (),throwable.getLocalizedMessage ());
     }
 

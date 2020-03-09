@@ -12,18 +12,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.xiaojin20135.basemodule.R;
-import com.example.xiaojin20135.basemodule.deivceinfo.DeviceUtils;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ActionResult;
 import com.example.xiaojin20135.basemodule.retrofit.bean.ResponseBean;
 import com.example.xiaojin20135.basemodule.retrofit.helper.RetrofitManager;
@@ -32,7 +27,6 @@ import com.example.xiaojin20135.basemodule.retrofit.util.HttpError;
 import com.example.xiaojin20135.basemodule.retrofit.view.IBaseView;
 import com.example.xiaojin20135.basemodule.util.ConstantUtil;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -408,7 +402,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     public void loadError (Throwable throwable) {
         Log.d (TAG,"loadDataError");
-        requestError (HttpError.getErrorMessage(throwable));
+        requestError (HttpError.getErrorMessage(throwable,this));
     }
 
     @Override
@@ -680,6 +674,20 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+
+    /**
+    * @Description: 页面关闭后取消网络请求
+    * @Parames        
+    * @author 龙少
+    * @date 2020/3/7
+    * @version V1.0
+    */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cancleRequest();
     }
 
     /*
