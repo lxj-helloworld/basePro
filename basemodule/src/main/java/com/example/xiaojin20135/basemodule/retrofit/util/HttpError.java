@@ -1,9 +1,6 @@
 package com.example.xiaojin20135.basemodule.retrofit.util;
 
-import android.content.Context;
-
 import com.example.xiaojin20135.basemodule.util.CrashHandler;
-import com.example.xiaojin20135.basemodule.util.NetworkUtil;
 import com.google.gson.JsonSyntaxException;
 
 import java.net.SocketException;
@@ -29,7 +26,7 @@ public enum HttpError {
      * create on 2019-11-05 13:46
      * description:
      */
-    public static String getErrorMessage(Throwable throwable, Context context) {
+    public static String getErrorMessage(Throwable throwable) {
         String message = "";
         CrashHandler.getInstance().handleException(throwable);
 
@@ -52,7 +49,7 @@ public enum HttpError {
         }else if( throwable instanceof  IllegalArgumentException || throwable instanceof JsonSyntaxException){
             message="未能请求到数据！";
         }else if (throwable  instanceof UnknownHostException ){
-            if (!NetworkUtil.isNetAvailable(context)) {
+            if (!NetUtil.isNetworkConnected()) {
                 message="hello?好像没网络啊！";
                 //无网络
             } else {

@@ -402,7 +402,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     public void loadError (Throwable throwable) {
         Log.d (TAG,"loadDataError");
-        requestError (HttpError.getErrorMessage(throwable,this));
+        requestError (HttpError.getErrorMessage(throwable));
     }
 
     @Override

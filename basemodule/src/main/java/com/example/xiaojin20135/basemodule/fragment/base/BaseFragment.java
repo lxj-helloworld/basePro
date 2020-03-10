@@ -249,7 +249,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     @Override
     public void loadError (Throwable throwable) {
         Log.d (TAG,"loadDataError");
-        requestError (HttpError.getErrorMessage(throwable,getActivity()));
+        requestError (HttpError.getErrorMessage(throwable));
         //((BaseActivity)getActivity ()).showToast (getActivity (),throwable.getLocalizedMessage ());
     }
 
@@ -492,5 +492,11 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     public void onPause () {
         dismissProgress ();
         super.onPause ();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cancleRequest();
     }
 }
