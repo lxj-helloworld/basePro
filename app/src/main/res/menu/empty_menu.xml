@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="显示两行提示语" android:id="@+id/two_line_words"/>
+    <item android:title="显示一行提示语" android:id="@+id/one_line_words"/>
+    <item android:title="显示Loading" android:id="@+id/loading"/>
+    <item android:title="显示一行文字和按钮" android:id="@+id/one_line_words_and_opera"/>
+    <item android:title="显示两行文字和按钮" android:id="@+id/two_line_words_and_opera"/>
+</menu>

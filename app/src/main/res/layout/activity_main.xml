@@ -18,6 +18,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="空视图"
+                android:id="@+id/empty_btn"
+                android:onClick="onClick"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="各类对话框"
+                android:id="@+id/self_alert_btn"
+                android:onClick="onClick"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义浮层"
+                android:id="@+id/self_popup_btn"
+                android:onClick="onClick"/>
+
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -227,15 +254,8 @@
                 android:id="@+id/self_view_btn"
                 android:onClick="onClick"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="自定义浮层"
-                android:id="@+id/self_popup_btn"
-                android:onClick="onClick"/>
 
 
-            self_popup_btn
         </LinearLayout>
     </ScrollView>
 

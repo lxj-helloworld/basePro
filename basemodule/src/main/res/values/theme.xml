@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- skin attr define-->
+    <attr name="app_skin_common_background" format="color|reference" />
+    <attr name="app_skin_common_background_1" format="color|reference" />
+    <attr name="app_skin_common_img_tint_color" format="color|reference" />
+    <attr name="app_skin_home_text_color" format="color|reference" />
+    <attr name="app_skin_common_title_text_color" format="color|reference" />
+    <attr name="app_skin_common_desc_text_color" format="color|reference" />
+    <attr name="app_skin_btn_test_bg" format="color|reference" />
+    <attr name="app_skin_btn_test_border" format="color|reference" />
+    <attr name="app_skin_btn_test_bg_single" format="color|reference" />
+    <attr name="app_skin_btn_test_border_single" format="color|reference" />
+    <attr name="app_skin_progress_bar_bg_color" format="color|reference"/>
+    <attr name="app_skin_progress_bar_progress_color" format="color|reference"/>
+    <attr name="app_skin_progress_bar_text_color" format="color|reference"/>
+    <attr name="app_skin_span_normal_text_color" format="color"/>
+    <attr name="app_skin_span_pressed_text_color" format="color"/>
+    <attr name="app_skin_span_normal_bg_color" format="color"/>
+    <attr name="app_skin_span_pressed_bg_color" format="color"/>
+    <attr name="app_skin_alpha_test" format="float"/>
+
+
+    <style name="Normal_UI" parent="Theme.AppCompat.Light">
+
+        <item name="alpha_pressed">0.5</item>
+        <item name="alpha_disabled">0.5</item>
+
+        <item name="general_shadow_elevation">14dp</item>
+        <item name="general_shadow_alpha">0.25</item>
+
+        <!--**********************************************
+       *                qmui dialog                     *
+       **********************************************-->
+        <item name="dialog_min_width">260dp</item>
+        <item name="dialog_max_width">320dp</item>
+        <item name="dialog_radius">@dimen/dialog_radius</item>
+        <item name="dialog_inset_hor">40dp</item>
+        <item name="dialog_inset_ver">20dp</item>
+        <item name="dialog_background_dim_amount">0.6</item>
+        <item name="dialog_padding_horizontal">24dp</item>
+        <item name="dialog_edit_margin_top">20dp</item>
+        <item name="dialog_edit_margin_bottom">24dp</item>
+        <item name="dialog_edit_bottom_line_height">1dp</item>
+        <item name="dialog_title_style">@style/Dialog.Title</item>
+        <item name="dialog_message_content_style">@style/Dialog.MessageContent</item>
+        <item name="dialog_action_container_style">@style/Dialog.ActionContainer</item>
+        <item name="dialog_action_style">@style/Dialog.Action</item>
+        <item name="dialog_edit_content_style">@style/Dialog.EditContent</item>
+        <item name="dialog_menu_container_style">@style/Dialog.MenuContainer</item>
+        <item name="dialog_menu_item_style">@style/Dialog_MenuItem</item>
+
+
+        <item name="skin_support_dialog_bg">@color/config_color_white</item>
+        <item name="skin_support_dialog_title_text_color">@color/config_color_black</item>
+        <item name="skin_support_dialog_message_text_color">@color/config_color_gray_4</item>
+        <item name="skin_support_dialog_action_bg">@null</item>
+        <item name="skin_support_dialog_action_text_color">@color/config_color_blue</item>
+        <item name="skin_support_dialog_action_container_separator_color">@color/config_color_separator</item>
+        <item name="skin_support_dialog_positive_action_text_color">@color/config_color_blue</item>
+
+
+        <item name="skin_support_dialog_negative_action_text_color">@color/config_color_red</item>
+        <item name="skin_support_dialog_action_divider_color">@color/config_color_separator</item>
+        <item name="skin_support_dialog_edit_bottom_line_color">@color/config_color_separator</item>
+        <item name="skin_support_dialog_edit_text_color">@color/config_color_black</item>
+        <item name="skin_support_dialog_edit_text_hint_color">@color/config_color_gray_3</item>
+        <item name="skin_support_s_dialog_menu_item_bg">@drawable/s_list_item_bg_1</item>
+        <item name="skin_support_dialog_menu_item_text_color">@color/config_color_black</item>
+        <item name="skin_support_s_dialog_check_drawable">@drawable/s_checkbox</item>
+        <item name="skin_support_dialog_mark_drawable">@drawable/icon_checkmark</item>
+
+
+        <!--**********************************************
+        *             qmui tip dialog                    *
+        **********************************************-->
+        <item name="tip_dialog_min_width">120dp</item>
+        <item name="tip_dialog_min_height">40dp</item>
+        <item name="tip_dialog_max_width">270dp</item>
+        <item name="tip_dialog_padding_vertical">14dp</item>
+        <item name="tip_dialog_padding_horizontal">@dimen/content_spacing_horizontal</item>
+        <item name="tip_dialog_radius">15dp</item>
+        <item name="tip_dialog_loading_size">32dp</item>
+        <item name="tip_dialog_text_margin_top">12dp</item>
+        <item name="tip_dialog_text_size">14sp</item>
+
+        <item name="skin_support_tip_dialog_bg">@color/config_color_75_pure_black</item>
+        <item name="skin_support_tip_dialog_loading_color">@color/config_color_white</item>
+        <item name="skin_support_tip_dialog_text_color">@color/config_color_white</item>
+        <item name="skin_support_tip_dialog_icon_success_src">@drawable/icon_notify_done</item>
+        <item name="skin_support_tip_dialog_icon_error_src">@drawable/icon_notify_error</item>
+        <item name="skin_support_tip_dialog_icon_info_src">@drawable/icon_notify_info</item>
+
+
+        <!--************************ qmui empty view   *************************** -->
+
+        <!-- skin support-->
+        <item name="skin_support_empty_view_loading_color">?attr/skin_support_loading_color</item>
+        <item name="skin_support_empty_view_title_color">@color/config_color_gray_3</item>
+        <item name="skin_support_empty_view_sub_title_color">@color/config_color_gray_3</item>
+        <item name="skin_support_empty_view_btn_bg_color">?attr/skin_support_round_btn_bg_color</item>
+        <item name="skin_support_empty_view_btn_border_color">?attr/skin_support_round_btn_border_color</item>
+        <item name="skin_support_empty_view_btn_text_color">?attr/skin_support_round_btn_text_color</item>
+        <!-- skin support-->
+
+        <item name="empty_view_loading_size">?attr/loading_size</item>
+        <item name="empty_view_title_normal_margin_top">16dp</item>
+        <item name="empty_view_title_text_size">16sp</item>
+        <item name="empty_view_title_margin_hor">@dimen/content_spacing_horizontal</item>
+        <item name="empty_view_sub_title_normal_margin_top">16dp</item>
+        <item name="empty_view_sub_title_text_size">14sp</item>
+        <item name="empty_view_sub_title_margin_hor">@dimen/content_spacing_horizontal</item>
+        <item name="empty_view_btn_height">48dp</item>
+        <item name="empty_view_btn_margin_hor">55dp</item>
+        <item name="empty_view_btn_text_size">15sp</item>
+        <item name="empty_view_btn_normal_margin_top">10dp</item>
+
+
+        <item name="skin_support_round_btn_bg_color">@color/s_transparent</item>
+        <item name="skin_support_round_btn_border_color">@color/btn_blue_border</item>
+        <item name="skin_support_round_btn_text_color">@color/btn_blue_text</item>
+        <!-- skin support-->
+
+        <item name="round_btn_text_size">@dimen/btn_text_size</item>
+        <item name="round_btn_border_width">@dimen/btn_border_width</item>
+
+
+        <item name="skin_support_loading_color">@color/config_color_gray_5</item>
+        
+        <item name="loading_size">50dp</item>
+
+    </style>
+
+    <!--使用Borderless可解决button阴影问题-->
+    <style name="ButtonBase.Compat" parent="@style/Widget.AppCompat.Button.Borderless">
+        <!-- 取消 Button 字符默认大写的功能（会导致 Spannable 失效），默认值只影响 5.0 以上版本，但使用Compat包后，4.x 版本也会受到影响 -->
+        <!-- http://stackoverflow.com/questions/29007746/button-settext-with-spannable-dosent-work-for-android-5-0-lollipop -->
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Button.Compat" parent="ButtonBase.Compat" />
+
+
+</resources>

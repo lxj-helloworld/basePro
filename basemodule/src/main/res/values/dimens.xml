@@ -88,6 +88,14 @@
     <dimen name="item_padding_left">20dp</dimen>
     <dimen name="item_padding_top">25dp</dimen>
     <dimen name="item_ic_size">65dp</dimen>
+    <dimen name="min_height">45dp</dimen>
 
 
+
+    <dimen name="dialog_radius">2dp</dimen>
+    <dimen name="content_spacing_horizontal">16dp</dimen>
+
+    <dimen name="btn_text_size">16sp</dimen>
+    <dimen name="btn_border_width">1dp</dimen>
+    
 </resources>

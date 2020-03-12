@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".alert.SelfAlertActivity">
+
+    <include layout="@layout/toolbar"></include>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/normal_btn"
+        android:text="通用按钮，确认型"
+        ></Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/diff_color_btn"
+        android:text="通用按钮，警告性"
+        ></Button>
+
+
+    <Button
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/long_info_btn"
+        android:text="通用按钮 ，常提示"
+        ></Button>
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkbox_btn"
+        android:text="CheckBox 消息确认框"
+        ></Button>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/single_sel_btn"
+        android:text="单选对话框"
+        ></Button>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/single_sel_with_mark_btn"
+        android:text="带勾选类单选"
+        ></Button>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/multiply_sel_btn"
+        android:text="多选对话框"
+        ></Button>
+
+</LinearLayout>

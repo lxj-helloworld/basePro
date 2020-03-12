@@ -3,6 +3,7 @@ package com.example.xiaojin20135.mybaseapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.example.xiaojin20135.basemodule.menuitem.listener.IMemuItemClick;
 import com.example.xiaojin20135.basemodule.util.LogUtils;
 import com.example.xiaojin20135.basemodule.webview.BaseWebViewActivity;
 import com.example.xiaojin20135.mybaseapp.alert.ItemAlertActivity;
+import com.example.xiaojin20135.mybaseapp.alert.SelfAlertActivity;
 import com.example.xiaojin20135.mybaseapp.approve.ApproveTestActivity;
 import com.example.xiaojin20135.mybaseapp.bottom.MyBottomActivity;
 import com.example.xiaojin20135.mybaseapp.datepicker.DatePickerActivity;
@@ -36,6 +38,7 @@ import com.example.xiaojin20135.mybaseapp.update.CheckUpdateActivity;
 import com.example.xiaojin20135.mybaseapp.view.IpAndPortActivity;
 import com.example.xiaojin20135.mybaseapp.view.SelfViewActivity;
 import com.example.xiaojin20135.mybaseapp.view.WaterMarkActivity;
+import com.example.xiaojin20135.mybaseapp.view.widget.EmptyViewActivity;
 import com.example.xiaojin20135.mybaseapp.view.widget.MyPopupActivity;
 import com.example.xiaojin20135.mybaseapp.xgPush.XgPushActivity;
 
@@ -93,6 +96,11 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
     @Override
     protected void loadData() {
         Log.d(TAG,"in loadData");
+
+
+
+
+
     }
 
     @Override
@@ -239,6 +247,12 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
                 break;
             case R.id.self_popup_btn:
                 canGo(MyPopupActivity.class);
+                break;
+            case R.id.self_alert_btn:
+                canGo(SelfAlertActivity.class);
+                break;
+            case R.id.empty_btn:
+                canGo(EmptyViewActivity.class);
                 break;
 
         }

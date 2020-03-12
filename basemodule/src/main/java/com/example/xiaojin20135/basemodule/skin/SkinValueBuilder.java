@@ -1,6 +1,7 @@
 package com.example.xiaojin20135.basemodule.skin;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.example.xiaojin20135.basemodule.R;
@@ -11,7 +12,8 @@ import java.util.LinkedList;
 /*
 * @author lixiaojin
 * create on 2020-03-04 11:16
-* description: 样式基础构建类
+* description: 建造者模式
+* 基础样式构建器
 */
 public class SkinValueBuilder {
     public static final String BACKGROUND = "background";
@@ -38,62 +40,293 @@ public class SkinValueBuilder {
     public static final String MORE_BG_COLOR = "moreBgColor";
     private static LinkedList<SkinValueBuilder> sValueBuilders;
 
-    public static SkinValueBuilder acquire(){
-        if(sValueBuilders == null){
+    public static SkinValueBuilder acquire() {
+        if (sValueBuilders == null) {
             return new SkinValueBuilder();
         }
         SkinValueBuilder valueBuilder = sValueBuilders.poll();
-        if(valueBuilder != null){
+        if (valueBuilder != null) {
             return valueBuilder;
         }
         return new SkinValueBuilder();
     }
 
-    private HashMap<String,String> mValues = new HashMap<>();
+    public static void release(@NonNull SkinValueBuilder valueBuilder) {
+        valueBuilder.clear();
+        if (sValueBuilders == null) {
+            sValueBuilders = new LinkedList<>();
+        }
+        if (sValueBuilders.size() < 2) {
+            sValueBuilders.push(valueBuilder);
+        }
+    }
 
-    /*
-    * @author lixiaojin
-    * create on 2020-03-04 14:10
-    * description: 设置边框颜色
-    */
-    public SkinValueBuilder border(int attr){
-        mValues.put(BORDER,String.valueOf(attr));
+    private SkinValueBuilder() {
+
+    }
+
+    private HashMap<String, String> mValues = new HashMap<>();
+
+    public SkinValueBuilder background(int attr) {
+        mValues.put(BACKGROUND, String.valueOf(attr));
         return this;
     }
 
-    public SkinValueBuilder border(String attrName){
-        mValues.put(BORDER,attrName);
+    public SkinValueBuilder background(String attrName) {
+        mValues.put(BACKGROUND, attrName);
         return this;
     }
 
-    /*
-    * @author lixiaojin
-    * create on 2020-03-04 14:10
-    * description: 设置背景颜色
-    */
-    public SkinValueBuilder background(int attr){
-        mValues.put(BACKGROUND,String.valueOf(attr));
+    public SkinValueBuilder underline(int attr) {
+        mValues.put(UNDERLINE, String.valueOf(attr));
         return this;
     }
 
-    public SkinValueBuilder background(String attrName){
-        mValues.put(BACKGROUND,attrName);
+    public SkinValueBuilder underline(String attrName) {
+        mValues.put(UNDERLINE, attrName);
         return this;
     }
 
+    public SkinValueBuilder moreTextColor(int attr) {
+        mValues.put(MORE_TEXT_COLOR, String.valueOf(attr));
+        return this;
+    }
 
+    public SkinValueBuilder moreTextColor(String attrName) {
+        mValues.put(MORE_TEXT_COLOR, attrName);
+        return this;
+    }
 
+    public SkinValueBuilder moreBgColor(int attr) {
+        mValues.put(MORE_BG_COLOR, String.valueOf(attr));
+        return this;
+    }
 
+    public SkinValueBuilder moreBgColor(String attrName) {
+        mValues.put(MORE_BG_COLOR, attrName);
+        return this;
+    }
 
-    public String build(){
-        StringBuilder builder = new StringBuilder();
-        boolean isFirstItem = true;
-        for(String name : mValues.keySet()){
-            String itemValue = mValues.get(name);
-            if(itemValue == null || itemValue.isEmpty()){
+    public SkinValueBuilder textCompoundTintColor(int attr) {
+        mValues.put(TEXT_COMPOUND_TINT_COLOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundTintColor(String attrName) {
+        mValues.put(TEXT_COMPOUND_TINT_COLOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundTopSrc(int attr) {
+        mValues.put(TEXT_COMPOUND_TOP_SRC, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundTopSrc(String attrName) {
+        mValues.put(TEXT_COMPOUND_TOP_SRC, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundRightSrc(int attr) {
+        mValues.put(TEXT_COMPOUND_RIGHT_SRC, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundRightSrc(String attrName) {
+        mValues.put(TEXT_COMPOUND_RIGHT_SRC, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundBottomSrc(int attr) {
+        mValues.put(TEXT_COMPOUND_BOTTOM_SRC, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundBottomSrc(String attrName) {
+        mValues.put(TEXT_COMPOUND_BOTTOM_SRC, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundLeftSrc(int attr) {
+        mValues.put(TEXT_COMPOUND_LEFT_SRC, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder textCompoundLeftSrc(String attrName) {
+        mValues.put(TEXT_COMPOUND_LEFT_SRC, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder textColor(int attr) {
+        mValues.put(TEXT_COLOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder textColor(String attrName) {
+        mValues.put(TEXT_COLOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder hintColor(int attr) {
+        mValues.put(HINT_COLOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder hintColor(String attrName) {
+        mValues.put(HINT_COLOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder progressColor(int attr) {
+        mValues.put(PROGRESS_COLOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder progressColor(String attrName) {
+        mValues.put(PROGRESS_COLOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder src(int attr) {
+        mValues.put(SRC, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder src(String attrName) {
+        mValues.put(SRC, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder border(int attr) {
+        mValues.put(BORDER, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder border(String attrName) {
+        mValues.put(BORDER, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder topSeparator(int attr) {
+        mValues.put(TOP_SEPARATOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder topSeparator(String attrName) {
+        mValues.put(TOP_SEPARATOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder rightSeparator(int attr) {
+        mValues.put(RIGHT_SEPARATOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder rightSeparator(String attrName) {
+        mValues.put(RIGHT_SEPARATOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder bottomSeparator(int attr) {
+        mValues.put(BOTTOM_SEPARATOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder bottomSeparator(String attrName) {
+        mValues.put(BOTTOM_SEPARATOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder leftSeparator(int attr) {
+        mValues.put(LEFT_SEPARATOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder leftSeparator(String attrName) {
+        mValues.put(LEFT_SEPARATOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder alpha(int attr) {
+        mValues.put(ALPHA, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder alpha(String attrName) {
+        mValues.put(ALPHA, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder tintColor(int attr) {
+        mValues.put(TINT_COLOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder tintColor(String attrName) {
+        mValues.put(TINT_COLOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder bgTintColor(int attr) {
+        mValues.put(BG_TINT_COLOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder bgTintColor(String attrName) {
+        mValues.put(BG_TINT_COLOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder secondTextColor(int attr) {
+        mValues.put(SECOND_TEXT_COLOR, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder secondTextColor(String attrName) {
+        mValues.put(SECOND_TEXT_COLOR, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder custom(String name, int attr) {
+        mValues.put(name, String.valueOf(attr));
+        return this;
+    }
+
+    public SkinValueBuilder custom(String name, String attrName) {
+        mValues.put(name, attrName);
+        return this;
+    }
+
+    public SkinValueBuilder clear() {
+        mValues.clear();
+        return this;
+    }
+
+    public SkinValueBuilder convertFrom(String value) {
+        String[] items = value.split("[|]");
+        for (String item : items) {
+            String[] kv = item.split(":");
+            if (kv.length != 2) {
                 continue;
             }
-            if(!isFirstItem){
+            mValues.put(kv[0].trim(), kv[1].trim());
+        }
+        return this;
+    }
+
+    public boolean isEmpty() {
+        return mValues.isEmpty();
+    }
+
+    public String build() {
+        StringBuilder builder = new StringBuilder();
+        boolean isFirstItem = true;
+        for (String name : mValues.keySet()) {
+            String itemValue = mValues.get(name);
+            if (itemValue == null || itemValue.isEmpty()) {
+                continue;
+            }
+            if (!isFirstItem) {
                 builder.append("|");
             }
             builder.append(name);
@@ -104,32 +337,18 @@ public class SkinValueBuilder {
         return builder.toString();
     }
 
-
-    public SkinValueBuilder clear(){
-        mValues.clear();
-        return this;
-    }
-
-
-    /*
-    * @author lixiaojin
-    * create on 2020-03-04 14:44
-    * description: 释放资源
-    */
-    public static void release(SkinValueBuilder valueBuilder){
-        valueBuilder.clear();
-        if(sValueBuilders == null){
-            sValueBuilders = new LinkedList<>();
-        }
-        if(sValueBuilders.size() < 2){
-            sValueBuilders.push(valueBuilder);
-        }
-
-    }
-
-
-    public void release(){
+    public void release() {
         SkinValueBuilder.release(this);
     }
 
+
+    @NonNull
+    @Override
+    public String toString() {
+        if(mValues.isEmpty()){
+            return "当前SkinValue为空...";
+        }else{
+            return build();
+        }
+    }
 }

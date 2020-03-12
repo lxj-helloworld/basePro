@@ -59,4 +59,8 @@
     <string name="topscomm_file">topscomm</string>
     <string name="not_null">不能为空</string>
 
+    <!--基础UI-->
+    <string name="tool_fixellipsize">\u200b</string>
+    <string name="qmui_cancel">取&#160;消</string>
+
 </resources>

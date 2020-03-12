@@ -1,14 +1,34 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme_my" parent="Theme.AppCompat.Light">
+
+    <style name="BaseStyle" parent="Normal_UI"></style>
+
+
+    <style name="AppTheme_my" parent="BaseStyle">
         <item name="android:fitsSystemWindows">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@style/transformer</item>
 
-        <item name="skin_support_popup_bg">@color/black</item>
+        <item name="popup_radius">3dp</item>
+        <item name="popup_border_width">1px</item>
+        <item name="popup_shadow_elevation">16dp</item>
+        <item name="popup_shadow_alpha">0.25</item>
+        <item name="popup_shadow_inset">30dp</item>
+        <item name="popup_arrow_width">18dp</item>
+        <item name="popup_arrow_height">10dp</item>
+        <item name="quick_action_item_padding_hor">4dp</item>
+        <item name="quick_action_item_padding_ver">2dp</item>
+        <item name="quick_action_item_middle_space">4dp</item>
+        <item name="quick_action_padding_hor">4dp</item>
+        <item name="quick_action_more_arrow_width">36dp</item>
+
+        <item name="skin_support_popup_bg">@color/config_color_white</item>
+
+
     </style>
+
 
     <style name="transformer" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter_anim</item>
@@ -83,4 +103,42 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+
+
+    <style name="AnimationPopUpMenu" />
+
+    <style name="AnimationPopUpMenu.Center">
+        <item name="android:windowEnterAnimation">@anim/grow_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/shrink_from_top</item>
+    </style>
+
+    <style name="AnimationPopUpMenu.Left">
+        <item name="android:windowEnterAnimation">@anim/grow_from_bottomleft_to_topright</item>
+        <item name="android:windowExitAnimation">@anim/shrink_from_topright_to_bottomleft</item>
+    </style>
+
+    <style name="AnimationPopUpMenu.Right">
+        <item name="android:windowEnterAnimation">@anim/grow_from_bottomright_to_topleft</item>
+        <item name="android:windowExitAnimation">@anim/shrink_from_topleft_to_bottomright</item>
+    </style>
+
+    <style name="AnimationPopDownMenu" />
+
+    <style name="AnimationPopDownMenu.Center">
+        <item name="android:windowEnterAnimation">@anim/grow_from_top</item>
+        <item name="android:windowExitAnimation">@anim/shrink_from_bottom</item>
+    </style>
+
+    <style name="AnimationPopDownMenu.Left">
+        <item name="android:windowEnterAnimation">@anim/grow_from_topleft_to_bottomright</item>
+        <item name="android:windowExitAnimation">@anim/shrink_from_bottomright_to_topleft</item>
+    </style>
+
+    <style name="AnimationPopDownMenu.Right">
+        <item name="android:windowEnterAnimation">@anim/grow_from_topright_to_bottomleft</item>
+        <item name="android:windowExitAnimation">@anim/shrink_from_bottomleft_to_topright</item>
+    </style>
+
+
+    
 </resources>

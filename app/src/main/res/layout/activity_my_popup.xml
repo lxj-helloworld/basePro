@@ -15,4 +15,30 @@
         android:id="@+id/normal_btn"
         android:text="普通浮层"></Button>
 
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/normal_popup_with_dim_btn"
+        android:text="普通带遮罩浮层"></Button>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/normal_popup_with_list_btn"
+        android:text="带列表的浮层"></Button>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/normal_popup_with_action_btn"
+        android:text="快捷菜单"></Button>
+
+
+
+
+
 </LinearLayout>

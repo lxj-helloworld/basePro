@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="skin_value" type="id" />
+
+    <!-- dialog -->
+    <item name="dialog_title_id" type="id"/>
+    <item name="dialog_operator_layout_id" type="id"/>
+    <item name="dialog_content_id" type="id"/>
+    <item name="dialog_edit_input" type="id"/>
+    <item name="dialog_edit_right_icon" type="id"/>
+    <item name="bottom_sheet_title" type="id"/>
+    <item name="bottom_sheet_cancel" type="id"/>
+    
 </resources>

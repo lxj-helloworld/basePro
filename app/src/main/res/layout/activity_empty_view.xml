@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.widget.EmptyViewActivity">
+
+    <include layout="@layout/toolbar"></include>
+
+    <com.example.xiaojin20135.basemodule.view.widget.empty.EmptyView
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/config_color_white"
+        app:skin_background="?attr/app_skin_common_background"
+        app:title_text="emptyView_mode_desc_double"
+        app:detail_text="emptyView_mode_desc_detail_double"
+        android:fitsSystemWindows="true"/>
+
+
+</LinearLayout>

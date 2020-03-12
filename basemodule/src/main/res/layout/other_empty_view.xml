@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.xiaojin20135.basemodule.view.LoadingView
+        android:id="@+id/empty_view_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color="?attr/skin_support_empty_view_loading_color"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/empty_view_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:loading_view_size="?attr/empty_view_loading_size"
+        app:skin_tint_color="?attr/skin_support_empty_view_loading_color" />
+
+    <com.example.xiaojin20135.basemodule.view.widget.textview.SpanTouchFixTextView
+        android:id="@+id/empty_view_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="?attr/empty_view_title_margin_hor"
+        android:layout_marginRight="?attr/empty_view_title_margin_hor"
+        android:layout_marginTop="?attr/empty_view_title_normal_margin_top"
+        android:gravity="center_horizontal"
+        android:textColor="?attr/skin_support_empty_view_title_color"
+        android:textSize="?attr/empty_view_title_text_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/empty_view_detail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_view_loading"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_goneMarginTop="0dp"
+        app:skin_text_color="?attr/skin_support_empty_view_title_color" />
+
+
+    <com.example.xiaojin20135.basemodule.view.widget.textview.SpanTouchFixTextView
+        android:id="@+id/empty_view_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="?attr/empty_view_sub_title_margin_hor"
+        android:layout_marginRight="?attr/empty_view_sub_title_margin_hor"
+        android:layout_marginTop="?attr/empty_view_sub_title_normal_margin_top"
+        android:gravity="center_horizontal"
+        android:textColor="?attr/skin_support_empty_view_sub_title_color"
+        android:textSize="?attr/empty_view_sub_title_text_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/empty_view_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_view_title"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:skin_text_color="?attr/skin_support_empty_view_sub_title_color" />
+
+
+    <com.example.xiaojin20135.basemodule.view.button.RoundButton
+        android:id="@+id/empty_view_button"
+        style="@style/RoundButton"
+        android:layout_width="0dp"
+        android:layout_height="?attr/empty_view_btn_height"
+        android:layout_marginLeft="?attr/empty_view_btn_margin_hor"
+        android:layout_marginRight="?attr/empty_view_btn_margin_hor"
+        android:layout_marginTop="?attr/empty_view_btn_normal_margin_top"
+        android:textColor="?attr/skin_support_empty_view_btn_text_color"
+        android:textSize="?attr/empty_view_btn_text_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_view_detail"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:backgroundColor="?attr/skin_support_empty_view_btn_bg_color"
+        app:borderColor="?attr/skin_support_empty_view_btn_border_color"
+        app:skin_background="?attr/skin_support_empty_view_btn_bg_color"
+        app:skin_border="?attr/skin_support_empty_view_btn_border_color"
+        app:skin_text_color="?attr/skin_support_empty_view_btn_text_color" />
+
+</merge>

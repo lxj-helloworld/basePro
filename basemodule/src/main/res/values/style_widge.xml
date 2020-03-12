@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="RadiusImageView">
+        <item name="border_width">1px</item>
+        <item name="border_color">@color/config_color_gray_4</item>
+        <item name="is_touch_select_mode_enabled">true</item>
+    </style>
+
+    <!--********************* Dialog *********************-->
+    <style name="BaseDialog1" parent="Theme.AppCompat.Dialog">
+        <item name="android:buttonStyle">@style/ButtonBase.Compat</item>
+    </style>
+
+    <style name="Dialog" parent="BaseDialog1">
+        <item name="android:backgroundDimAmount">?attr/dialog_background_dim_amount</item>
+        <item name="android:windowBackground">@color/config_color_transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item><!-- 在中间弹框、背后有遮罩的效果 -->
+    </style>
+
+    <style name="TipDialog" parent="BaseDialog1">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="BottomSheet" parent="BaseDialog1">
+        <item name="android:backgroundDimAmount">?attr/bottom_sheet_background_dim_amount</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!--对话框title样式-->
+    <style name="Dialog.Title">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingLeft">?attr/dialog_padding_horizontal</item>
+        <item name="android:paddingRight">?attr/dialog_padding_horizontal</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="paddingBottomWhenNotContent">27dp</item>
+    </style>
+
+
+    <!--对话框Button按钮容器样式，定义上下左右内边距、高度 以及按钮间距离-->
+    <style name="Dialog.ActionContainer">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="dialog_action_container_justify_content">end</item>
+        <item name="dialog_action_height">32dp</item>
+        <item name="dialog_action_space">8dp</item>
+    </style>
+
+    <!--按钮样式，定义按钮内文字颜色、样式、大小、对齐、最小宽度、水平间距、图标空间、按钮类型文字颜色-->
+    <style name="Dialog.Action">
+        <item name="android:textColor">@color/config_color_blue</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="dialog_action_button_padding_horizontal">16dp</item>
+        <item name="dialog_action_icon_space">6dp</item>
+        <item name="dialog_positive_action_text_color">?attr/skin_support_dialog_positive_action_text_color</item>
+        <item name="dialog_negative_action_text_color">?attr/skin_support_dialog_negative_action_text_color</item>
+    </style>
+
+    <!--对话框内消息样式-->
+    <style name="Dialog.MessageContent">
+        <item name="android:textColor">@color/config_color_gray_4</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingLeft">?attr/dialog_padding_horizontal</item>
+        <item name="android:paddingRight">?attr/dialog_padding_horizontal</item>
+        <item name="android:paddingBottom">28dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="paddingTopWhenNotTitle">27dp</item>
+    </style>
+
+    <style name="Dialog.EditContent">
+        <item name="android:gravity">left|bottom</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="paddingTopWhenNotTitle">7dp</item>
+    </style>
+
+    <style name="Dialog.MenuContainer">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="dialog_menu_container_single_padding_vertical">0dp</item>
+        <item name="dialog_menu_container_padding_top_when_title_exist">14dp</item>
+        <item name="dialog_menu_container_padding_bottom_when_action_exist">27dp</item>
+        <item name="dialog_menu_item_height">48dp</item>
+    </style>
+
+    <style name="Dialog_MenuItem">
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingLeft">?attr/dialog_padding_horizontal</item>
+        <item name="android:paddingRight">?attr/dialog_padding_horizontal</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/config_color_black</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="dialog_menu_item_mark_drawable">?attr/skin_support_dialog_mark_drawable</item>
+        <item name="dialog_menu_item_check_drawable">?attr/skin_support_s_dialog_check_drawable</item>
+    </style>
+
+
+    <!--********************* Loading *********************-->
+    <style name="Loading">
+        <item name="loading_view_size">?attr/loading_size</item>
+        <item name="android:color">?attr/skin_support_loading_color</item>
+    </style>
+
+    <style name="Loading.White">
+        <item name="loading_view_size">?attr/loading_size</item>
+        <item name="android:color">@color/config_color_white</item>
+    </style>
+
+
+    <!--********************* Button *********************-->
+    <style name="RoundButton" parent="@style/Button.Compat">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:padding">0dp</item>--><!-- 不用 android:padding，而用各个方向分别指定 padding，方便子类覆盖 -->
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:ellipsize">end</item>
+        <item name="isRadiusAdjustBounds">true</item>
+        <item name="backgroundColor">?attr/skin_support_round_btn_bg_color</item>
+        <item name="borderWidth">?attr/round_btn_border_width</item>
+        <item name="borderColor">?attr/skin_support_round_btn_border_color</item>
+        <item name="android:textColor">?attr/skin_support_round_btn_text_color</item>
+    </style>
+
+</resources>

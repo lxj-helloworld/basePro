@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!--自定义输入框样式-->
     <declare-styleable name="NormalEditText">
         <attr name="only_click" format="boolean"></attr>
         <attr name="must" format="boolean"></attr>
@@ -12,11 +12,445 @@
         <attr name="linebackground" format="color"></attr>
     </declare-styleable>
 
-
+    <!--水印部分样式-->
     <declare-styleable name="ScrollingBackgroundView">
         <attr name="sbv_drawable" format="reference"/>
         <attr name="sbv_scrollX" format="dimension"/>
         <attr name="sbv_scrollY" format="dimension"/>
     </declare-styleable>
 
+
+    <attr name="alpha_pressed" format="float" />
+    <attr name="alpha_disabled" format="float" />
+
+    <attr name="general_shadow_elevation" format="dimension" />
+    <attr name="general_shadow_alpha" format="float" />
+
+    <attr name="popup_radius" format="dimension" />
+    <attr name="popup_border_width" format="dimension" />
+    <attr name="popup_shadow_elevation" format="dimension" />
+    <attr name="popup_shadow_alpha" format="float" />
+    <attr name="popup_shadow_inset" format="dimension" />
+    <attr name="popup_arrow_width" format="dimension"/>
+    <attr name="popup_arrow_height" format="dimension"/>
+    <attr name="quick_action_item_padding_hor" format="dimension"/>
+    <attr name="quick_action_item_padding_ver" format="dimension"/>
+    <attr name="quick_action_item_middle_space" format="dimension"/>
+    <attr name="quick_action_padding_hor" format="dimension"/>
+    <attr name="quick_action_more_arrow_width" format="dimension"/>
+
+    <attr name="skin_support_popup_bg" format="reference"/>
+    <attr name="skin_support_popup_border_color" format="reference|color" />
+    <attr name="skin_support_popup_close_icon" format="reference"/>
+    <attr name="skin_support_quick_action_item_tint_color" format="reference"/>
+    <attr name="skin_support_quick_action_more_left_arrow" format="reference"/>
+    <attr name="skin_support_quick_action_more_right_arrow" format="reference"/>
+    <attr name="skin_support_quick_action_more_tint_color" format="reference"/>
+
+
+    <attr name="paddingTopWhenNotTitle" format="dimension" />
+    <attr name="paddingBottomWhenNotContent" format="dimension" />
+
+
+    <declare-styleable name="Layout">
+        <attr name="android:maxWidth"/>
+        <attr name="android:maxHeight"/>
+        <attr name="android:minWidth"/>
+        <attr name="android:minHeight"/>
+        <attr name="bottomDividerHeight" format="dimension"/>
+        <attr name="bottomDividerColor" format="color|reference"/>
+        <attr name="bottomDividerInsetLeft" format="dimension"/>
+        <attr name="bottomDividerInsetRight" format="dimension"/>
+        <attr name="topDividerHeight" format="dimension"/>
+        <attr name="topDividerColor" format="color|reference"/>
+        <attr name="topDividerInsetLeft" format="dimension"/>
+        <attr name="topDividerInsetRight" format="dimension"/>
+        <attr name="leftDividerWidth" format="dimension"/>
+        <attr name="leftDividerColor" format="color|reference"/>
+        <attr name="leftDividerInsetTop" format="dimension"/>
+        <attr name="leftDividerInsetBottom" format="dimension"/>
+        <attr name="rightDividerWidth" format="dimension"/>
+        <attr name="rightDividerColor" format="color|reference"/>
+        <attr name="rightDividerInsetTop" format="dimension"/>
+        <attr name="rightDividerInsetBottom" format="dimension"/>
+        <attr name="radius"/>
+        <attr name="borderColor"/>
+        <attr name="borderWidth"/>
+        <attr name="outerNormalColor" format="color|reference"/>
+        <attr name="hideRadiusSide" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="right" value="2"/>
+            <enum name="bottom" value="3"/>
+            <enum name="left" value="4"/>
+        </attr>
+        <attr name="showBorderOnlyBeforeL" format="boolean"/>
+        <attr name="shadowElevation" format="dimension"/>
+        <attr name="useThemeGeneralShadowElevation" format="boolean"/>
+        <attr name="shadowAlpha" format="float"/>
+        <attr name="outlineInsetTop" format="dimension"/>
+        <attr name="outlineInsetLeft" format="dimension"/>
+        <attr name="outlineInsetRight" format="dimension"/>
+        <attr name="outlineInsetBottom" format="dimension"/>
+        <attr name="outlineExcludePadding" format="boolean"/>
+    </declare-styleable>
+
+
+    <attr name="border_width" format="dimension"/>
+    <attr name="border_color" format="color"/>
+    <attr name="selected_mask_color" format="color"/>
+    <attr name="selected_border_color" format="color"/>
+    <attr name="selected_border_width" format="dimension"/>
+    <attr name="corner_radius" format="dimension"/>
+    <attr name="is_oval" format="boolean"/>
+    <attr name="is_circle" format="boolean"/>
+    <attr name="is_touch_select_mode_enabled" format="boolean"/>
+
+
+    <declare-styleable name="RadiusImageView">
+        <attr name="border_width"/>
+        <attr name="border_color"/>
+        <attr name="selected_mask_color"/>
+        <attr name="selected_border_color"/>
+        <attr name="selected_border_width"/>
+        <attr name="corner_radius"/>
+        <attr name="is_oval"/>
+        <attr name="is_circle"/>
+        <attr name="is_touch_select_mode_enabled"/>
+    </declare-styleable>
+    <declare-styleable name="RadiusImageView2">
+        <attr name="border_width"/>
+        <attr name="border_color"/>
+        <attr name="selected_mask_color"/>
+        <attr name="selected_border_color"/>
+        <attr name="selected_border_width"/>
+        <attr name="corner_radius"/>
+        <attr name="is_circle"/>
+        <attr name="is_touch_select_mode_enabled"/>
+    </declare-styleable>
+
+    <attr name="RadiusImageViewStyle" format="reference"/>
+
+
+    <attr name="skin_support_dialog_bg" format="reference"/>
+    <attr name="skin_support_dialog_title_text_color" format="reference"/>
+    <attr name="skin_support_dialog_message_text_color" format="reference"/>
+    <attr name="skin_support_dialog_action_bg" format="reference"/>
+    <attr name="skin_support_dialog_action_text_color" format="reference"/>
+    <attr name="skin_support_dialog_positive_action_text_color" format="reference"/>
+    <attr name="skin_support_dialog_negative_action_text_color" format="reference"/>
+    <attr name="skin_support_dialog_action_container_separator_color" format="reference"/>
+    <attr name="skin_support_dialog_action_divider_color" format="reference"/>
+    <attr name="skin_support_s_dialog_check_drawable" format="reference"/>
+    <attr name="skin_support_dialog_mark_drawable" format="reference"/>
+    <attr name="skin_support_dialog_edit_bottom_line_color" format="reference"/>
+    <attr name="skin_support_dialog_edit_text_color" format="reference"/>
+    <attr name="skin_support_dialog_edit_text_hint_color" format="reference"/>
+    <attr name="skin_support_s_dialog_menu_item_bg" format="reference"/>
+    <attr name="skin_support_dialog_menu_item_text_color" format="reference"/>
+
+    <attr name="dialog_radius" format="dimension" />
+    <attr name="dialog_min_width" format="dimension" />
+    <attr name="dialog_max_width" format="dimension" />
+    <attr name="dialog_inset_hor" format="dimension" />
+    <attr name="dialog_inset_ver" format="dimension" />
+    <attr name="dialog_background_dim_amount" format="float" />
+    <attr name="dialog_padding_horizontal" format="dimension" />
+    <attr name="dialog_edit_margin_top" format="dimension"/>
+    <attr name="dialog_edit_margin_bottom" format="dimension"/>
+    <attr name="dialog_edit_bottom_line_height" format="dimension"/>
+
+    <attr name="dialog_title_style" format="reference" />
+    <attr name="dialog_action_container_style" format="reference" />
+    <attr name="dialog_action_style" format="reference" />
+    <attr name="dialog_message_content_style" format="reference" />
+    <attr name="dialog_edit_content_style" format="reference" />
+    <attr name="dialog_menu_container_style" format="reference" />
+    <attr name="dialog_menu_item_style" format="reference" />
+
+    <!--**********************************************
+     *               tip dialog                  *
+     **********************************************-->
+    <attr name="tip_dialog_min_width" format="dimension"/>
+    <attr name="tip_dialog_min_height" format="dimension"/>
+    <attr name="tip_dialog_max_width" format="dimension"/>
+    <attr name="tip_dialog_padding_vertical" format="dimension" />
+    <attr name="tip_dialog_padding_horizontal" format="dimension" />
+    <attr name="tip_dialog_radius" format="dimension"/>
+    <attr name="tip_dialog_loading_size" format="dimension"/>
+    <attr name="tip_dialog_text_margin_top" format="dimension"/>
+    <attr name="tip_dialog_text_size" format="dimension"/>
+
+    <attr name="skin_support_tip_dialog_bg" format="reference" />
+    <attr name="skin_support_tip_dialog_loading_color" format="reference"/>
+    <attr name="skin_support_tip_dialog_text_color" format="reference"/>
+    <attr name="skin_support_tip_dialog_icon_success_src" format="reference"/>
+    <attr name="skin_support_tip_dialog_icon_error_src" format="reference"/>
+    <attr name="skin_support_tip_dialog_icon_info_src" format="reference"/>
+
+
+    <!--**********************************************
+    *               bottom sheet                 *
+    **********************************************-->
+    <attr name="skin_support_bottom_sheet_bg" format="reference"/>
+    <attr name="skin_support_bottom_sheet_title_text_color" format="reference"/>
+    <attr name="skin_support_bottom_sheet_cancel_text_color" format="reference"/>
+    <attr name="skin_support_bottom_sheet_cancel_bg" format="reference"/>
+    <attr name="skin_support_bottom_sheet_separator_color" format="reference"/>
+    <attr name="skin_support_bottom_sheet_list_item_bg" format="reference" />
+    <attr name="skin_support_bottom_sheet_list_item_text_color" format="reference"/>
+    <attr name="skin_support_bottom_sheet_list_red_point_color" format="reference"/>
+    <attr name="skin_support_bottom_sheet_list_mark" format="reference"/>
+    <attr name="skin_support_bottom_sheet_grid_item_text_color" format="reference"/>
+
+    <attr name="bottom_sheet_radius" format="dimension" />
+    <attr name="bottom_sheet_padding_hor" format="dimension" />
+    <attr name="bottom_sheet_use_percent_min_height" format="dimension" />
+    <attr name="bottom_sheet_height_percent" format="float" />
+    <attr name="bottom_sheet_max_width" format="dimension"/>
+    <attr name="bottom_sheet_background_dim_amount" format="float" />
+    <attr name="bottom_sheet_cancel_btn_height" format="dimension"/>
+    <attr name="bottom_sheet_list_item_height" format="dimension"/>
+    <attr name="bottom_sheet_list_item_icon_size" format="dimension" />
+    <attr name="bottom_sheet_list_item_icon_margin_right" format="dimension" />
+    <attr name="bottom_sheet_list_item_red_point_size" format="dimension"/>
+    <attr name="bottom_sheet_list_item_mark_margin_left" format="dimension" />
+    <attr name="bottom_sheet_list_item_tip_point_margin_left" format="dimension" />
+    <attr name="bottom_sheet_grid_padding_vertical" format="dimension" />
+    <attr name="bottom_sheet_grid_line_vertical_space" format="dimension" />
+    <attr name="bottom_sheet_grid_item_text_size" format="dimension"/>
+    <attr name="bottom_sheet_grid_item_icon_size" format="dimension" />
+    <attr name="bottom_sheet_grid_item_padding_ver" format="dimension" />
+    <attr name="bottom_sheet_grid_item_text_margin_top" format="dimension" />
+    <attr name="bottom_sheet_grid_item_mini_width" format="dimension" />
+
+    <attr name="bottom_sheet_title_style" format="reference" />
+    <attr name="bottom_sheet_cancel_style" format="reference" />
+    <attr name="bottom_sheet_list_item_text_style" format="reference"/>
+    <attr name="bottom_sheet_grid_item_text_style" format="reference"/>
+
+
+    <declare-styleable name="TextCommonStyleDef">
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:background" />
+        <attr name="android:gravity" />
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingLeft" />
+        <attr name="android:paddingRight" />
+        <attr name="android:paddingBottom" />
+        <attr name="android:singleLine" />
+        <attr name="android:ellipsize" />
+        <attr name="android:maxLines" />
+        <attr name="android:lineSpacingExtra" />
+        <attr name="android:drawablePadding" />
+        <attr name="android:textColorHint" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogTitleTvCustomDef">
+        <attr name="paddingBottomWhenNotContent" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogMessageTvCustomDef">
+        <attr name="paddingTopWhenNotTitle" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogActionContainerCustomDef">
+        <attr name="dialog_action_container_justify_content" format="enum">
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+            <enum name="stretch" value="2" />
+            <enum name="custom" value="3" />
+        </attr>
+        <attr name="dialog_action_container_custom_space_index" format="integer" />
+        <attr name="dialog_action_height" format="dimension" />
+        <attr name="dialog_action_space" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogActionStyleDef">
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:background" />
+        <attr name="android:gravity" />
+        <attr name="android:minWidth" />
+        <attr name="android:textStyle" />
+        <attr name="dialog_action_button_padding_horizontal" format="dimension" />
+        <attr name="dialog_action_icon_space" format="dimension" />
+        <attr name="dialog_positive_action_text_color" format="color|reference" />
+        <attr name="dialog_negative_action_text_color" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogMenuContainerStyleDef">
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingBottom" />
+        <attr name="dialog_menu_container_single_padding_vertical" format="dimension" />
+        <attr name="dialog_menu_container_padding_top_when_title_exist" format="dimension" />
+        <attr name="dialog_menu_container_padding_bottom_when_action_exist" format="dimension" />
+        <attr name="dialog_menu_item_height" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogMenuTextStyleDef">
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:gravity" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogMenuMarkDef">
+        <attr name="dialog_menu_item_mark_drawable" format="reference" />
+        <attr name="dialog_menu_item_check_mark_margin_hor" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogMenuCheckDef">
+        <attr name="dialog_menu_item_check_drawable" format="reference" />
+        <attr name="dialog_menu_item_check_mark_margin_hor" />
+    </declare-styleable>
+
+
+    <!-- EmptyView start -->
+    <declare-styleable name="EmptyView">
+        <attr name="show_loading" format="boolean"/>
+        <attr name="title_text" format="string"/>
+        <attr name="detail_text" format="string"/>
+        <attr name="btn_text" format="string"/>
+    </declare-styleable>
+    
+    
+    <!--************ Loading ***********-->
+    <declare-styleable name="LoadingView">
+        <attr name="loading_view_size" format="dimension"/>
+        <attr name="android:color"/>
+    </declare-styleable>
+    <attr name="LoadingStyle" format="reference"/>
+
+    <attr name="loading_size" format="dimension" />
+    <attr name="skin_support_loading_color" format="color" />
+
+
+    <attr name="empty_view_loading_size" format="dimension"/>
+    <attr name="empty_view_title_normal_margin_top" format="dimension"/>
+    <attr name="empty_view_title_text_size" format="dimension"/>
+    <attr name="empty_view_title_margin_hor" format="dimension"/>
+    <attr name="empty_view_sub_title_normal_margin_top" format="dimension"/>
+    <attr name="empty_view_sub_title_text_size" format="dimension"/>
+    <attr name="empty_view_sub_title_margin_hor" format="dimension"/>
+    <attr name="empty_view_btn_height" format="dimension"/>
+    <attr name="empty_view_btn_margin_hor" format="dimension"/>
+    <attr name="empty_view_btn_normal_margin_top" format="dimension"/>
+    <attr name="empty_view_btn_text_size" format="dimension"/>
+
+    <attr name="skin_support_empty_view_loading_color" format="color|reference"/>
+    <attr name="skin_support_empty_view_title_color" format="color|reference"/>
+    <attr name="skin_support_empty_view_sub_title_color" format="color|reference"/>
+    <attr name="skin_support_empty_view_btn_bg_color" format="color|reference"/>
+    <attr name="skin_support_empty_view_btn_border_color" format="color|reference"/>
+    <attr name="skin_support_empty_view_btn_text_color" format="color|reference"/>
+
+
+    <attr name="round_btn_text_size" format="dimension" />
+    <attr name="round_btn_border_width" format="dimension" />
+
+    <attr name="skin_support_round_btn_bg_color" format="color" />
+    <attr name="skin_support_round_btn_border_color" format="color" />
+    <attr name="skin_support_round_btn_text_color" format="color" />
+
+
+    <!-- RoundWidget start -->
+    <!-- 圆角是否要自适应为 View 高度的一半 -->
+    <attr name="isRadiusAdjustBounds" format="boolean"/>
+    <!-- 同时指定四个方向的圆角大小 -->
+    <attr name="radius" format="dimension"/>
+    <!-- 指定左上方圆角的大小 -->
+    <attr name="radiusTopLeft" format="dimension"/>
+    <!-- 指定右上方圆角的大小 -->
+    <attr name="radiusTopRight" format="dimension"/>
+    <!-- 指定左下方圆角的大小 -->
+    <attr name="radiusBottomLeft" format="dimension"/>
+    <!-- 指定右下方圆角的大小 -->
+    <attr name="radiusBottomRight" format="dimension"/>
+
+    <attr name="ButtonStyle" format="reference"/>
+
+    <declare-styleable name="RoundButton">
+        <attr name="backgroundColor"/>
+        <attr name="borderColor"/>
+        <attr name="borderWidth"/>
+        <attr name="isRadiusAdjustBounds"/>
+        <attr name="radius"/>
+        <attr name="radiusTopLeft"/>
+        <attr name="radiusTopRight"/>
+        <attr name="radiusBottomLeft"/>
+        <attr name="radiusBottomRight"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundFrameLayout">
+        <attr name="backgroundColor"/>
+        <attr name="borderColor"/>
+        <attr name="borderWidth"/>
+        <attr name="isRadiusAdjustBounds"/>
+        <attr name="radius"/>
+        <attr name="radiusTopLeft"/>
+        <attr name="radiusTopRight"/>
+        <attr name="radiusBottomLeft"/>
+        <attr name="radiusBottomRight"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundLinearLayout">
+        <attr name="backgroundColor"/>
+        <attr name="borderColor"/>
+        <attr name="borderWidth"/>
+        <attr name="isRadiusAdjustBounds"/>
+        <attr name="radius"/>
+        <attr name="radiusTopLeft"/>
+        <attr name="radiusTopRight"/>
+        <attr name="radiusBottomLeft"/>
+        <attr name="radiusBottomRight"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundRelativeLayout">
+        <attr name="backgroundColor"/>
+        <attr name="borderColor"/>
+        <attr name="borderWidth"/>
+        <attr name="isRadiusAdjustBounds"/>
+        <attr name="radius"/>
+        <attr name="radiusTopLeft"/>
+        <attr name="radiusTopRight"/>
+        <attr name="radiusBottomLeft"/>
+        <attr name="radiusBottomRight"/>
+    </declare-styleable>
+
+    <!-- RoundWidget end -->
+
+
+    <declare-styleable name="SkinDef">
+        <attr name="skin_background" format="string" />
+        <attr name="skin_text_color" format="string" />
+        <attr name="skin_second_text_color" format="string" />
+        <attr name="skin_src" format="string" />
+        <attr name="skin_border" format="string" />
+        <attr name="skin_separator_top" format="string" />
+        <attr name="skin_separator_right" format="string" />
+        <attr name="skin_separator_bottom" format="string" />
+        <attr name="skin_separator_left" format="string" />
+        <attr name="skin_alpha" format="string" />
+        <attr name="skin_tint_color" format="string" />
+        <attr name="skin_bg_tint_color" format="string" />
+        <attr name="skin_progress_color" format="string" />
+        <attr name="skin_underline" format="string"/>
+        <attr name="skin_more_text_color" format="string"/>
+        <attr name="skin_more_bg_color" format="string"/>
+    </declare-styleable>
+
+
+
+    <attr name="backgroundColor" format="color"/>
+    <attr name="borderColor" format="color"/>
+    <attr name="borderWidth" format="dimension"/>
+    <attr name="linkColor" format="color"/>
+    <attr name="orientation" format="enum">
+        <enum name="horizontal" value="0"/>
+        <enum name="vertical" value="1"/>
+    </attr>
+    
+    
 </resources>
