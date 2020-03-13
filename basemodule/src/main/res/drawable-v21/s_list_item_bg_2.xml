@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  Tencent is pleased to support the open source community by making QMUI_Android available.
 
@@ -14,19 +15,7 @@
  limitations under the License.
 -->
 
-<resources>
-    <!-- button -->
-    <color name="btn_ghost_blue_border_normal">@color/config_color_blue</color>
-    <color name="btn_ghost_blue_border_pressed">#801B88EE</color>
-    <color name="btn_ghost_blue_border_disabled">#801B88EE</color>
-
-    <color name="btn_ghost_blue_text_normal">@color/config_color_blue</color>
-    <color name="btn_ghost_blue_text_pressed">#801B88EE</color>
-    <color name="btn_ghost_blue_text_disabled">#801B88EE</color>
-
-    <color name="btn_filled_blue_bg_normal">#416f96</color>
-    <color name="btn_filled_blue_bg_pressed">#243f55</color>
-    <color name="btn_filled_blue_bg_disabled">#80416f96</color>
-
-
-</resources>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/drawable_color_list_pressed" android:state_pressed="true"/>
+    <item android:drawable="@color/config_color_white"/>
+</selector>

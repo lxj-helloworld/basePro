@@ -80,25 +80,25 @@ public class WindowHelper {
 
     public static Object getAttachInfoFromView(@NonNull View view){
         Object attachInfo = null;
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P){
-            // Android 10+ can not reflect the View.mAttachInfo
-            // fortunately now it is in light greylist in ViewRootImpl
-            View rootView = view.getRootView();
-            if(rootView != null){
-                ViewParent vp = rootView.getParent();
-                if(vp != null){
-                    try {
-                        Field field = vp.getClass().getDeclaredField("mAttachInfo");
-                        field.setAccessible(true);
-                        attachInfo = field.get(vp);
-                    } catch (Throwable e) {
-                        if (BuildConfig.DEBUG) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }else{
+//        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P){
+//            // Android 10+ can not reflect the View.mAttachInfo
+//            // fortunately now it is in light greylist in ViewRootImpl
+//            View rootView = view.getRootView();
+//            if(rootView != null){
+//                ViewParent vp = rootView.getParent();
+//                if(vp != null){
+//                    try {
+//                        Field field = vp.getClass().getDeclaredField("mAttachInfo");
+//                        field.setAccessible(true);
+//                        attachInfo = field.get(vp);
+//                    } catch (Throwable e) {
+//                        if (BuildConfig.DEBUG) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+//        }else{
             try {
                 //Android P 禁止了 被@hide修饰的字段信息的反射，幸运的是，他现在是在灰名单里面，仅仅会被警告
                 Field field = View.class.getDeclaredField("mAttachInfo"); //返回View中声明为mAttachInfo 的字段信息
@@ -109,7 +109,7 @@ public class WindowHelper {
                     e.printStackTrace();
                 }
             }
-        }
+//        }
         return attachInfo;
     }
 }

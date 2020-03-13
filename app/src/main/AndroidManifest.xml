@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:replace="android:label,android:name">
-        <activity android:name=".view.widget.EmptyViewActivity"></activity>
+        <activity android:name=".view.widget.ListItemActivity"></activity>
+        <activity android:name=".view.widget.EmptyViewActivity" />
         <activity android:name=".alert.SelfAlertActivity" />
         <activity android:name=".view.widget.MyPopupActivity" />
         <activity android:name=".view.SelfViewActivity" />

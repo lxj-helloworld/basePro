@@ -451,6 +451,70 @@
         <enum name="horizontal" value="0"/>
         <enum name="vertical" value="1"/>
     </attr>
+
+
+    <!--************** GroupListView **************-->
+
+    <attr name="CommonListItemViewStyle" format="reference"/>
+    <attr name="common_list_item_chevron" format="reference"/>
+    <attr name="common_list_item_switch" format="reference"/>
+    <declare-styleable name="CommonListItemView">
+        <attr name="orientation"/>
+        <attr name="accessory_type" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="chevron" value="1"/>
+            <enum name="switcher" value="2"/>
+            <enum name="custom" value="3"/>
+        </attr>
+        <attr name="common_list_title_color" format="reference|color"/>
+        <attr name="common_list_detail_color" format="reference|color"/>
+    </declare-styleable>
     
     
+    <attr name="GroupListSectionViewStyle" format="reference"/>
+
+
+
+     <!--**********************************************
+        *               common list                  *
+        **********************************************-->
+
+    <attr name="common_list_item_icon_margin_right" format="dimension" />
+    <attr name="common_list_item_accessory_margin_left" format="dimension" />
+    <attr name="common_list_item_title_v_text_size" format="dimension" />
+    <attr name="common_list_item_title_h_text_size" format="dimension" />
+    <attr name="common_list_item_title_line_space" format="dimension" />
+    <attr name="common_list_item_detail_v_text_size" format="dimension" />
+    <attr name="common_list_item_detail_h_text_size" format="dimension" />
+    <attr name="common_list_item_detail_line_space" format="dimension" />
+    <attr name="common_list_item_detail_h_margin_with_title" format="dimension" />
+    <attr name="common_list_item_detail_h_margin_with_title_large" format="dimension" />
+    <attr name="common_list_item_detail_v_margin_with_title" format="dimension" />
+    <attr name="common_list_item_holder_margin_with_title" format="dimension"/>
+
+    <attr name="skin_support_common_list_title_color" format="color|reference"/>
+    <attr name="skin_support_common_list_detail_color" format="color|reference"/>
+    <attr name="skin_support_common_list_icon_tint_color" format="color|reference"/>
+    <attr name="skin_support_common_list_red_point_tint_color" format="color|reference"/>
+    <attr name="skin_support_common_list_new_drawable" format="reference"/>
+    <attr name="skin_support_common_list_separator_color" format="color|reference"/>
+    <attr name="skin_support_s_common_list_bg" format="reference"/>
+    <attr name="skin_support_common_list_chevron_color" format="color|reference"/>
+
+
+    <!--**********************************************
+        *              list item bg                  *
+        **********************************************-->
+    <attr name="list_item_height" format="dimension" />
+    <attr name="list_item_height_higher" format="dimension" />
+    <attr name="skin_support_s_list_item_bg_1" format="reference" />
+    <attr name="skin_support_s_list_item_bg_2" format="reference" />
+
+    <attr name="skin_support_icon_mark" format="reference" />
+    <attr name="skin_support_s_checkbox" format="reference" />
+
+
+    <attr name="content_spacing_horizontal" format="dimension" /> <!-- margin 和 padding 等使用的内容通用水平间距 -->
+    <attr name="config_color_blue" format="color|reference"/>
+    <attr name="content_padding_horizontal" format="dimension"/>
 </resources>

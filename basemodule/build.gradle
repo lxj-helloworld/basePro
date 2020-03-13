@@ -3,11 +3,11 @@ apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.xiaojin20135@live.com'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 29
+        minSdkVersion 16
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -67,6 +67,7 @@ dependencies {
     compile 'com.yanzhenjie:recyclerview-swipe:1.0.4'
     /** 万能适配器    **/
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     /** MPAndroidChart 图表   **/
@@ -86,7 +87,8 @@ dependencies {
     /** 图片预览控件  这个有bug别用了 **/
     compile 'com.bm.photoview:library:1.4.1'
 
-    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    compile 'com.github.chrisbanes:PhotoView:2.0.0'
+
 
     /** RxJava库   **/
     compile 'com.gengqiquan:Rx2ActivityResult:0.0.4'

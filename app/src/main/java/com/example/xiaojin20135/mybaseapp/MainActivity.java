@@ -39,6 +39,7 @@ import com.example.xiaojin20135.mybaseapp.view.IpAndPortActivity;
 import com.example.xiaojin20135.mybaseapp.view.SelfViewActivity;
 import com.example.xiaojin20135.mybaseapp.view.WaterMarkActivity;
 import com.example.xiaojin20135.mybaseapp.view.widget.EmptyViewActivity;
+import com.example.xiaojin20135.mybaseapp.view.widget.ListItemActivity;
 import com.example.xiaojin20135.mybaseapp.view.widget.MyPopupActivity;
 import com.example.xiaojin20135.mybaseapp.xgPush.XgPushActivity;
 
@@ -253,6 +254,9 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
                 break;
             case R.id.empty_btn:
                 canGo(EmptyViewActivity.class);
+                break;
+            case R.id.list_item_btn:
+                canGo(ListItemActivity.class);
                 break;
 
         }

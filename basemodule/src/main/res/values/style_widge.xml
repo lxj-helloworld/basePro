@@ -154,4 +154,71 @@
         <item name="android:textColor">?attr/skin_support_round_btn_text_color</item>
     </style>
 
+
+
+    <style name="CommonListItemView">
+        <item name="android:paddingLeft">?attr/content_padding_horizontal</item>
+        <item name="android:paddingRight">?attr/content_padding_horizontal</item>
+        <item name="android:background">?attr/skin_support_s_list_item_bg_2</item>
+        <item name="common_list_title_color">?attr/skin_support_common_list_title_color
+        </item>
+        <item name="common_list_detail_color">
+            ?attr/skin_support_common_list_detail_color
+        </item>
+    </style>
+
+
+    <!--分组头、尾样式，主要定义内边距-->
+    <style name="GroupListSectionView">
+        <item name="android:paddingLeft">?attr/content_padding_horizontal</item>
+        <item name="android:paddingRight">?attr/content_padding_horizontal</item>
+        <item name="android:paddingTop">@dimen/group_list_section_header_footer_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/group_list_section_header_footer_padding_vertical</item>
+    </style>
+
+
+
+    <style name="BottomSheet.Title">
+        <item name="android:textColor">?attr/skin_support_bottom_sheet_title_text_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingLeft">?attr/bottom_sheet_padding_hor</item>
+        <item name="android:paddingRight">?attr/bottom_sheet_padding_hor</item>
+        <item name="android:paddingBottom">18dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="BottomSheet.Cancel">
+        <item name="android:textColor">?attr/skin_support_bottom_sheet_cancel_text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">?attr/bottom_sheet_padding_hor</item>
+        <item name="android:paddingRight">?attr/bottom_sheet_padding_hor</item>
+    </style>
+
+    <style name="BottomSheet.List" >
+
+    </style>
+    <style name="BottomSheet.List.Text">
+        <item name="android:textColor">?attr/skin_support_bottom_sheet_list_item_text_color
+        </item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:ellipsize">middle</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="BottomSheet.Grid" ></style>
+
+    <style name="BottomSheet.Grid.Text">
+        <item name="android:textColor">?attr/skin_support_bottom_sheet_grid_item_text_color</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:ellipsize">middle</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
 </resources>
