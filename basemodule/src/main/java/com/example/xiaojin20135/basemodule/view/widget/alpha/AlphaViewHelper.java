@@ -13,12 +13,10 @@ import java.lang.ref.WeakReference;
  * description： 改变View透明度帮助类 包括按下时以及禁用时
  */
 public class AlphaViewHelper {
-    //弱引用，方便GC是内存回收
-    private WeakReference<View> mTarget;
-    //设置是否要在press时改变View的透明度
-    private boolean mChangeAlphaWhenPress = true;
-    //设置是否要在disable时改变透明度
-    private boolean mChangeAlphaDisable = true;
+    private static final String TAG = "AlphaViewHelper";
+    private WeakReference<View> mTarget;//弱引用，方便GC是内存回收
+    private boolean mChangeAlphaWhenPress = true; //设置是否要在press时改变View的透明度
+    private boolean mChangeAlphaDisable = true;//设置是否要在disable时改变透明度
     private float mNormalAlpha = 1f;     //默认不透明
     private float mPressedAlpha = 0.5f;   //按下时默认透明度
     private float mDisabledAlpha = 0.5f; // 按下时默认透明度

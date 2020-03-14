@@ -12,12 +12,11 @@ import com.example.xiaojin20135.basemodule.util.LangHelper;
 /*
 * @author lixiaojin
 * create on 2020-03-12 15:44
-* description: 列表分组头和分组尾
+* description: 列表分组头或分组尾View
+*  只包含文本框一个元素，样式只定义四边内边距
 */
 public class GroupListSectionHeaderFooterView extends LinearLayout {
-
     private TextView mTextView;
-
     /*
     * @author lixiaojin
     * create on 2020-03-12 15:48
@@ -59,12 +58,12 @@ public class GroupListSectionHeaderFooterView extends LinearLayout {
     /*
     * @author lixiaojin
     * create on 2020-03-12 15:51
-    * description: 初始化，附带标题以及是否需要显示底部分组
+    * description: 初始化，附带标题以及是否是底部section
     */
     public GroupListSectionHeaderFooterView(Context context, CharSequence titleText, boolean isFooter) {
         this(context);
         if (isFooter) {
-            // Footer View 不需要 padding bottom
+            //如果该View是底部section，那么将底部内边距设置为0
             setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), 0);
         }
         setText(titleText);
@@ -76,12 +75,17 @@ public class GroupListSectionHeaderFooterView extends LinearLayout {
     * description: 初始化布局
     */
     private void init(Context context) {
-        //加载布局文件
+        //加载布局文件，初始化View
         LayoutInflater.from(context).inflate(R.layout.group_list_section_layout, this, true);
         setGravity(Gravity.BOTTOM);
         mTextView = findViewById(R.id.group_list_section_header_textView);
     }
 
+    /*
+    * @author lixiaojin
+    * create on 2020-03-13 14:17
+    * description: 设置展示文本
+    */
     public void setText(CharSequence text) {
         if (LangHelper.isNullOrEmpty(text)) {
             mTextView.setVisibility(GONE);

@@ -3,7 +3,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.xiaojin20135@live.com'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 29
     buildToolsVersion '27.0.3'
     defaultConfig {
         minSdkVersion 16

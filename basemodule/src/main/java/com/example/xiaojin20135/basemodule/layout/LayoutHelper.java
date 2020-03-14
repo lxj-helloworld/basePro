@@ -81,9 +81,9 @@ public class LayoutHelper implements LayoutInf{
 
     // 遮罩
     private boolean mIsShowBorderOnlyBeforeL = false;
-    private int mShadowElevation = 0;
-    private float mShadowAlpha;
-    private int mShadowColor = Color.BLACK;
+    private int mShadowElevation = 0; //View的高度即隐藏的大小
+    private float mShadowAlpha; ///透明度，值越小，越透明
+    private int mShadowColor = Color.BLACK; //阴影颜色
 
     // 轮廓内边距
     private int mOutlineInsetLeft = defaultValue;
@@ -336,14 +336,14 @@ public class LayoutHelper implements LayoutInf{
     }
 
     private void setShadowColorInner(int shadowColor) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//            View owner = mOwner.get();
-//            if (owner == null) {
-//                return;
-//            }
-//            owner.setOutlineAmbientShadowColor(shadowColor);
-//            owner.setOutlineSpotShadowColor(shadowColor);
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            View owner = mOwner.get();
+            if (owner == null) {
+                return;
+            }
+            owner.setOutlineAmbientShadowColor(shadowColor);
+            owner.setOutlineSpotShadowColor(shadowColor);
+        }
     }
 
     private void invalidateOutline() {
@@ -659,7 +659,7 @@ public class LayoutHelper implements LayoutInf{
     /*
     * @author lixiaojin
     * create on 2020-03-07 08:23
-    * description:
+    * description: 参照最小宽度，重新设定宽度
     */
     public int handleMiniWidth(int widthMeasureSpec, int measuredWidth) {
         //如果不是精确模式，则要么是未指定，要么是最大模式，将宽度调整为窗口宽度
@@ -687,10 +687,12 @@ public class LayoutHelper implements LayoutInf{
     * description: 获取View的宽度的测量模式
     */
     public int getMeasuredWidthSpec(int widthMeasureSpec) {
+        //如果有限定宽度
         if (mWidthLimit > 0) {
             //获取View的父视图设置给子View的参考尺寸
             int size = View.MeasureSpec.getSize(widthMeasureSpec);
             //如果子View所需要的尺寸大于当前窗口的尺寸，则需要根据指定的模式来确定view的尺寸，否则，不需要
+            //取size和mWidthLimit中较小的那个值作为新的宽度
             if (size > mWidthLimit) {
                 //获取参数所代表的模式值
                 int mode = View.MeasureSpec.getMode(widthMeasureSpec);
@@ -807,24 +809,24 @@ public class LayoutHelper implements LayoutInf{
     /*
     * @author lixiaojin
     * create on 2020-03-06 17:10
-    * description: 绘制边框   w 和 h 分别为view 的宽度和高度
+    * description: 绘制边框 canvas为画布  w 和 h 分别为view 的宽度和高度
     */
     public void drawDividers(Canvas canvas, int w, int h) {
         View owner = mOwner.get();
         if(owner == null){
             return;
         }
-        //初始化边界画笔
-        if (mDividerPaint == null &&
-                (mTopDividerHeight > 0 || mBottomDividerHeight > 0 || mLeftDividerWidth > 0 || mRightDividerWidth > 0)) {
+        //如果画笔为空，并且至少有一边边界线需要绘制，则初始化画笔
+        if (mDividerPaint == null && (mTopDividerHeight > 0 || mBottomDividerHeight > 0 || mLeftDividerWidth > 0 || mRightDividerWidth > 0)) {
             mDividerPaint = new Paint();
         }
         //平移以前保存画布的当前状态
         canvas.save();
         //移动画布，使画布左上角与view的左上角对齐
         canvas.translate(owner.getScrollX(), owner.getScrollY());
+        //绘制顶部边界线
         if (mTopDividerHeight > 0) {
-            //开始绘制，设置画笔的粗细、颜色、透明度
+            //设置画笔的粗细、颜色、透明度
             mDividerPaint.setStrokeWidth(mTopDividerHeight);
             mDividerPaint.setColor(mTopDividerColor);
             if (mTopDividerAlpha < 255) {
@@ -875,7 +877,7 @@ public class LayoutHelper implements LayoutInf{
     /*
     * @author lixiaojin
     * create on 2020-03-06 17:32
-    * description:
+    * description: 绘制圆角边框
     */
     public void dispatchRoundBorderDraw(Canvas canvas) {
         View owner = mOwner.get();

@@ -24,91 +24,51 @@ import com.example.xiaojin20135.basemodule.util.ui.ResHelper;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-//import androidx.constraintlayout.widget.Placeholder;
 
+/*
+* @author lixiaojin
+* create on 2020-03-13 14:18
+* description: 通用列表cell视图
+*/
 public class CommonListItemView extends UIConstraintLayout {
-
-    /**
-     * 右侧不显示任何东西
-     */
+    //纯文本，右侧不显示任何内容
     public final static int ACCESSORY_TYPE_NONE = 0;
-    /**
-     * 右侧显示一个箭头
-     */
+    //文本右侧显示右箭头
     public final static int ACCESSORY_TYPE_CHEVRON = 1;
-    /**
-     * 右侧显示一个开关
-     */
+    //文本右侧显示开关
     public final static int ACCESSORY_TYPE_SWITCH = 2;
-    /**
-     * 自定义右侧显示的 View
-     */
+    //文本右侧显示一个自定义的View
     public final static int ACCESSORY_TYPE_CUSTOM = 3;
-
-    private final static int TIP_SHOW_NOTHING = 0;
-    private final static int TIP_SHOW_RED_POINT = 1;
-    private final static int TIP_SHOW_NEW = 2;
-
-    /**
-     * detailText 在 title 文字的下方
-     */
+    //主文本和解释信息垂直排列
     public final static int VERTICAL = 0;
-    /**
-     * detailText 在 item 的右方
-     */
+    //主文本和解释信息水平排列
     public final static int HORIZONTAL = 1;
 
-    /**
-     * TIP 在左边
-     */
-    public final static int TIP_POSITION_LEFT = 0;
-    /**
-     * TIP 在右边
-     */
-    public final static int TIP_POSITION_RIGHT = 1;
-
+    //右侧附件展示的view类型
     @IntDef({ACCESSORY_TYPE_NONE, ACCESSORY_TYPE_CHEVRON, ACCESSORY_TYPE_SWITCH, ACCESSORY_TYPE_CUSTOM})
     @Retention(RetentionPolicy.SOURCE)
     public @interface CommonListItemAccessoryType {
     }
 
+    //附加展示的view类型
+    @CommonListItemAccessoryType
+    private int mAccessoryType;
+
+    //主文本和解释信息的布局方向
     @IntDef({VERTICAL, HORIZONTAL})
     @Retention(RetentionPolicy.SOURCE)
     public @interface CommonListItemOrientation {
     }
 
-    @IntDef({TIP_POSITION_LEFT, TIP_POSITION_RIGHT})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface CommonListItemTipPosition {
-    }
-
-    /**
-     * Item 右侧的 View 的类型
-     */
-    @CommonListItemAccessoryType
-    private int mAccessoryType;
-
-    /**
-     * 控制 detailText 是在 title 文字的下方还是 item 的右方
-     */
+    //布局方向
     private int mOrientation = HORIZONTAL;
 
-    /**
-     * 控制红点的位置
-     */
-    @CommonListItemTipPosition
-    private int mTipPosition = TIP_POSITION_LEFT;
-
-    protected ImageView mImageView;
-    private ViewGroup mAccessoryView;
-    protected TextView mTextView;
-    protected TextView mDetailTextView;
-    protected CheckBox mSwitch;
-//    private Placeholder mAfterTitleHolder;
-//    private Placeholder mBeforeAccessoryHolder;
-    private boolean mDisableSwitchSelf = false;
-
-    private int mTipShown = TIP_SHOW_NOTHING;
+    protected ImageView mImageView; //文本左侧图标
+    private ViewGroup mAccessoryView;   //文本右侧view
+    protected TextView mTextView; //主文本
+    protected TextView mDetailTextView; //辅助信息
+    protected CheckBox mSwitch; //右侧开关
+    private boolean mDisableSwitchSelf = false; //是否启用开关
 
     public CommonListItemView(Context context) {
         this(context, null);
@@ -145,20 +105,14 @@ public class CommonListItemView extends UIConstraintLayout {
         array.recycle();
 
         //基础view初始化
-        mImageView = findViewById(R.id.group_list_item_imageView);
-        mTextView = findViewById(R.id.group_list_item_textView);
-        mDetailTextView = findViewById(R.id.group_list_item_detailTextView);
-//        mAfterTitleHolder = findViewById(R.id.group_list_item_holder_after_title);
-//        mBeforeAccessoryHolder = findViewById(R.id.group_list_item_holder_before_accessory);
-//
-//        //设置初始样式
-//        mAfterTitleHolder.setEmptyVisibility(View.GONE);
-//        mBeforeAccessoryHolder.setEmptyVisibility(View.GONE);
-        mTextView.setTextColor(initTitleColor);
-        mDetailTextView.setTextColor(initDetailColor);
-        mAccessoryView = findViewById(R.id.group_list_item_accessoryView);
-        setOrientation(orientation);
-        setAccessoryType(accessoryType);
+        mImageView = findViewById(R.id.group_list_item_imageView); //左图标
+        mTextView = findViewById(R.id.group_list_item_textView); //主文本
+        mDetailTextView = findViewById(R.id.group_list_item_detailTextView); //辅助文本
+        mTextView.setTextColor(initTitleColor); //主字体颜色
+        mDetailTextView.setTextColor(initDetailColor); //辅助字体颜色
+        mAccessoryView = findViewById(R.id.group_list_item_accessoryView); //右侧附带View
+        setOrientation(orientation); //设置布局方向
+        setAccessoryType(accessoryType); //设置附带View
     }
 
     /*
@@ -211,6 +165,11 @@ public class CommonListItemView extends UIConstraintLayout {
     }
 
 
+    /*
+    * @author lixiaojin
+    * create on 2020-03-13 14:42
+    * description: 设置辅助文本左侧外边距，如果是垂直布局，设置为零，如果是水平布局，设置相应值
+    */
     private void checkDetailLeftMargin() {
         LayoutParams detailLp = (LayoutParams) mDetailTextView.getLayoutParams();
         if (mOrientation == VERTICAL) {
@@ -223,7 +182,7 @@ public class CommonListItemView extends UIConstraintLayout {
     /*
     * @author lixiaojin
     * create on 2020-03-12 17:19
-    * description: get function
+    * description: 返回辅助信息文本
     */
     public CharSequence getDetailText() {
         return mDetailTextView.getText();
@@ -247,7 +206,7 @@ public class CommonListItemView extends UIConstraintLayout {
     /*
     * @author lixiaojin
     * create on 2020-03-12 17:21
-    * description: get function
+    * description: 返回主文本以及辅助文本
     */
     public int getOrientation() {
         return mOrientation;
@@ -267,7 +226,9 @@ public class CommonListItemView extends UIConstraintLayout {
         LayoutParams titleLp = (LayoutParams) mTextView.getLayoutParams();
         LayoutParams detailLp = (LayoutParams) mDetailTextView.getLayoutParams();
         if (orientation == VERTICAL) {
+            //设置主文本字体大小
             mTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, ResHelper.getAttrDimen(getContext(), R.attr.common_list_item_title_v_text_size));
+            //设置辅助文本字体大小
             mDetailTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, ResHelper.getAttrDimen(getContext(), R.attr.common_list_item_detail_v_text_size));
             titleLp.horizontalChainStyle = LayoutParams.UNSET;
             titleLp.verticalChainStyle = LayoutParams.CHAIN_PACKED;
@@ -307,24 +268,25 @@ public class CommonListItemView extends UIConstraintLayout {
         return mAccessoryType;
     }
 
-    /**
-     * 设置右侧 View 的类型。
-     *
-     * @param type 见 {@link CommonListItemAccessoryType}
-     */
+    /*
+    * @author lixiaojin
+    * create on 2020-03-13 15:16
+    * description:
+    */
     public void setAccessoryType(@CommonListItemAccessoryType int type) {
+        //移除现有view
         mAccessoryView.removeAllViews();
+        //设定右侧附加view类型
         mAccessoryType = type;
-
         switch (type) {
-            case ACCESSORY_TYPE_CHEVRON: { // 向右的箭头
+            case ACCESSORY_TYPE_CHEVRON: { // 右箭头
                 ImageView tempImageView = getAccessoryImageView();
                 tempImageView.setImageDrawable(ResHelper.getAttrDrawable(getContext(), R.attr.common_list_item_chevron));
                 mAccessoryView.addView(tempImageView);
                 mAccessoryView.setVisibility(VISIBLE);
             }
                 break;
-            case ACCESSORY_TYPE_SWITCH: { // switch开关
+            case ACCESSORY_TYPE_SWITCH: { //switch开关
                 if (mSwitch == null) {
                     mSwitch = new AppCompatCheckBox(getContext());
                     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
