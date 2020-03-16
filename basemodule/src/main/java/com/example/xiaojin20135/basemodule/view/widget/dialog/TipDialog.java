@@ -22,6 +22,7 @@ import com.example.xiaojin20135.basemodule.view.LoadingView;
 import com.example.xiaojin20135.basemodule.view.widget.textview.SpanTouchFixTextView;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /*
@@ -37,6 +38,7 @@ public class TipDialog extends BaseDialog {
 
     public TipDialog(Context context, int themeResId) {
         super(context, themeResId);
+        //禁用点击边框外事件监听
         setCanceledOnTouchOutside(false);
     }
 
@@ -49,25 +51,15 @@ public class TipDialog extends BaseDialog {
      * @see CustomBuilder
      */
     public static class Builder {
-        /**
-         * 不显示任何icon
-         */
+        //不显示任何icon
         public static final int ICON_TYPE_NOTHING = 0;
-        /**
-         * 显示 Loading 图标
-         */
+        //显示加载图标
         public static final int ICON_TYPE_LOADING = 1;
-        /**
-         * 显示成功图标
-         */
+        //显示成功图标
         public static final int ICON_TYPE_SUCCESS = 2;
-        /**
-         * 显示失败图标
-         */
+        //显示失败图标
         public static final int ICON_TYPE_FAIL = 3;
-        /**
-         * 显示信息图标
-         */
+        //显示一般消息图标
         public static final int ICON_TYPE_INFO = 4;
 
         @IntDef({ICON_TYPE_NOTHING, ICON_TYPE_LOADING, ICON_TYPE_SUCCESS, ICON_TYPE_FAIL, ICON_TYPE_INFO})
@@ -75,68 +67,86 @@ public class TipDialog extends BaseDialog {
         public @interface IconType {
         }
 
+        //图标类型
         private @IconType int mCurrentIconType = ICON_TYPE_NOTHING;
-
+        //当前上下文
         private Context mContext;
-
+        //提示文字
         private CharSequence mTipWord;
 
         public Builder(Context context) {
             mContext = context;
         }
 
-        /**
-         * 设置 icon 显示的内容
-         *
-         * @see IconType
-         */
+        /*
+        * @author lixiaojin
+        * create on 2020-03-16 09:59
+        * description:设置显示的图标
+        */
         public Builder setIconType(@IconType int iconType) {
             mCurrentIconType = iconType;
             return this;
         }
 
-        /**
-         * 设置显示的文案
-         */
+        /*
+        * @author lixiaojin
+        * create on 2020-03-16 09:59
+        * description: 设置显示的提示信息
+        */
         public Builder setTipWord(CharSequence tipWord) {
             mTipWord = tipWord;
             return this;
         }
 
+        /*
+        * @author lixiaojin
+        * create on 2020-03-16 09:59
+        * description: 创建一个弹框
+        */
         public TipDialog create() {
             return create(true);
         }
 
+        /*
+        * @author lixiaojin
+        * create on 2020-03-16 09:59
+        * description:  创建一个弹框，是否可以取消
+        */
         public TipDialog create(boolean cancelable) {
             return create(cancelable, R.style.TipDialog);
         }
 
-        /**
-         * 创建 Dialog, 但没有弹出来, 如果要弹出来, 请调用返回值的 {@link Dialog#show()} 方法
-         *
-         * @param cancelable 按系统返回键是否可以取消
-         * @return 创建的 Dialog
-         */
+        /*
+        * @author lixiaojin
+        * create on 2020-03-16 09:58
+        * description: 创建弹框
+        */
         public TipDialog create(boolean cancelable, int style) {
+            //初始化一个弹框对象
             TipDialog dialog = new TipDialog(mContext, style);
-            dialog.setCancelable(cancelable);
-            Context dialogContext = dialog.getContext();
+            dialog.setCancelable(cancelable); //是否可以取消
+            Context dialogContext = dialog.getContext(); //获取弹框的上下文
+            //创建一个弹框View
             TipDialogView dialogView = new TipDialogView(dialogContext);
-
             SkinValueBuilder builder = SkinValueBuilder.acquire();
-            if (mCurrentIconType == ICON_TYPE_LOADING) {
+            if (mCurrentIconType == ICON_TYPE_LOADING) { //如果是等待框
+                //创建等待框视图
                 LoadingView loadingView = new LoadingView(dialogContext);
+                //设置等待框颜色
                 loadingView.setColor(ResHelper.getAttrColor(dialogContext, R.attr.skin_support_tip_dialog_loading_color));
-
+                //设置等待框大小
                 loadingView.setSize(ResHelper.getAttrDimen(dialogContext, R.attr.tip_dialog_loading_size));
                 builder.tintColor(R.attr.skin_support_tip_dialog_loading_color);
                 SkinHelper.setSkinValue(loadingView, builder);
+                //将等待框添加到弹框中
                 dialogView.addView(loadingView, onCreateIconOrLoadingLayoutParams(dialogContext));
-
             } else if (mCurrentIconType == ICON_TYPE_SUCCESS || mCurrentIconType == ICON_TYPE_FAIL || mCurrentIconType == ICON_TYPE_INFO) {
+                //如果是成功、失败或者提示信息，创建图片View
                 ImageView imageView = new AppCompatImageView(mContext);
+                //现有样式清理
                 builder.clear();
                 Drawable drawable;
+                //根据使用场景初始书不同的图片
                 if (mCurrentIconType == ICON_TYPE_SUCCESS) {
                     drawable = ResHelper.getAttrDrawable(dialogContext, R.attr.skin_support_tip_dialog_icon_success_src);
                     builder.src( R.attr.skin_support_tip_dialog_icon_success_src);
@@ -147,19 +157,23 @@ public class TipDialog extends BaseDialog {
                     drawable = ResHelper.getAttrDrawable(dialogContext, R.attr.skin_support_tip_dialog_icon_info_src);
                     builder.src(R.attr.skin_support_tip_dialog_icon_info_src);
                 }
+                //展示图片
                 imageView.setImageDrawable(drawable);
+                //设置样式
                 SkinHelper.setSkinValue(imageView, builder);
+                //在弹框 中展示 图片
                 dialogView.addView(imageView, onCreateIconOrLoadingLayoutParams(dialogContext));
             }
 
+            //展示文字提示信息
             if (mTipWord != null && mTipWord.length() > 0) {
                 TextView tipView = new SpanTouchFixTextView(mContext);
-                tipView.setEllipsize(TextUtils.TruncateAt.END);
-                tipView.setGravity(Gravity.CENTER);
-                tipView.setTextSize(TypedValue.COMPLEX_UNIT_PX, ResHelper.getAttrDimen(dialogContext, R.attr.tip_dialog_text_size));
-                tipView.setTextColor(ResHelper.getAttrColor(dialogContext, R.attr.skin_support_tip_dialog_text_color));
+                tipView.setEllipsize(TextUtils.TruncateAt.END);//文字过多时的展示模式
+                tipView.setGravity(Gravity.CENTER); //对齐方式
+                tipView.setTextSize(TypedValue.COMPLEX_UNIT_PX, ResHelper.getAttrDimen(dialogContext, R.attr.tip_dialog_text_size)); //文字大小
+                tipView.setTextColor(ResHelper.getAttrColor(dialogContext, R.attr.skin_support_tip_dialog_text_color)); //文字颜色
                 tipView.setText(mTipWord);
-
+                //现有样式清理
                 builder.clear();
                 builder.textColor(R.attr.skin_support_tip_dialog_text_color);
                 SkinHelper.setSkinValue(tipView, builder);
@@ -181,7 +195,6 @@ public class TipDialog extends BaseDialog {
             }
             return lp;
         }
-
     }
 
     /**
@@ -193,7 +206,6 @@ public class TipDialog extends BaseDialog {
 
         public CustomBuilder(Context context) {
             mContext = context;
-//            HashSet
         }
 
         public CustomBuilder setContent(@LayoutRes int layoutId) {

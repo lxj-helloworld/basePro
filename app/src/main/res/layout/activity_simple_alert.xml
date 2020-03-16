@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".alert.SimpleAlertActivity">
+
+    <include layout="@layout/toolbar"></include>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loading_btn"
+        android:onClick="onClick"
+        android:text="等待框"></Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/success_btn"
+        android:onClick="onClick"
+        android:text="提示框"></Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fail_btn"
+        android:onClick="onClick"
+        android:text="失败框"></Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/info_btn"
+        android:onClick="onClick"
+        android:text="提示框"></Button>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/only_pic_btn"
+        android:onClick="onClick"
+        android:text="仅图片框"></Button>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/only_word_btn"
+        android:onClick="onClick"
+        android:text="仅文字框"></Button>
+
+
+
+</LinearLayout>

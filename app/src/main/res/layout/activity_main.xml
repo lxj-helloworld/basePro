@@ -18,6 +18,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="简单弹框"
+                android:id="@+id/simple_alert_btn"
+                android:onClick="onClick"/>
 
             <Button
                 android:layout_width="match_parent"

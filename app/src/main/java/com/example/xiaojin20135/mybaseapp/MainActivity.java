@@ -18,6 +18,7 @@ import com.example.xiaojin20135.basemodule.util.LogUtils;
 import com.example.xiaojin20135.basemodule.webview.BaseWebViewActivity;
 import com.example.xiaojin20135.mybaseapp.alert.ItemAlertActivity;
 import com.example.xiaojin20135.mybaseapp.alert.SelfAlertActivity;
+import com.example.xiaojin20135.mybaseapp.alert.SimpleAlertActivity;
 import com.example.xiaojin20135.mybaseapp.approve.ApproveTestActivity;
 import com.example.xiaojin20135.mybaseapp.bottom.MyBottomActivity;
 import com.example.xiaojin20135.mybaseapp.datepicker.DatePickerActivity;
@@ -258,7 +259,9 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
             case R.id.list_item_btn:
                 canGo(ListItemActivity.class);
                 break;
-
+            case R.id.simple_alert_btn:
+                canGo(SimpleAlertActivity.class);
+                break;
         }
     }
 

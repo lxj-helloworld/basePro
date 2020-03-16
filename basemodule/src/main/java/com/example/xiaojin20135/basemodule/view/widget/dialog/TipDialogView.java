@@ -15,6 +15,7 @@ import com.example.xiaojin20135.basemodule.util.ui.ResHelper;
 * @author lixiaojin
 * create on 2020-03-14 14:30
 * description: 简单弹框
+*  设置宽度、高度、圆角、背景、边框和内边距的样式
 */
 public class TipDialogView extends UILinearLayout {
     private static final String TAG = "TipDialogView";
