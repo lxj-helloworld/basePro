@@ -8,6 +8,8 @@ import com.example.xiaojin20135.basemodule.activity.ToolBarActivity;
 import com.example.xiaojin20135.basemodule.view.widget.dialog.TipDialog;
 import com.example.xiaojin20135.mybaseapp.R;
 
+import java.util.ArrayList;
+
 public class SimpleAlertActivity extends ToolBarActivity {
     private TipDialog mTipDialog;
 
@@ -16,6 +18,8 @@ public class SimpleAlertActivity extends ToolBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        ArrayList
+//        Comparable
     }
 
     @Override
