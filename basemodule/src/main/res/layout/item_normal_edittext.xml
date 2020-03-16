@@ -10,7 +10,7 @@
 
     <TextView
         android:layout_width="@dimen/left_title_8"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="app_name"
         android:id="@+id/tv_left_title"
         style="@style/title_left"/>
