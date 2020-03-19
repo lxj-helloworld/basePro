@@ -24,6 +24,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
 
 /*
 * @author lixiaojin
@@ -41,6 +44,33 @@ public class TipDialog extends BaseDialog {
         //禁用点击边框外事件监听
         setCanceledOnTouchOutside(false);
     }
+
+    /*
+     * @author lixiaojin
+     * create on 2020-03-18 15:54
+     * description: 显示等待框。两秒后关闭
+     */
+    public void showWithAutoDismiss(){
+        showWithDelay(2000);
+    }
+
+    /*
+    * @author lixiaojin
+    * create on 2020-03-18 16:19
+    * description: 显示等待框，附带延时时间,单位是毫秒
+    */
+
+    public void showWithDelay(int mills){
+        show();
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                dismiss();
+            }
+        },mills);
+    }
+
 
     /**
      * 生成默认的 {@link TipDialog}
@@ -181,8 +211,13 @@ public class TipDialog extends BaseDialog {
             }
             builder.release();
             dialog.setContentView(dialogView);
+            dialog.setCanceledOnTouchOutside(true);
             return dialog;
         }
+
+
+
+
 
         protected LinearLayout.LayoutParams onCreateIconOrLoadingLayoutParams(Context context) {
             return new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

@@ -22,14 +22,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/success_btn"
         android:onClick="onClick"
-        android:text="提示框"></Button>
+        android:text="成功提示"></Button>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fail_btn"
         android:onClick="onClick"
-        android:text="失败框"></Button>
+        android:text="失败提示"></Button>
 
     <Button
         android:layout_width="match_parent"

@@ -63,14 +63,20 @@ public class SimpleAlertActivity extends ToolBarActivity {
                 mTipDialog = showWordOnly();
                 break;
         }
-        mTipDialog.show();
+//        mTipDialog.show();
 
-        view.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mTipDialog.dismiss();
-            }
-        },3000);
+//        view.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mTipDialog.dismiss();
+//            }
+//        },3000);
+
+        //带自动消息的提示框,，默认时间两秒
+//        mTipDialog.showWithAutoDismiss();
+
+//        自定义消失时间
+        mTipDialog.showWithDelay(5000);
     }
 
     private TipDialog showLoading(){
@@ -109,7 +115,7 @@ public class SimpleAlertActivity extends ToolBarActivity {
 
     private TipDialog showWordOnly(){
         return new TipDialog.Builder(SimpleAlertActivity.this)
-                .setTipWord("请勿重复操作")
+                .setTipWord("请勿重复操作请勿重复操作请勿重复操作请勿重复操作请勿重复操作请勿重复操作请勿重复操作请勿重复操作")
                 .create();
     }
 

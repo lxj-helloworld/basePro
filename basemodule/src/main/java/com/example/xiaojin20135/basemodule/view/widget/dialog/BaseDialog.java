@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDialog;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 
 /*
@@ -11,7 +13,7 @@ import android.view.Window;
 * create on 2020-03-07 09:27
 * description: alert基本类
 */
-public class BaseDialog extends AppCompatDialog {
+public class BaseDialog extends AppCompatDialog{
     boolean cancelable = true;
     private boolean canceledOnTouchOutside = true;
     private boolean canceledOnTouchOutsideSet;
@@ -69,4 +71,6 @@ public class BaseDialog extends AppCompatDialog {
         }
         return canceledOnTouchOutside;
     }
+
+
 }
