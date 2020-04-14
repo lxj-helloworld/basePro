@@ -33,6 +33,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -131,7 +132,14 @@ public enum  RetrofitManager {
         if(interceptor!=null){
             httpClientBuilder.addInterceptor(interceptor);
         }
-        httpClientBuilder.addInterceptor(LoggingInterceptor);
+        HttpLoggingInterceptor httpLoggingInterceptor=new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                Log.d ("HTTPLOG",message);
+            }
+        });
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        httpClientBuilder.addNetworkInterceptor(httpLoggingInterceptor);
         httpClientBuilder.addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR);
         httpClientBuilder.addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR);
         httpClientBuilder.hostnameVerifier (new HostnameVerifier () {
@@ -141,6 +149,7 @@ public enum  RetrofitManager {
             }
         });
     }
+
 
     //okhttp拦截器
     private static final Interceptor LoggingInterceptor = new Interceptor() {

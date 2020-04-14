@@ -12,31 +12,50 @@ import okhttp3.MultipartBody;
 public interface IBaseModel<T> {
     /**
      * 加载数据
+     *
      * @param paraMap
      * @param iBaseRequestCallBack
      */
-    void loadData(String url,String methodName,Map paraMap,final IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void loadData(String url, String methodName, Map paraMap, final IBaseRequestCallBack<T> iBaseRequestCallBack);
 
     /**
      * 加载数据
+     *
      * @param paraMap
      * @param iBaseRequestCallBack
      */
-    void loadData(String url,String methodName,String errorMethodName,Map paraMap,final IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void getData(String url, String methodName, Map paraMap, final IBaseRequestCallBack<T> iBaseRequestCallBack);
 
     /**
      * 加载数据
+     *
      * @param paraMap
      * @param iBaseRequestCallBack
      */
-    void loadData(String url,Map paraMap,final IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void postData(String url, String methodName, Map paraMap, final IBaseRequestCallBack<T> iBaseRequestCallBack);
+
+    /**
+     * 加载数据
+     *
+     * @param paraMap
+     * @param iBaseRequestCallBack
+     */
+    void loadData(String url, String methodName, String errorMethodName, Map paraMap, final IBaseRequestCallBack<T> iBaseRequestCallBack);
+
+    /**
+     * 加载数据
+     *
+     * @param paraMap
+     * @param iBaseRequestCallBack
+     */
+    void loadData(String url, Map paraMap, final IBaseRequestCallBack<T> iBaseRequestCallBack);
 
     /**
      * @author lixiaojin
      * @createon 2018-09-01 8:52
      * @Describe 文件上传
      */
-    void upload(String url,String methodName,Map paraMap, MultipartBody.Part[] filePart,final IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void upload(String url, String methodName, Map paraMap, MultipartBody.Part[] filePart, final IBaseRequestCallBack<T> iBaseRequestCallBack);
 
 
     /**

@@ -124,6 +124,32 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
 
 
     /**
+     * @Description: 平台2.0新请求方式
+     * @Parames [url, paraMap]
+     * @author 龙少
+     * @date 2020/4/14
+     * @version V1.0
+     */
+    public void getData(String url, String methodName, Map paraMap) {
+        lastUrl = url;
+        lastMap = paraMap;
+        presenterImpl.getData(url, methodName, paraMap);
+    }
+
+    /**
+     * @Description: 平台2.0新请求方式
+     * @Parames [url, paraMap]
+     * @author 龙少
+     * @date 2020/4/14
+     * @version V1.0
+     */
+    public void postData(String url, String methodName, Map paraMap) {
+        lastUrl = url;
+        lastMap = paraMap;
+        presenterImpl.postData(url, methodName, paraMap);
+    }
+
+    /**
      * @author lixiaojin
      * @createon 2018-07-17 10:23
      * @Describe 请求数据 ，带完整路径，自定义回调方法
@@ -282,7 +308,11 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
         Log.d (TAG,"loadDataSuccess with methodName :" + methodName);
         ResponseBean responseBean = (ResponseBean)tData;
         ActionResult actionResult = responseBean.getActionResult ();
-        if(actionResult.getSuccess ()){
+        if (actionResult==null){
+            actionResult=new ActionResult();
+            actionResult.setSuccess(false);
+        }
+        if(actionResult.getSuccess ()||responseBean.isSuccess()){
             if(methodName != null && !methodName.equals ("")){
                 try {
                     Class c = this.getClass();

@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,8 +39,43 @@ public class ResponseBean {
     private List<Map> mailtypeList;
     private boolean timeout;
 
+    private String code;
+    private String message;
+    private Map result;
 
+    private boolean success;
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Map getResult() {
+        return result;
+    }
+
+    public void setResult(Map result) {
+        this.result = result;
+    }
 
     private String records;//共有多少条记录
     private String total;//共有多少条页

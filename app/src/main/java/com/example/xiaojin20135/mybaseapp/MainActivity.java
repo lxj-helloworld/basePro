@@ -3,16 +3,15 @@ package com.example.xiaojin20135.mybaseapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.xiaojin20135.basemodule.activity.BaseActivity;
 import com.example.xiaojin20135.basemodule.activity.ToolBarActivity;
 import com.example.xiaojin20135.basemodule.guidepage.GuidePageActivity;
 import com.example.xiaojin20135.basemodule.menuitem.adapter.MenuItemAdapter;
 import com.example.xiaojin20135.basemodule.menuitem.fragment.MenuItemFragment;
 import com.example.xiaojin20135.basemodule.menuitem.listener.IMemuItemClick;
+import com.example.xiaojin20135.basemodule.retrofit.bean.ResponseBean;
 import com.example.xiaojin20135.basemodule.util.LogUtils;
 import com.example.xiaojin20135.basemodule.webview.BaseWebViewActivity;
 import com.example.xiaojin20135.mybaseapp.alert.ItemAlertActivity;
@@ -27,7 +26,6 @@ import com.example.xiaojin20135.mybaseapp.image.PickImageActivity;
 import com.example.xiaojin20135.mybaseapp.loaddata.LoadDataActivity;
 import com.example.xiaojin20135.mybaseapp.mpchart.MyChartActivity;
 import com.example.xiaojin20135.mybaseapp.normal.NormalEdittextActivity;
-import com.example.xiaojin20135.mybaseapp.normal.NormalTextViewActivity;
 import com.example.xiaojin20135.mybaseapp.recyclerview.MyRecyActivity;
 import com.example.xiaojin20135.mybaseapp.security.SecurityActivity;
 import com.example.xiaojin20135.mybaseapp.spinner.MySpinnerActivity;
@@ -43,7 +41,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.xiaojin20135.basemodule.status.StatusHelp.setWindowStatusBarColor;
 import static com.example.xiaojin20135.basemodule.util.ConstantUtil.MAP;
 import static com.example.xiaojin20135.basemodule.util.ConstantUtil.URLWEB;
 
@@ -226,9 +223,20 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
                 canGo(WaterMarkActivity.class);
                 break;
             case R.id.normal_textvew_btn:
-                canGo(NormalTextViewActivity.class);
+                login();
+//                canGo(NormalTextViewActivity.class);
                 break;
         }
+    }
+
+    public void  login(){
+        HashMap map=new HashMap();
+        map.put("username","7804");
+        map.put("password","E10ADC3949BA59ABBE56E057F20F883E");
+        HttpPostData("http://172.20.192.77:8900/app/login","loginsuccess",map);
+    }
+    public void loginsuccess(ResponseBean responseBean){
+        showToast(this,"成功");
     }
 
     private void initMenu(){
