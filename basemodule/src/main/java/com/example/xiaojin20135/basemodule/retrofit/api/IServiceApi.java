@@ -17,6 +17,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 import rx.Observable;
 
@@ -62,7 +63,7 @@ public interface IServiceApi {
     @GET
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     //添加
-    Observable<ResponseBean> get(@Url String url, @FieldMap Map<String, String> options);
+    Observable<ResponseBean> get(@Url String url, @QueryMap Map<String, String> options);
 
     /**
      * @author lixiaojin
