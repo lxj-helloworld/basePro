@@ -69,7 +69,8 @@
         <activity android:name=".activity.recycle.BaseRecyclerActivity" />
         <activity android:name=".activity.tablay.BaseTapActivity" />
         <activity android:name=".activity.approve.ApproveActivity" />
-        <activity android:name=".image.view.ImageBrowseActivity" />
+        <activity android:name=".image.view.ImageBrowseActivity"
+            android:theme="@style/Transparent"/>
         <activity android:name=".webview.BaseWebViewActivity" />
         <activity android:name=".guidepage.GuidePageActivity" />
 

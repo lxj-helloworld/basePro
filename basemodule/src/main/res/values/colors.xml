@@ -16,4 +16,5 @@
     <color name="grey">#EFEFEF</color>
     <color name="grey_light">#EEEEEE</color>
     <color name="spinner_text">#3F51B5</color>
+    <color name="transparent">#00000000</color>
 </resources>

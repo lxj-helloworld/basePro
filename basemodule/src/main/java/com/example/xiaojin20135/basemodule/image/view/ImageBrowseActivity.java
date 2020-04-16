@@ -2,6 +2,8 @@ package com.example.xiaojin20135.basemodule.image.view;
 
 import android.animation.Animator;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -23,11 +26,11 @@ import com.example.xiaojin20135.basemodule.image.adapter.ImageBrowseAdapter;
 import com.example.xiaojin20135.basemodule.image.listener.ImageLongClick;
 import com.example.xiaojin20135.basemodule.util.MethodsUtils;
 import com.example.xiaojin20135.basemodule.view.MyViewPager;
+import com.example.xiaojin20135.basemodule.view.SlideCloseLayout;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
 
-import static com.example.xiaojin20135.basemodule.image.ImageConstant.ENABLELONGCLICK;
 import static com.example.xiaojin20135.basemodule.image.ImageConstant.FROMNET;
 
 public class ImageBrowseActivity extends BaseActivity implements ImageLongClick {
@@ -46,6 +49,7 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
     private ImageView right;
     private boolean isleft;
     private boolean isright;
+    private SlideCloseLayout slideCloseLayout;
 
     //删除
     private ImageView delete_iv;
@@ -58,13 +62,37 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
         //出现动画
         overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         //全屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.black));
+        }
+
+
         //展示数据
         showData();
 
         //初始化下载和删除功能
         initDowns();
     }
+
+    private void setSystemUIVisible(boolean show) {
+        if (show) {
+            int uiFlags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            uiFlags |= 0x00001000;
+            getWindow().getDecorView().setSystemUiVisibility(uiFlags);
+        } else {
+            int uiFlags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            uiFlags |= 0x00001000;
+            getWindow().getDecorView().setSystemUiVisibility(uiFlags);
+        }
+    }
+
 
     @Override
     protected int getLayoutId () {
@@ -73,6 +101,27 @@ public class ImageBrowseActivity extends BaseActivity implements ImageLongClick 
 
     @Override
     protected void initView () {
+        getWindow().getDecorView().setBackgroundColor(Color.BLACK);
+
+        slideCloseLayout=findViewById(R.id.slideLayout);
+        slideCloseLayout.setGradualBackground(getWindow().getDecorView().getBackground());
+        slideCloseLayout.setLayoutScrollListener(new SlideCloseLayout.LayoutScrollListener() {
+            @Override
+            public void onLayoutClosed() {
+                back();
+            }
+
+            @Override
+            public void onLayoutScrolling(float alpha) {
+//                getWindow().getDecorView().setAlpha(alpha);
+            }
+
+            @Override
+            public void onLayoutScrollRevocer() {
+//                backgroundAlpha(1f);
+
+            }
+        });
         loading_progress = (ProgressBar)findViewById(R.id.loading_progress);
         mNumberTextView = (TextView)findViewById(R.id.number_textview);
         left = (ImageView) findViewById(R.id.roat_left);

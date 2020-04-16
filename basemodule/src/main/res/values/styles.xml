@@ -32,6 +32,19 @@
 
     </style>
 
+    <style name="Transparent" parent="AppTheme_my">
+        <!--不设置activity进入和退出动画样式-->
+        <item name="android:windowAnimationStyle">@null</item>
+        <!--设置窗口的背景为透明，设置透明背景必须要设置此项-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--设置窗口的背景是否为半透明，设置透明背景必须要设置此项-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--设置状态栏的背景为半透明-->
+
+
+    　　
+    　　</style>
+
     <style name="my_btn_style" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
