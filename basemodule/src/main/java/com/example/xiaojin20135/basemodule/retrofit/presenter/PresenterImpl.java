@@ -48,6 +48,12 @@ public class PresenterImpl extends BasePresenterImp<IBaseView,ResponseBean> impl
     }
 
     @Override
+    public void putData(String url, String methodName, Map paraMap) {
+        baseModel.putData(url,methodName,paraMap,this);
+
+    }
+
+    @Override
     public void loadData (String url, String methodName, String errorMethodName, Map paraMap) {
         baseModel.loadData (url,methodName,errorMethodName,paraMap,this);
     }

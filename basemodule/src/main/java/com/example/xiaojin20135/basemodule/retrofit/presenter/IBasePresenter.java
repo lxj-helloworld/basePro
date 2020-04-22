@@ -38,6 +38,15 @@ public interface IBasePresenter {
     void postData(String url, String methodName, Map paraMap);
 
     /**
+     * @Description: 2.0平台put请求
+     * @Parames [url, methodName, paraMap]
+     * @author 龙少
+     * @date 2020/4/14
+     * @version V1.0
+     */
+    void putData(String url, String methodName, Map paraMap);
+
+    /**
      * 加载数据
      *
      * @param url

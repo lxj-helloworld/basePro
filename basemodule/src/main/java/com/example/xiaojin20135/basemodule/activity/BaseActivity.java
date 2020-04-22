@@ -350,6 +350,19 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     }
 
     /**
+     * @Description: 平台2.0新请求方式
+     * @Parames [url, paraMap]
+     * @author 龙少
+     * @date 2020/4/14
+     * @version V1.0
+     */
+    public void HttpPutData(String url, String methodName, Map paraMap) {
+        lastUrl = url;
+        lastMap = paraMap;
+        presenterImpl.putData(url, methodName, paraMap);
+    }
+
+    /**
      * @author lixiaojin
      * @createon 2018-07-17 10:39
      * @Describe 请求数据，带请求方法，并自定义回调方法
@@ -470,11 +483,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         Log.d(TAG, "methodName = " + methodName);
         ResponseBean responseBean = (ResponseBean) tData;
         ActionResult actionResult = responseBean.getActionResult();
-        if (actionResult==null){
-            actionResult=new ActionResult();
+        if (actionResult == null) {
+            actionResult = new ActionResult();
             actionResult.setSuccess(false);
         }
-        if (actionResult.getSuccess()||responseBean.isSuccess()) {
+        if (actionResult.getSuccess() || responseBean.isSuccess()) {
             if (methodName != null && !methodName.equals("")) {
                 try {
                     Class c = this.getClass();
@@ -548,7 +561,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     public void requestError(ResponseBean responseBean) {
         requestError(responseBean.getActionResult().getMessage());
-        if (responseBean.isTimeout()) {
+        if (responseBean.isTimeout() || responseBean.getCode().equals("401")) {
             cancleRequest();
             reStartApp();
         }

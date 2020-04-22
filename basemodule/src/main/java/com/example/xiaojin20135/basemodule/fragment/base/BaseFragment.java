@@ -143,6 +143,19 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
      * @date 2020/4/14
      * @version V1.0
      */
+    public void HttpPutData(String url, String methodName, Map paraMap) {
+        lastUrl = url;
+        lastMap = paraMap;
+        presenterImpl.putData(url, methodName, paraMap);
+    }
+
+    /**
+     * @Description: 平台2.0新请求方式
+     * @Parames [url, paraMap]
+     * @author 龙少
+     * @date 2020/4/14
+     * @version V1.0
+     */
     public void postData(String url, String methodName, Map paraMap) {
         lastUrl = url;
         lastMap = paraMap;
@@ -384,8 +397,8 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     @Override
     public void requestError (ResponseBean responseBean) {
         requestError (responseBean.getActionResult ().getMessage ());
-        if(responseBean.isTimeout ()){
-         cancleRequest();
+        if (responseBean.isTimeout()||responseBean.getCode().equals("401")) {
+            cancleRequest();
             reStartApp();
         }
     }
