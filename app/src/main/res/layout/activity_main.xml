@@ -17,7 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bottom"
+                android:id="@+id/simple_bottom_btn"
+                android:onClick="onClick"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +62,6 @@
                 android:text="自定义浮层"
                 android:id="@+id/self_popup_btn"
                 android:onClick="onClick"/>
-
 
             <Button
                 android:layout_width="match_parent"

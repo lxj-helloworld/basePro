@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:replace="android:label,android:name">
-        <activity android:name=".alert.SimpleAlertActivity"></activity>
+        <activity android:name=".bottomsheet.SimpleBottomSheetActivity"></activity>
+        <activity android:name=".alert.SimpleAlertActivity" />
         <activity android:name=".view.widget.ListItemActivity" />
         <activity android:name=".view.widget.EmptyViewActivity" />
         <activity android:name=".alert.SelfAlertActivity" />

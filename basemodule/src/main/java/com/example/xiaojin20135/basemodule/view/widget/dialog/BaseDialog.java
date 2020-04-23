@@ -14,7 +14,7 @@ import android.view.Window;
 * description: alert基本类
 */
 public class BaseDialog extends AppCompatDialog{
-    boolean cancelable = true;
+    public boolean cancelable = true;
     private boolean canceledOnTouchOutside = true;
     private boolean canceledOnTouchOutsideSet;
 

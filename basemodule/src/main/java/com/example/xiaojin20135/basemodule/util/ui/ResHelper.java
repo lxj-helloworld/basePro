@@ -11,13 +11,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
-import android.view.View;
 import android.widget.TextView;
-
 import com.example.xiaojin20135.basemodule.R;
 import com.example.xiaojin20135.basemodule.util.LogUtils;
 
+import java.lang.reflect.Proxy;
 
+/*
+* @author lixiaojin
+* create on 2020-04-09 10:23
+* description: 资源帮助类
+*/
 public class ResHelper {
     private static final String TAG = "ResHelper";
     private static TypedValue sTmpValue;

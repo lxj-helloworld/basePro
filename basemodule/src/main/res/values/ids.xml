@@ -8,4 +8,6 @@
     <!--tablayout 需要使用的ID-->
     <item name="base_tablayout" type="id"/>
     <item name="base_viewpager" type="id"/>
+
+    <item name="skin_default_attr_provider" type="id" />
 </resources>

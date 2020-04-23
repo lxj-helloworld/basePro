@@ -390,8 +390,7 @@ public class Dialog extends BaseDialog {
         }
 
         protected ConstraintLayout.LayoutParams createEditTextLayoutParams(Context context) {
-            ConstraintLayout.LayoutParams editLp = new ConstraintLayout.LayoutParams(
-                    0, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ConstraintLayout.LayoutParams editLp = new ConstraintLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
             editLp.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
             editLp.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
             editLp.rightToLeft = R.id.dialog_edit_right_icon;
@@ -401,8 +400,7 @@ public class Dialog extends BaseDialog {
         }
 
         protected ConstraintLayout.LayoutParams createRightIconLayoutParams(Context context) {
-            ConstraintLayout.LayoutParams rightIconLp = new ConstraintLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ConstraintLayout.LayoutParams rightIconLp = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             rightIconLp.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
             rightIconLp.bottomToBottom = R.id.dialog_edit_input;
             return rightIconLp;
@@ -508,12 +506,9 @@ public class Dialog extends BaseDialog {
             LinearLayout layout = new LinearLayout(context);
             layout.setOrientation(LinearLayout.VERTICAL);
 
-
-            TypedArray a = context.obtainStyledAttributes(
-                    null, R.styleable.DialogMenuContainerStyleDef, R.attr.dialog_menu_container_style, 0);
+            TypedArray a = context.obtainStyledAttributes(null, R.styleable.DialogMenuContainerStyleDef, R.attr.dialog_menu_container_style, 0);
             int count = a.getIndexCount();
-            int paddingTop = 0, paddingBottom = 0, paddingVerWhenSingle = 0,
-                    paddingTopWhenTitle = 0, paddingBottomWhenAction = 0, itemHeight = -1;
+            int paddingTop = 0, paddingBottom = 0, paddingVerWhenSingle = 0, paddingTopWhenTitle = 0, paddingBottomWhenAction = 0, itemHeight = -1;
             for (int i = 0; i < count; i++) {
                 int attr = a.getIndex(i);
                 if (attr == R.styleable.DialogMenuContainerStyleDef_android_paddingTop) {
@@ -531,25 +526,18 @@ public class Dialog extends BaseDialog {
                 }
             }
             a.recycle();
-
             if (mMenuItemViewsFactoryList.size() == 1) {
                 paddingBottom = paddingTop = paddingVerWhenSingle;
             }
-
             if (hasTitle()) {
                 paddingTop = paddingTopWhenTitle;
             }
-
             if (mActions.size() > 0) {
                 paddingBottom = paddingBottomWhenAction;
             }
-
             layout.setPadding(0, paddingTop, 0, paddingBottom);
-
             LinearLayout.LayoutParams itemLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight);
             itemLp.gravity = Gravity.CENTER_VERTICAL;
-
-
             mMenuItemViews.clear();
             for (ItemViewFactory factory : mMenuItemViewsFactoryList) {
                 DialogMenuItemView itemView = factory.createItemView(context);

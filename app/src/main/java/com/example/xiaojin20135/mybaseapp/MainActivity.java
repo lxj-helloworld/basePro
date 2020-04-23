@@ -21,6 +21,7 @@ import com.example.xiaojin20135.mybaseapp.alert.SelfAlertActivity;
 import com.example.xiaojin20135.mybaseapp.alert.SimpleAlertActivity;
 import com.example.xiaojin20135.mybaseapp.approve.ApproveTestActivity;
 import com.example.xiaojin20135.mybaseapp.bottom.MyBottomActivity;
+import com.example.xiaojin20135.mybaseapp.bottomsheet.SimpleBottomSheetActivity;
 import com.example.xiaojin20135.mybaseapp.datepicker.DatePickerActivity;
 import com.example.xiaojin20135.mybaseapp.datepicker.wheel.WeelPickerActivity;
 import com.example.xiaojin20135.mybaseapp.devicelabel.DeviceLabelActivity;
@@ -142,7 +143,6 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
                 canGo (MyBottomActivity.class);
                 break;
             case R.id.recycler_btn:
-
                 bundle.putString ("hh","jj");
                 canGo (MyRecyActivity.class,bundle);
                 break;
@@ -261,6 +261,9 @@ public class MainActivity extends ToolBarActivity implements View.OnClickListene
                 break;
             case R.id.simple_alert_btn:
                 canGo(SimpleAlertActivity.class);
+                break;
+            case R.id.simple_bottom_btn:
+                canGo(SimpleBottomSheetActivity.class);
                 break;
         }
     }

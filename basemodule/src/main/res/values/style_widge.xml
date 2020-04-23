@@ -179,7 +179,7 @@
 
 
     <style name="BottomSheet.Title">
-        <item name="android:textColor">?attr/skin_support_bottom_sheet_title_text_color</item>
+        <item name="android:textColor">@color/config_color_black</item>
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">14dp</item>
