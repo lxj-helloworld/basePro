@@ -232,7 +232,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
             if (progressDialog == null || !progressDialog.isShowing()) {
                 progressDialog = new ProgressDialog(this);
             }
+//            Window window = getWindow();
+//            window.setWindowAnimations(R.style.NoAnimationDialog); // 添加动画
             progressDialog.show();
+
         }
     }
 
@@ -561,7 +564,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     public void requestError(ResponseBean responseBean) {
         requestError(responseBean.getActionResult().getMessage());
-        if (responseBean.isTimeout() || responseBean.getCode().equals("401")) {
+        if (responseBean.isTimeout() || responseBean.getStatusCode().equals("401")) {
             cancleRequest();
             reStartApp();
         }

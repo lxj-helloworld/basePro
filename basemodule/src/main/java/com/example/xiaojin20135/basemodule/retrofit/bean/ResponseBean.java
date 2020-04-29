@@ -39,7 +39,8 @@ public class ResponseBean {
     private List<Map> mailtypeList;
     private boolean timeout;
 
-    private String code;
+    private String statusCode;
+    private String errorCode;
     private String message;
     private Map result;
 
@@ -53,12 +54,20 @@ public class ResponseBean {
         this.success = success;
     }
 
-    public String getCode() {
-        return code;
+    public String getStatusCode() {
+        return statusCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
     public String getMessage() {

@@ -45,6 +45,12 @@
     　　
     　　</style>
 
+    <style name="NoAnimationDialog" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+
+
     <style name="my_btn_style" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>

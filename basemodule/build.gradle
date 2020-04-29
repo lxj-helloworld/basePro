@@ -69,13 +69,13 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     /** 图片选择器   **/
     /** 最基础的架构，仅提供了系统默认的图片选择器和拍照功能   **/
-    compile 'com.github.qingmei2:rximagepicker:2.2.0-alpha'
+    compile 'com.github.qingmei2:rximagepicker:2.2.0'
     /** 提供了自定义UI图片选择器的基本组件，自定义UI的需求需要添加该依赖   **/
-    compile 'com.github.qingmei2:rximagepicker_support:2.2.0-alpha'
+    compile 'com.github.qingmei2:rximagepicker_support:2.2.0'
     /** 如果需要额外的UI支持，请选择依赖对应的UI拓展库   **/
     compile 'com.github.qingmei2:rximagepicker_support_zhihu:2.2.0-alpha'
     // 知乎图片选择器
-    compile 'com.github.qingmei2:rximagepicker_support_wechat:2.2.0-alpha'
+    compile 'com.github.qingmei2:rximagepicker_support_wechat:2.2.0'
     // 微信图片选择器
     compile 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
