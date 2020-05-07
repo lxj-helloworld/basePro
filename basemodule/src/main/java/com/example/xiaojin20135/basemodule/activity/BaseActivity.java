@@ -563,11 +563,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     @Override
     public void requestError(ResponseBean responseBean) {
-        requestError(responseBean.getActionResult().getMessage());
-        if (responseBean.isTimeout() || responseBean.getStatusCode().equals("401")) {
-            cancleRequest();
-            reStartApp();
+        if (responseBean.isTimeout()&&responseBean.getActionResult().getMessage()!=null){
+            requestError(responseBean.getActionResult().getMessage());
         }
+        if (responseBean.getStatusCode().equals("401")&&responseBean.getMessage()!=null) {
+            requestError(responseBean.getMessage());
+        }
+        cancleRequest();
+        reStartApp();
+
     }
 
     public void cancleRequest() {
