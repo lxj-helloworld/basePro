@@ -4,7 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/basePro.iml" filepath="$PROJECT_DIR$/basePro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/basePro-app.iml" filepath="$PROJECT_DIR$/app/basePro-app.iml" group="basePro/app" />
+      <module fileurl="file://$PROJECT_DIR$/basemodule/basePro-basemodule.iml" filepath="$PROJECT_DIR$/basemodule/basePro-basemodule.iml" group="basePro/basemodule" />
       <module fileurl="file://$PROJECT_DIR$/basemodule/basemodule.iml" filepath="$PROJECT_DIR$/basemodule/basemodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/github-basePro.iml" filepath="$PROJECT_DIR$/github-basePro.iml" group="basePro" />
     </modules>
   </component>
 </project>
